@@ -36,7 +36,7 @@ public class Board {
         boardGrid[row][col] = disc;
     }
 
-    private Disc getDiscFromBoard(Integer row, Integer col) {
+    public Disc getDiscFromBoard(Integer row, Integer col) {
         Disc disc = boardGrid[row][col];
         return disc;
     }
