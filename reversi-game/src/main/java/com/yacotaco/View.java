@@ -21,7 +21,7 @@ public class View {
     public View(Stage stage) {
         this.borderPane = new BorderPane();
         new BoardGrid();
-        stage.setScene(new Scene(borderPane, 600, 600));
+        stage.setScene(new Scene(borderPane, 800, 800));
         stage.show();
     }
 
