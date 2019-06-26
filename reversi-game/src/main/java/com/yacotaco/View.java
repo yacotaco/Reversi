@@ -2,11 +2,11 @@ package com.yacotaco;
 
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
-import javafx.scene.control.Label;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 
@@ -15,7 +15,7 @@ import javafx.stage.Stage;
  */
 public class View {
     private GridPane boardGridPane;
-    private BorderPane borderPane; 
+    private BorderPane borderPane;
     private StackPane square;
 
     public View(Stage stage) {
@@ -59,5 +59,27 @@ public class View {
 
     public void setBoardGridPane(GridPane boardGridPane) {
         this.boardGridPane = boardGridPane;
+    }
+
+    public class DiscView {
+
+        public Circle makeDisc(Integer discState) {
+            Circle circle = new Circle();
+            if (discState == 0) {
+                // white disc
+                circle.setCenterX(100.0f);
+                circle.setCenterY(100.0f);
+                circle.setRadius(30.0f);
+                circle.setFill(Color.WHITE);
+            } else if (discState == 1) {
+                // black disc
+                circle.setCenterX(100.0f);
+                circle.setCenterY(100.0f);
+                circle.setRadius(30.0f);
+                circle.setFill(Color.BLACK);
+            }
+            return circle;
+        }
+
     }
 }
