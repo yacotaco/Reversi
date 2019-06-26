@@ -55,4 +55,8 @@ public class Board {
             System.out.println();
         }
     }
+
+    public Disc[][] getBoardGrid() {
+        return boardGrid;
+    }
 }
