@@ -1,10 +1,10 @@
 package com.yacotaco;
 
+import javafx.event.EventHandler;
 import javafx.scene.Node;
-import javafx.scene.control.Label;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.StackPane;
-
 
 /**
  * Controller
@@ -16,8 +16,13 @@ public class Controller {
     public Controller(Board board, View view) {
         this.board = board;
         this.view = view;
+        initController();
+    }
+
+    private void initController() {
         printBoard();
-    } 
+        onGridClick();
+    }
 
     private void printBoard() {
         GridPane boardGrid = view.getBoardGridPane();
@@ -30,5 +35,20 @@ public class Controller {
             StackPane sp = (StackPane) square;
             sp.getChildren().add(dv.makeDisc(discState));
         }
+    }
+
+    private void onGridClick() {
+        view.getBoardGridPane().getChildren().forEach(square -> {
+            square.setOnMouseClicked(new EventHandler<MouseEvent>() {
+                @Override
+                public void handle(MouseEvent event) {
+                    Node node = (Node) event.getSource();
+                    Integer col = view.getBoardGridPane().getColumnIndex(node);
+                    Integer row = view.getBoardGridPane().getRowIndex(node);
+                    board.modifyDiscState(row, col, 1);
+                    printBoard();
+                }
+            });
+        });
     }
 }
