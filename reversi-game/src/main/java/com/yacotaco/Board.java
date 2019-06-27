@@ -41,7 +41,7 @@ public class Board {
         return disc;
     }
 
-    private void modifyDiscState(Integer row, Integer col, Integer state) {
+    public void modifyDiscState(Integer row, Integer col, Integer state) {
         Disc disc = getDiscFromBoard(row, col);
         disc.setState(state);
     }
