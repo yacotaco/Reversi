@@ -20,11 +20,11 @@ public class Controller {
     }
 
     private void initController() {
-        printBoard();
+        updateBoardView();
         onGridClick();
     }
 
-    private void printBoard() {
+    private void updateBoardView() {
         GridPane boardGrid = view.getBoardGridPane();
         View.DiscView dv = view.new DiscView();
 
@@ -46,7 +46,7 @@ public class Controller {
                     Integer col = view.getBoardGridPane().getColumnIndex(node);
                     Integer row = view.getBoardGridPane().getRowIndex(node);
                     board.modifyDiscState(row, col, 1);
-                    printBoard();
+                    updateBoardView();
                 }
             });
         });
