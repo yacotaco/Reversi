@@ -14,9 +14,11 @@ import javafx.stage.Stage;
  * View
  */
 public class View {
-    private GridPane boardGridPane;
     private BorderPane borderPane;
-    private StackPane square;
+
+    /**
+     * @param borderPane organize elements in border layout 
+     */
 
     public View(Stage stage) {
         this.borderPane = new BorderPane();
@@ -26,13 +28,20 @@ public class View {
     }
 
     public class BoardGrid {
+        private GridPane boardGridPane;
+        private StackPane square;
+
+        /**
+         * @param boardGridPane 8x8 grid with StackPane object in each cell
+         * @param square StackPane object holds rectangle and circle objects
+         */
 
         public BoardGrid() {
+            this.boardGridPane = new GridPane();
             initBordView();
         }
 
         private void initBordView() {
-            boardGridPane = new GridPane();
             boardGridPane.setAlignment(Pos.CENTER);
             int rowNum = 8;
             int colNum = 8;
@@ -51,14 +60,14 @@ public class View {
             }
             borderPane.setCenter(boardGridPane);
         }
-    }
 
-    public GridPane getBoardGridPane() {
-        return boardGridPane;
-    }
+        public GridPane getBoardGridPane() {
+            return boardGridPane;
+        }
 
-    public void setBoardGridPane(GridPane boardGridPane) {
-        this.boardGridPane = boardGridPane;
+        public void setBoardGridPane(GridPane boardGridPane) {
+            this.boardGridPane = boardGridPane;
+        }
     }
 
     public class DiscView {
