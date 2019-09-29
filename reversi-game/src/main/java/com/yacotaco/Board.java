@@ -7,7 +7,7 @@ public class Board {
     private Disc[][] boardGrid = new Disc[8][8];
 
     Board() {
-    
+        initBoard();
     }
 
     /**
