@@ -11,8 +11,8 @@ public class App extends Application {
     @Override
     public void start(Stage stage) {
         Board board = new Board();
-        View view = new View();
-        Controller controller = new Controller();
+        View view = new View(stage);
+        Controller controller = new Controller(board, view);
     }
 
     public static void main(String[] args) {
