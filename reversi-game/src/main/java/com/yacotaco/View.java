@@ -8,6 +8,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
+import javafx.scene.shape.Shape;
 import javafx.stage.Stage;
 
 /**
@@ -17,7 +18,7 @@ public class View {
     private BorderPane borderPane;
 
     /**
-     * @param borderPane organize elements in border layout 
+     * @param borderPane organize elements in border layout
      */
 
     public View(Stage stage) {
@@ -33,7 +34,7 @@ public class View {
 
         /**
          * @param boardGridPane 8x8 grid with StackPane object in each cell
-         * @param square StackPane object holds rectangle and circle objects
+         * @param square        StackPane object holds rectangle and circle objects
          */
 
         public BoardGrid() {
@@ -90,5 +91,13 @@ public class View {
             return circle;
         }
 
+        public Shape makeCircle() {
+            Circle whole = new Circle(100.0f, 100.0f, 30);
+            Circle inside = new Circle(100.0f, 100.0f, 28);
+            Shape circle = Shape.subtract(whole, inside);
+            circle.setFill(Color.BLACK);
+
+            return circle;
+        }
     }
 }
