@@ -15,6 +15,7 @@ public class Controller {
     private View.DiscView dv;
     private Player playerOne;
     private Player playerTwo;
+    private Integer playerTurn;
 
     /**
      * @param board     Board class passed to controller
@@ -39,6 +40,19 @@ public class Controller {
         initPlayer();
         updateBoardView();
         onGridClick();
+        setPlayerTurn(1);
+    }
+
+    private void setPlayerTurn(Integer state) {
+        this.playerTurn = state;
+    }
+
+    private void changePlayerTurn(Integer playerTurn) {
+        if(playerTurn == 0) {
+            setPlayerTurn(1);
+        } else if (playerTurn == 1) {
+            setPlayerTurn(0);
+        }
     }
 
     private void initPlayer() {
@@ -66,8 +80,11 @@ public class Controller {
                     Node node = (Node) event.getSource();
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
-                    board.modifyDiscState(row, col, 1);
+                    board.modifyDiscState(row, col, playerTurn);
                     updateBoardView();
+
+                    // change player after update 
+                    changePlayerTurn(playerTurn);
                 }
             });
         });
