@@ -80,7 +80,12 @@ public class Controller {
                     Node node = (Node) event.getSource();
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
-                    board.modifyDiscState(row, col, playerTurn);
+                    
+                    // player can place disc only on empty square
+                    if(board.getDiscFromBoard(row, col).getState() == -1) {
+                        board.modifyDiscState(row, col, playerTurn);
+                    }
+
                     updateBoardView();
 
                     // change player after update 
