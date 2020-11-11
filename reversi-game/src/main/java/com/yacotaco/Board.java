@@ -1,5 +1,7 @@
 package com.yacotaco;
 
+import java.util.ArrayList;
+
 /**
  * Board
  */
@@ -44,6 +46,19 @@ public class Board {
     public void modifyDiscState(Integer row, Integer col, Integer state) {
         Disc disc = getDiscFromBoard(row, col);
         disc.setState(state);
+    }
+
+    public ArrayList<Disc> getAllPlayerDiscs(Integer discState) {
+        ArrayList<Disc> list = new ArrayList<Disc>();
+        for (int row = 0; row < boardGrid.length; row++) {
+            for (int col = 0; col < boardGrid[row].length; col++) {
+                Disc disc = getDiscFromBoard(row, col);
+                if (disc.getState() == discState) {
+                    list.add(disc);
+                }
+            }
+        }
+        return list;
     }
 
     public void printBoard() {
