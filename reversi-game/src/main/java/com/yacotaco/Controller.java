@@ -18,7 +18,7 @@ public class Controller {
     private Player playerOne;
     private Player playerTwo;
     private Integer playerTurn;
-    private Integer[] allValidMoves;
+    private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
     /**
      * @param board     Board class passed to controller
@@ -148,13 +148,14 @@ public class Controller {
     }
 
     private void getValidMoves(Integer playerTurn) {
+        allValidMoves.clear();
         // generate posible moves for player
         ArrayList<Disc> list = board.getAllPlayerDiscs(playerTurn);
         for (Disc disc : list) {
             System.out.println(disc.getRow() + " " + disc.getCol() + " player " + disc.getState());
             ArrayList<Integer[]> hMoves = getHorizontalMoves(disc);
             for (Integer[] move : hMoves) {
-                System.out.println(move[0] + " " + move[1]);
+                allValidMoves.add(move);
             }
         }
     }
