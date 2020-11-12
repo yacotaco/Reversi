@@ -1,13 +1,10 @@
 package com.yacotaco;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
-import javafx.scene.paint.Color;
-import javafx.scene.shape.Rectangle;
 
 /**
  * Controller
@@ -54,7 +51,7 @@ public class Controller {
     }
 
     private void changePlayerTurn(Integer playerTurn) {
-        if(playerTurn == 0) {
+        if (playerTurn == 0) {
             setPlayerTurn(1);
         } else if (playerTurn == 1) {
             setPlayerTurn(0);
@@ -81,7 +78,7 @@ public class Controller {
     private Integer[] getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
-        Integer col_r = discCol+1;
+        Integer col_r = discCol + 1;
         Integer oponentDiscState = 0;
         Integer[] result = new Integer[2];
         Integer nextDiscState_r = -1;
@@ -93,15 +90,15 @@ public class Controller {
         }
 
         // search right
-        if (col_r > board.getBoardGrid().length-1) {
+        if (col_r > board.getBoardGrid().length - 1) {
             return result;
         } else {
             nextDiscState_r = board.getDiscFromBoard(discRow, col_r).getState();
         }
 
-        while(nextDiscState_r == oponentDiscState) {
+        while (nextDiscState_r == oponentDiscState) {
             col_r++;
-            if (col_r > board.getBoardGrid().length-1) {
+            if (col_r > board.getBoardGrid().length - 1) {
                 break;
             }
 
@@ -109,13 +106,14 @@ public class Controller {
             if (nextDiscState_r == -1) {
                 result[0] = discRow;
                 result[1] = col_r;
-                // System.out.println("right " + discRow + " " + col_r + " disc state " + disc.getState());
+                // System.out.println("right " + discRow + " " + col_r + " disc state " +
+                // disc.getState());
                 break;
             }
         }
 
         // search left
-        Integer col_l = discCol-1;
+        Integer col_l = discCol - 1;
         Integer nextDiscState_l = -1;
 
         if (col_l < 0) {
@@ -124,21 +122,22 @@ public class Controller {
             nextDiscState_l = board.getDiscFromBoard(discRow, col_l).getState();
         }
 
-        while(nextDiscState_l == oponentDiscState) {
+        while (nextDiscState_l == oponentDiscState) {
             col_l--;
-            if (col_l < 0)  {
+            if (col_l < 0) {
                 break;
             }
             nextDiscState_l = board.getDiscFromBoard(discRow, col_l).getState();
             if (nextDiscState_l == -1) {
                 result[0] = discRow;
                 result[1] = col_l;
-                // System.out.println("left " + discRow + " " + col_l + " disc state " + disc.getState());
+                // System.out.println("left " + discRow + " " + col_l + " disc state " +
+                // disc.getState());
                 break;
             }
         }
         return result;
-    } 
+    }
 
     private void getValidMoves(Integer playerTurn) {
         // generate posible moves for player
@@ -158,15 +157,15 @@ public class Controller {
                     Node node = (Node) event.getSource();
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
-                    
+
                     // player can place disc only on empty square
-                    if(board.getDiscFromBoard(row, col).getState() == -1) {
+                    if (board.getDiscFromBoard(row, col).getState() == -1) {
                         board.modifyDiscState(row, col, playerTurn);
                     }
 
                     updateBoardView();
 
-                    // change player after update 
+                    // change player after update
                     changePlayerTurn(playerTurn);
                     // debug
                     System.out.println("--------------");
