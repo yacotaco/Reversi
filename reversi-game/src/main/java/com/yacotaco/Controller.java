@@ -97,10 +97,10 @@ public class Controller {
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
-        Integer col_r = discCol + 1;
+        Integer colRight = discCol + 1;
         Integer oponentDiscState = 0;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
-        Integer nextDiscState_r = -1;
+        Integer nextDiscStateRight = -1;
 
         if (disc.getState() == 0) {
             oponentDiscState = 1;
@@ -109,51 +109,51 @@ public class Controller {
         }
 
         // search right
-        if (col_r > board.getBoardGrid().length - 1) {
+        if (colRight > board.getBoardGrid().length - 1) {
             return result;
         } else {
-            nextDiscState_r = board.getDiscFromBoard(discRow, col_r).getState();
+            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
         }
 
-        while (nextDiscState_r == oponentDiscState) {
-            col_r++;
-            if (col_r > board.getBoardGrid().length - 1) {
+        while (nextDiscStateRight == oponentDiscState) {
+            colRight++;
+            if (colRight > board.getBoardGrid().length - 1) {
                 break;
             }
 
-            nextDiscState_r = board.getDiscFromBoard(discRow, col_r).getState();
-            if (nextDiscState_r == -1) {
+            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            if (nextDiscStateRight == -1) {
                 Integer[] move = new Integer[2];
                 move[0] = discRow;
-                move[1] = col_r;
+                move[1] = colRight;
                 result.add(move);
-                // System.out.println("right " + discRow + " " + col_r + " disc state " + disc.getState());
+                // System.out.println("right " + discRow + " " + colRight + " disc state " + disc.getState());
                 break;
             }
         }
 
         // search left
-        Integer col_l = discCol - 1;
-        Integer nextDiscState_l = -1;
+        Integer colLeft = discCol - 1;
+        Integer nextDiscStateLeft = -1;
 
-        if (col_l < 0) {
+        if (colLeft < 0) {
             return result;
         } else {
-            nextDiscState_l = board.getDiscFromBoard(discRow, col_l).getState();
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
         }
 
-        while (nextDiscState_l == oponentDiscState) {
-            col_l--;
-            if (col_l < 0) {
+        while (nextDiscStateLeft == oponentDiscState) {
+            colLeft--;
+            if (colLeft < 0) {
                 break;
             }
-            nextDiscState_l = board.getDiscFromBoard(discRow, col_l).getState();
-            if (nextDiscState_l == -1) {
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            if (nextDiscStateLeft == -1) {
                 Integer[] move = new Integer[2];
                 move[0] = discRow;
-                move[1] = col_l;
+                move[1] = colLeft;
                 result.add(move);
-                // System.out.println("left " + discRow + " " + col_l + " disc state " + disc.getState());
+                // System.out.println("left " + discRow + " " + colLeft + " disc state " + disc.getState());
                 break;
             }
         }
