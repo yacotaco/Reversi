@@ -1,5 +1,6 @@
 package com.yacotaco;
 
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -75,12 +76,12 @@ public class Controller {
         }
     }
 
-    private Integer[] getHorizontalMoves(Disc disc) {
+    private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         Integer col_r = discCol + 1;
         Integer oponentDiscState = 0;
-        Integer[] result = new Integer[2];
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer nextDiscState_r = -1;
 
         if (disc.getState() == 0) {
@@ -104,10 +105,11 @@ public class Controller {
 
             nextDiscState_r = board.getDiscFromBoard(discRow, col_r).getState();
             if (nextDiscState_r == -1) {
-                result[0] = discRow;
-                result[1] = col_r;
-                // System.out.println("right " + discRow + " " + col_r + " disc state " +
-                // disc.getState());
+                Integer[] move = new Integer[2];
+                move[0] = discRow;
+                move[1] = col_r;
+                result.add(move);
+                // System.out.println("right " + discRow + " " + col_r + " disc state " + disc.getState());
                 break;
             }
         }
@@ -129,10 +131,11 @@ public class Controller {
             }
             nextDiscState_l = board.getDiscFromBoard(discRow, col_l).getState();
             if (nextDiscState_l == -1) {
-                result[0] = discRow;
-                result[1] = col_l;
-                // System.out.println("left " + discRow + " " + col_l + " disc state " +
-                // disc.getState());
+                Integer[] move = new Integer[2];
+                move[0] = discRow;
+                move[1] = col_l;
+                result.add(move);
+                // System.out.println("left " + discRow + " " + col_l + " disc state " + disc.getState());
                 break;
             }
         }
@@ -144,8 +147,10 @@ public class Controller {
         ArrayList<Disc> list = board.getAllPlayerDiscs(playerTurn);
         for (Disc disc : list) {
             System.out.println(disc.getRow() + " " + disc.getCol() + " player " + disc.getState());
-            Integer[] hMoves = getHorizontalMoves(disc);
-            // System.out.println("row " + hMoves[0] + " col " + hMoves[1]);
+            ArrayList<Integer[]> hMoves = getHorizontalMoves(disc);
+            for (Integer[] move : hMoves) {
+                System.out.println(move[0] + " " + move[1]);
+            }
         }
     }
 
