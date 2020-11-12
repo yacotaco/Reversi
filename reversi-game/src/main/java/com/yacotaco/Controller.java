@@ -160,6 +160,75 @@ public class Controller {
         return result;
     }
 
+    private ArrayList<Integer[]> getVerticalMoves(Disc disc) {
+        Integer discRow = disc.getRow();
+        Integer discCol = disc.getCol();
+        Integer rowUp = discRow - 1;
+        Integer oponentDiscState = 0;
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        Integer nextDiscStateUp = -1;
+
+        if (disc.getState() == 0) {
+            oponentDiscState = 1;
+        } else if (disc.getState() == 1) {
+            oponentDiscState = 0;
+        }
+
+        // search up
+        if (rowUp < 0) {
+            return result;
+        } else {
+            nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
+        }
+
+        while (nextDiscStateUp == oponentDiscState) {
+            rowUp--;
+            if (rowUp < 0) {
+                break;
+            }
+
+            nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
+
+            if (nextDiscStateUp == -1) {
+                Integer[] move = new Integer[2];
+                move[0] = rowUp;
+                move[1] = discCol;
+                result.add(move);
+                // System.out.println("up " + rowUp + " " + discCol + " disc state " + disc.getState());
+                break;
+            }
+        }
+
+        Integer rowDown = discRow + 1;
+        Integer nextDiscStateDown = -1;
+    
+        // search down
+        if (rowDown > board.getBoardGrid().length - 1) {
+            return result;
+        } else {
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+        }
+
+        while (nextDiscStateDown == oponentDiscState) {
+            rowDown++;
+            if (rowDown > board.getBoardGrid().length - 1) {
+                break;
+            }
+
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+
+            if (nextDiscStateDown == -1) {
+                Integer[] move = new Integer[2];
+                move[0] = rowDown;
+                move[1] = discCol;
+                result.add(move);
+                // System.out.println("down " + rowDown + " " + discCol + " disc state " + disc.getState());
+                break;
+            }
+        }
+        return result;
+    }
+
     private void getValidMoves(Integer playerTurn) {
         allValidMoves.clear();
         // generate posible moves for player
@@ -170,6 +239,12 @@ public class Controller {
             for (Integer[] move : hMoves) {
                 allValidMoves.add(move);
             }
+
+            ArrayList<Integer[]> vMoves = getVerticalMoves(disc);
+            for (Integer[] move : vMoves) {
+                allValidMoves.add(move);
+            }
+            
         }
     }
 
