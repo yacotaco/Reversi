@@ -41,10 +41,10 @@ public class Controller {
 
     private void initController() {
         initPlayer();
-        updateBoardView();
         onGridClick();
         setPlayerTurn(1);
         getValidMoves(playerTurn);
+        updateBoardView();
     }
 
     private void setPlayerTurn(Integer state) {
@@ -174,13 +174,13 @@ public class Controller {
                         board.modifyDiscState(row, col, playerTurn);
                     }
 
-                    updateBoardView();
-
                     // change player after update
                     changePlayerTurn(playerTurn);
                     // debug
                     System.out.println("--------------");
                     getValidMoves(playerTurn);
+
+                    updateBoardView();
                 }
             });
         });
