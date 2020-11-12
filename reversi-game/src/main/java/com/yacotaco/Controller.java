@@ -1,6 +1,5 @@
 package com.yacotaco;
 
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -127,7 +126,8 @@ public class Controller {
                 move[0] = discRow;
                 move[1] = colRight;
                 result.add(move);
-                // System.out.println("right " + discRow + " " + colRight + " disc state " + disc.getState());
+                // System.out.println("right " + discRow + " " + colRight + " disc state " +
+                // disc.getState());
                 break;
             }
         }
@@ -153,7 +153,8 @@ public class Controller {
                 move[0] = discRow;
                 move[1] = colLeft;
                 result.add(move);
-                // System.out.println("left " + discRow + " " + colLeft + " disc state " + disc.getState());
+                // System.out.println("left " + discRow + " " + colLeft + " disc state " +
+                // disc.getState());
                 break;
             }
         }
@@ -194,14 +195,15 @@ public class Controller {
                 move[0] = rowUp;
                 move[1] = discCol;
                 result.add(move);
-                // System.out.println("up " + rowUp + " " + discCol + " disc state " + disc.getState());
+                // System.out.println("up " + rowUp + " " + discCol + " disc state " +
+                // disc.getState());
                 break;
             }
         }
 
         Integer rowDown = discRow + 1;
         Integer nextDiscStateDown = -1;
-    
+
         // search down
         if (rowDown > board.getBoardGrid().length - 1) {
             return result;
@@ -222,7 +224,8 @@ public class Controller {
                 move[0] = rowDown;
                 move[1] = discCol;
                 result.add(move);
-                // System.out.println("down " + rowDown + " " + discCol + " disc state " + disc.getState());
+                // System.out.println("down " + rowDown + " " + discCol + " disc state " +
+                // disc.getState());
                 break;
             }
         }
@@ -244,7 +247,7 @@ public class Controller {
             for (Integer[] move : vMoves) {
                 allValidMoves.add(move);
             }
-            
+
         }
     }
 
