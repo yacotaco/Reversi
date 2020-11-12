@@ -72,8 +72,13 @@ public class Controller {
             Integer row = bg.getBoardGridPane().getRowIndex(square);
             Integer discState = board.getDiscFromBoard(row, col).getState();
             StackPane sp = (StackPane) square;
+
+            if (sp.getChildren().size() == 2) {
+                sp.getChildren().remove(1);
+            }
+
             sp.getChildren().add(dv.makeDisc(discState));
-        }
+        } 
     }
 
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
