@@ -69,6 +69,10 @@ public class View {
         public void setBoardGridPane(GridPane boardGridPane) {
             this.boardGridPane = boardGridPane;
         }
+
+        public Rectangle validMoveMarker() {
+            return new Rectangle(100, 100, Color.web("#EE4540", 0.5));
+        }
     }
 
     public class DiscView {

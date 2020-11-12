@@ -78,7 +78,20 @@ public class Controller {
             }
 
             sp.getChildren().add(dv.makeDisc(discState));
-        } 
+
+            for (Integer[] move : allValidMoves) {
+                if (row == move[0] && col == move[1]) {
+                    sp.getChildren().add(bg.validMoveMarker());
+                }
+            }
+
+            if (sp.getChildren().size() > 3) {
+                sp.getChildren().remove(2, sp.getChildren().size() - 1);
+            }
+
+            // debug
+            // System.out.println(row + " " + col + " " + sp.getChildren().size());
+        }
     }
 
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
