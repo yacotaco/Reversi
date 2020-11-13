@@ -251,7 +251,9 @@ public class Controller {
         Integer colRight = discCol + 1;
         Integer nextDiscStateRight = -1;
 
-        nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+        if (colRight < board.getBoardGrid().length - 1) {
+            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+        }
 
         while (nextDiscStateRight != playerTurn) {
             if (nextDiscStateRight == -1 || nextDiscStateRight == playerTurn) {
@@ -270,7 +272,9 @@ public class Controller {
         Integer colLeft = discCol - 1;
         Integer nextDiscStateLeft = -1;
 
-        nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+        if (colLeft > 0) {
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+        }
 
         while (nextDiscStateLeft != playerTurn && nextDiscStateLeft != -1) {
             if (nextDiscStateLeft == -1 || nextDiscStateLeft == playerTurn) {
