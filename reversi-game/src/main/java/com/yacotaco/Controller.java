@@ -94,14 +94,14 @@ public class Controller {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         Integer colRight = discCol + 1;
-        Integer oponentDiscState = 0;
+        Integer opponentDiscState = 0;
         Integer nextDiscStateRight = -1;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
-            oponentDiscState = 1;
+            opponentDiscState = 1;
         } else if (disc.getState() == 1) {
-            oponentDiscState = 0;
+            opponentDiscState = 0;
         }
 
         // search right
@@ -111,7 +111,7 @@ public class Controller {
             nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
         }
 
-        while (nextDiscStateRight == oponentDiscState) {
+        while (nextDiscStateRight == opponentDiscState) {
             colRight++;
 
             if (colRight > board.getBoardGrid().length - 1) {
@@ -139,7 +139,7 @@ public class Controller {
             nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
         }
 
-        while (nextDiscStateLeft == oponentDiscState) {
+        while (nextDiscStateLeft == opponentDiscState) {
             colLeft--;
 
             if (colLeft < 0) {
@@ -163,14 +163,14 @@ public class Controller {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         Integer rowUp = discRow - 1;
-        Integer oponentDiscState = 0;
+        Integer opponentDiscState = 0;
         Integer nextDiscStateUp = -1;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
-            oponentDiscState = 1;
+            opponentDiscState = 1;
         } else if (disc.getState() == 1) {
-            oponentDiscState = 0;
+            opponentDiscState = 0;
         }
 
         // search up
@@ -180,7 +180,7 @@ public class Controller {
             nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
         }
 
-        while (nextDiscStateUp == oponentDiscState) {
+        while (nextDiscStateUp == opponentDiscState) {
             rowUp--;
             if (rowUp < 0) {
                 break;
@@ -207,7 +207,7 @@ public class Controller {
             nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
         }
 
-        while (nextDiscStateDown == oponentDiscState) {
+        while (nextDiscStateDown == opponentDiscState) {
             rowDown++;
             if (rowDown > board.getBoardGrid().length - 1) {
                 break;
