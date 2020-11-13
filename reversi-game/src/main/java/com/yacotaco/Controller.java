@@ -87,9 +87,6 @@ public class Controller {
             if (sp.getChildren().size() > 3) {
                 sp.getChildren().remove(2, sp.getChildren().size() - 1);
             }
-
-            // debug
-            // System.out.println(row + " " + col + " " + sp.getChildren().size());
         }
     }
 
@@ -98,8 +95,8 @@ public class Controller {
         Integer discCol = disc.getCol();
         Integer colRight = discCol + 1;
         Integer oponentDiscState = 0;
-        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer nextDiscStateRight = -1;
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
             oponentDiscState = 1;
@@ -116,18 +113,18 @@ public class Controller {
 
         while (nextDiscStateRight == oponentDiscState) {
             colRight++;
+
             if (colRight > board.getBoardGrid().length - 1) {
                 break;
             }
 
             nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+
             if (nextDiscStateRight == -1) {
                 Integer[] move = new Integer[2];
                 move[0] = discRow;
                 move[1] = colRight;
                 result.add(move);
-                // System.out.println("right " + discRow + " " + colRight + " disc state " +
-                // disc.getState());
                 break;
             }
         }
@@ -144,17 +141,18 @@ public class Controller {
 
         while (nextDiscStateLeft == oponentDiscState) {
             colLeft--;
+
             if (colLeft < 0) {
                 break;
             }
+
             nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+
             if (nextDiscStateLeft == -1) {
                 Integer[] move = new Integer[2];
                 move[0] = discRow;
                 move[1] = colLeft;
                 result.add(move);
-                // System.out.println("left " + discRow + " " + colLeft + " disc state " +
-                // disc.getState());
                 break;
             }
         }
@@ -166,8 +164,8 @@ public class Controller {
         Integer discCol = disc.getCol();
         Integer rowUp = discRow - 1;
         Integer oponentDiscState = 0;
-        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer nextDiscStateUp = -1;
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
             oponentDiscState = 1;
@@ -195,8 +193,6 @@ public class Controller {
                 move[0] = rowUp;
                 move[1] = discCol;
                 result.add(move);
-                // System.out.println("up " + rowUp + " " + discCol + " disc state " +
-                // disc.getState());
                 break;
             }
         }
@@ -224,8 +220,6 @@ public class Controller {
                 move[0] = rowDown;
                 move[1] = discCol;
                 result.add(move);
-                // System.out.println("down " + rowDown + " " + discCol + " disc state " +
-                // disc.getState());
                 break;
             }
         }
