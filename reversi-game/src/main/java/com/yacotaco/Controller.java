@@ -245,6 +245,42 @@ public class Controller {
         }
     }
 
+    private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
+        Integer discRow = row;
+        Integer discCol = col;
+        Integer colRight = discCol + 1;
+        Integer nextDiscStateRight = -1;
+        
+        nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+
+        while (nextDiscStateRight != playerTurn) {
+            if (nextDiscStateRight == -1 || nextDiscStateRight == playerTurn) {
+                break;
+            }
+
+            board.modifyDiscState(discRow, colRight, playerTurn);
+            colRight++;
+
+            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+        }
+
+        Integer colLeft = discCol - 1;
+        Integer nextDiscStateLeft = -1;
+        
+        nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+
+        while (nextDiscStateLeft != playerTurn && nextDiscStateLeft != -1) {
+            if (nextDiscStateLeft == -1 || nextDiscStateLeft == playerTurn) {
+                break;
+            }
+
+            board.modifyDiscState(discRow, colLeft, playerTurn);
+            colLeft--;
+
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+        }
+    }
+    
     private boolean validatePlacedMove(Integer row, Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
@@ -270,6 +306,7 @@ public class Controller {
                     // player can place disc only on empty square
                     if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
                         board.modifyDiscState(row, col, playerTurn);
+                        flipHorizontalDiscs(row, col, playerTurn);
                         // change player after update
                         changePlayerTurn(playerTurn);
                         // debug
