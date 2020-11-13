@@ -245,6 +245,16 @@ public class Controller {
         }
     }
 
+    private boolean validatePlacedMove(Integer row, Integer col) {
+        boolean result = false;
+        for (Integer[] move : allValidMoves) {
+            if (row == move[0] && col == move[1]) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
             square.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -254,18 +264,20 @@ public class Controller {
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
 
+                    boolean validMove = validatePlacedMove(row, col);
+                    System.out.println(validMove);
+
                     // player can place disc only on empty square
-                    if (board.getDiscFromBoard(row, col).getState() == -1) {
+                    if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
                         board.modifyDiscState(row, col, playerTurn);
+                        // change player after update
+                        changePlayerTurn(playerTurn);
+                        // debug
+                        System.out.println("--------------");
+                        getValidMoves(playerTurn);
+
+                        updateBoardView();
                     }
-
-                    // change player after update
-                    changePlayerTurn(playerTurn);
-                    // debug
-                    System.out.println("--------------");
-                    getValidMoves(playerTurn);
-
-                    updateBoardView();
                 }
             });
         });
