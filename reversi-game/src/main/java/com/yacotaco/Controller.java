@@ -250,7 +250,7 @@ public class Controller {
         Integer discCol = col;
         Integer colRight = discCol + 1;
         Integer nextDiscStateRight = -1;
-        
+
         nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
 
         while (nextDiscStateRight != playerTurn) {
@@ -266,7 +266,7 @@ public class Controller {
 
         Integer colLeft = discCol - 1;
         Integer nextDiscStateLeft = -1;
-        
+
         nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
 
         while (nextDiscStateLeft != playerTurn && nextDiscStateLeft != -1) {
@@ -280,7 +280,7 @@ public class Controller {
             nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
         }
     }
-    
+
     private boolean validatePlacedMove(Integer row, Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
