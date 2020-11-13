@@ -258,10 +258,13 @@ public class Controller {
                 break;
             }
 
-            board.modifyDiscState(discRow, colRight, playerTurn);
-            colRight++;
-
-            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            if (board.getDiscFromBoard(discRow, colRight + 1).getState() == -1) {
+                break;
+            } else {
+                board.modifyDiscState(discRow, colRight, playerTurn);
+                colRight++;
+                nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            }
         }
 
         Integer colLeft = discCol - 1;
@@ -274,10 +277,13 @@ public class Controller {
                 break;
             }
 
-            board.modifyDiscState(discRow, colLeft, playerTurn);
-            colLeft--;
-
-            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            if (board.getDiscFromBoard(discRow, colLeft - 1).getState() == -1) {
+                break;
+            } else {
+                board.modifyDiscState(discRow, colLeft, playerTurn);
+                colLeft--;
+                nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            }
         }
     }
 
