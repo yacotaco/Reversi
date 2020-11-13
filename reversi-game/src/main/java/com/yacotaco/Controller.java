@@ -291,6 +291,52 @@ public class Controller {
         }
     }
 
+    private void flipVerticalDiscs(Integer row, Integer col, Integer playerTurn) {
+        Integer discRow = row;
+        Integer discCol = col;
+        Integer rowUp = discRow - 1;
+        Integer nextDiscStateUp = -1;
+
+        if (rowUp > 0) {
+            nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
+        }
+        
+        while (nextDiscStateUp != playerTurn) {
+            if (nextDiscStateUp == -1 || nextDiscStateUp == playerTurn) {
+                break;
+            }
+
+            if (board.getDiscFromBoard(rowUp - 1, discCol).getState() == -1) {
+                break;
+            } else {
+                board.modifyDiscState(rowUp, discCol, playerTurn);
+                rowUp--;
+                nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
+            }
+        }
+
+        Integer rowDown = discRow + 1;
+        Integer nextDiscStateDown = -1;
+
+        if (rowDown < board.getBoardGrid().length - 1) {
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+        }
+        
+        while (nextDiscStateDown != playerTurn) {
+            if (nextDiscStateDown == -1 || nextDiscStateDown == playerTurn) {
+                break;
+            }
+
+            if (board.getDiscFromBoard(rowDown + 1, discCol).getState() == -1) {
+                break;
+            } else {
+                board.modifyDiscState(rowDown, discCol, playerTurn);
+                rowDown++;
+                nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+            }
+        }
+    }
+
     private boolean validatePlacedMove(Integer row, Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
@@ -317,6 +363,7 @@ public class Controller {
                     if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
                         board.modifyDiscState(row, col, playerTurn);
                         flipHorizontalDiscs(row, col, playerTurn);
+                        flipVerticalDiscs(row, col, playerTurn);
                         // change player after update
                         changePlayerTurn(playerTurn);
                         // debug
