@@ -9,6 +9,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.Shape;
+import javafx.scene.shape.StrokeType;
 import javafx.stage.Stage;
 
 /**
@@ -71,7 +72,11 @@ public class View {
         }
 
         public Rectangle validMoveMarker() {
-            return new Rectangle(100, 100, Color.web("#EE4540", 0.5));
+            Rectangle rectangle = new Rectangle(100, 100, Color.web("#EE4540", 0.25));
+            rectangle.setStroke(Color.web("#EE4540", 1.0));
+            rectangle.setStrokeWidth(3);
+            rectangle.setStrokeType(StrokeType.INSIDE);
+            return rectangle;
         }
     }
 
