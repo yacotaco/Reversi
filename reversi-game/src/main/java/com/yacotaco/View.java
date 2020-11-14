@@ -17,6 +17,9 @@ import javafx.stage.Stage;
  */
 public class View {
     private BorderPane borderPane;
+    private final double WIDTH = 75.0;
+    private final double HEIGHT = 75.0;
+    private final double RADIUS = 27.0;
 
     /**
      * @param borderPane organize elements in border layout
@@ -52,10 +55,10 @@ public class View {
                     square = new StackPane();
                     if ((row + col) % 2 == 0) {
                         Color lightGreen = Color.web("#00cc00", 1.0);
-                        square.getChildren().addAll(new Rectangle(100, 100, lightGreen));
+                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, lightGreen));
                     } else {
                         Color darkGreen = Color.web("#008000", 1.0);
-                        square.getChildren().addAll(new Rectangle(100, 100, darkGreen));
+                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, darkGreen));
                     }
                     boardGridPane.add(square, col, row);
                 }
@@ -72,7 +75,7 @@ public class View {
         }
 
         public Rectangle validMoveMarker() {
-            Rectangle rectangle = new Rectangle(100, 100, Color.web("#EE4540", 0.25));
+            Rectangle rectangle = new Rectangle(WIDTH, HEIGHT, Color.web("#EE4540", 0.25));
             rectangle.setStroke(Color.web("#EE4540", 1.0));
             rectangle.setStrokeWidth(3);
             rectangle.setStrokeType(StrokeType.INSIDE);
@@ -86,15 +89,15 @@ public class View {
             Circle circle = new Circle();
             if (discState == 0) {
                 // white disc
-                circle.setCenterX(100.0f);
-                circle.setCenterY(100.0f);
-                circle.setRadius(30.0f);
+                circle.setCenterX(WIDTH);
+                circle.setCenterY(HEIGHT);
+                circle.setRadius(RADIUS);
                 circle.setFill(Color.WHITE);
             } else if (discState == 1) {
                 // black disc
-                circle.setCenterX(100.0f);
-                circle.setCenterY(100.0f);
-                circle.setRadius(30.0f);
+                circle.setCenterX(WIDTH);
+                circle.setCenterY(HEIGHT);
+                circle.setRadius(RADIUS);
                 circle.setFill(Color.BLACK);
             }
             return circle;
