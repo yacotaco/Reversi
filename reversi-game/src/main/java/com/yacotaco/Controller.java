@@ -95,7 +95,7 @@ public class Controller {
         Integer discCol = disc.getCol();
         Integer colRight = discCol + 1;
         Integer opponentDiscState = 0;
-        Integer nextDiscStateRight = -1;
+        Integer nextDiscState = -1;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
@@ -108,19 +108,19 @@ public class Controller {
         if (colRight > board.getBoardGrid().length - 1) {
             return result;
         } else {
-            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            nextDiscState = board.getDiscFromBoard(discRow, colRight).getState();
         }
 
-        while (nextDiscStateRight == opponentDiscState) {
+        while (nextDiscState == opponentDiscState) {
             colRight++;
 
             if (colRight > board.getBoardGrid().length - 1) {
                 break;
             }
 
-            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            nextDiscState = board.getDiscFromBoard(discRow, colRight).getState();
 
-            if (nextDiscStateRight == -1) {
+            if (nextDiscState == -1) {
                 Integer[] move = new Integer[2];
                 move[0] = discRow;
                 move[1] = colRight;
@@ -245,47 +245,43 @@ public class Controller {
     }
 
     private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
-        Integer discRow = row;
-        Integer discCol = col;
-        Integer colRight = discCol + 1;
-        Integer nextDiscStateRight = -1;
+        Integer nextDiscState = -1;
+        Integer primaryDiscState = playerTurn;
+        ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
-        if (colRight < board.getBoardGrid().length - 1) {
-            nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
-        }
-
-        while (nextDiscStateRight != playerTurn) {
-            if (nextDiscStateRight == -1 || nextDiscStateRight == playerTurn) {
-                break;
+        // add loop to check if placed move "close" opponent discs on right
+        for (int i = col + 1; i < board.getBoardGrid().length - 1; i++) {
+            nextDiscState = board.getDiscFromBoard(row, i).getState();
+            if (nextDiscState != primaryDiscState) {
+                Disc opponentDisc = board.getDiscFromBoard(row, i);
+                discsToFlip.add(opponentDisc);
             }
 
-            if (board.getDiscFromBoard(discRow, colRight + 1).getState() == -1) {
+            if (nextDiscState == -1) {
+                discsToFlip.clear();
                 break;
-            } else {
-                board.modifyDiscState(discRow, colRight, playerTurn);
-                colRight++;
-                nextDiscStateRight = board.getDiscFromBoard(discRow, colRight).getState();
+            } else if (nextDiscState == primaryDiscState) {
+                for (Disc disc : discsToFlip) {
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                }
             }
         }
 
-        Integer colLeft = discCol - 1;
-        Integer nextDiscStateLeft = -1;
-
-        if (colLeft > 0) {
-            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
-        }
-
-        while (nextDiscStateLeft != playerTurn && nextDiscStateLeft != -1) {
-            if (nextDiscStateLeft == -1 || nextDiscStateLeft == playerTurn) {
-                break;
+        // add loop to check if placed move "close" opponent discs on left
+        for (int i = col - 1; i > 0; i--) {
+            nextDiscState = board.getDiscFromBoard(row, i).getState();
+            if (nextDiscState != primaryDiscState) {
+                Disc opponentDisc = board.getDiscFromBoard(row, i);
+                discsToFlip.add(opponentDisc);
             }
 
-            if (board.getDiscFromBoard(discRow, colLeft - 1).getState() == -1) {
+            if (nextDiscState == -1) {
+                discsToFlip.clear();
                 break;
-            } else {
-                board.modifyDiscState(discRow, colLeft, playerTurn);
-                colLeft--;
-                nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            } else if (nextDiscState == primaryDiscState) {
+                for (Disc disc : discsToFlip) {
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                }
             }
         }
     }
@@ -299,7 +295,7 @@ public class Controller {
         if (rowUp > 0) {
             nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
         }
-        
+
         while (nextDiscStateUp != playerTurn) {
             if (nextDiscStateUp == -1 || nextDiscStateUp == playerTurn) {
                 break;
@@ -320,7 +316,7 @@ public class Controller {
         if (rowDown < board.getBoardGrid().length - 1) {
             nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
         }
-        
+
         while (nextDiscStateDown != playerTurn) {
             if (nextDiscStateDown == -1 || nextDiscStateDown == playerTurn) {
                 break;
@@ -364,7 +360,7 @@ public class Controller {
                         flipVerticalDiscs(row, col, playerTurn);
                         // change player after update
                         changePlayerTurn(playerTurn);
-                        
+
                         getValidMoves(playerTurn);
 
                         updateBoardView();
