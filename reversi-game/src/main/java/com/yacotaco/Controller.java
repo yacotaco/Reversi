@@ -231,7 +231,6 @@ public class Controller {
         // generate posible moves for player
         ArrayList<Disc> list = board.getAllPlayerDiscs(playerTurn);
         for (Disc disc : list) {
-            System.out.println(disc.getRow() + " " + disc.getCol() + " player " + disc.getState());
             ArrayList<Integer[]> hMoves = getHorizontalMoves(disc);
             for (Integer[] move : hMoves) {
                 allValidMoves.add(move);
@@ -357,7 +356,6 @@ public class Controller {
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
 
                     boolean validMove = validatePlacedMove(row, col);
-                    System.out.println(validMove);
 
                     // player can place disc only on empty square
                     if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
@@ -366,8 +364,7 @@ public class Controller {
                         flipVerticalDiscs(row, col, playerTurn);
                         // change player after update
                         changePlayerTurn(playerTurn);
-                        // debug
-                        System.out.println("--------------");
+                        
                         getValidMoves(playerTurn);
 
                         updateBoardView();
