@@ -20,6 +20,8 @@ public class View {
     private final double WIDTH = 75.0;
     private final double HEIGHT = 75.0;
     private final double RADIUS = 27.0;
+    private final double MAIN_WIDTH = 1200;
+    private final double MAIN_HEIGHT = 800;
 
     /**
      * @param borderPane organize elements in border layout
@@ -28,7 +30,7 @@ public class View {
     public View(Stage stage) {
         this.borderPane = new BorderPane();
         new BoardGrid();
-        stage.setScene(new Scene(borderPane, 800, 800));
+        stage.setScene(new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT));
         stage.show();
     }
 
