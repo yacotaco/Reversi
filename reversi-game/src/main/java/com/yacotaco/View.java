@@ -99,14 +99,5 @@ public class View {
             }
             return circle;
         }
-
-        public Shape makeCircle() {
-            Circle whole = new Circle(100.0f, 100.0f, 30);
-            Circle inside = new Circle(100.0f, 100.0f, 28);
-            Shape circle = Shape.subtract(whole, inside);
-            circle.setFill(Color.BLACK);
-
-            return circle;
-        }
     }
 }
