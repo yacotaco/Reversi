@@ -264,11 +264,12 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
             }
         }
 
         // add loop to check if placed move "close" opponent discs on left
-        for (int i = col - 1; i > 0; i--) {
+        for (int i = col - 1; i >= 0; i--) {
             nextDiscState = board.getDiscFromBoard(row, i).getState();
             if (nextDiscState != primaryDiscState) {
                 Disc opponentDisc = board.getDiscFromBoard(row, i);
@@ -282,6 +283,7 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
             }
         }
     }
@@ -292,7 +294,7 @@ public class Controller {
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs up
-        for (int i = row - 1; i > 0; i--) {
+        for (int i = row - 1; i >= 0; i--) {
             nextDiscState = board.getDiscFromBoard(i, col).getState();
             if (nextDiscState != primaryDiscState) {
                 Disc opponentDisc = board.getDiscFromBoard(i, col);
@@ -306,6 +308,7 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
             }
         }
 
@@ -324,6 +327,7 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
             }
         }
     }
