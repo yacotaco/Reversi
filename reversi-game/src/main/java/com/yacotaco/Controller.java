@@ -226,6 +226,182 @@ public class Controller {
         return result;
     }
 
+    private ArrayList<Integer[]> getDiagonalMoves(Disc disc) {
+        ArrayList<Integer[]> result = new ArrayList<Integer[]>();
+        Integer row = disc.getRow();
+        Integer col = disc.getCol();
+        Integer discState = disc.getState();
+        Integer nextDiscState = -1;
+        Integer opponentDiscState = 0;
+        Integer prevDiscState = discState;
+
+        if (disc.getState() == 0) {
+            opponentDiscState = 1;
+        } else if (disc.getState() == 1) {
+            opponentDiscState = 0;
+        }
+
+        // diagonal up right
+        for (int i = row - 1; i > 0; i--) {
+            col++;
+
+            if (col > board.getBoardGrid().length - 1) {
+                break;
+            }
+
+            nextDiscState = board.getDiscFromBoard(i, col).getState();
+
+            if (nextDiscState == discState) {
+                break;
+            }
+
+            if (nextDiscState == opponentDiscState) {
+                prevDiscState = opponentDiscState;
+                continue;
+            }
+
+            if (nextDiscState == -1 && prevDiscState != discState) {
+                Integer[] move = new Integer[2];
+                move[0] = i;
+                move[1] = col;
+                result.add(move);
+                break;
+            } else if (nextDiscState == -1 && prevDiscState == discState) {
+                break;
+            }
+        }
+
+        row = disc.getRow();
+        col = disc.getCol();
+        discState = disc.getState();
+        nextDiscState = -1;
+        opponentDiscState = 0;
+        prevDiscState = discState;
+
+        if (disc.getState() == 0) {
+            opponentDiscState = 1;
+        } else if (disc.getState() == 1) {
+            opponentDiscState = 0;
+        }
+
+        // diagonal down left
+        for (int i = row + 1; i < board.getBoardGrid().length; i++) {
+            col--;
+
+            if (col < 0) {
+                break;
+            }
+
+            nextDiscState = board.getDiscFromBoard(i, col).getState();
+
+            if (nextDiscState == discState) {
+                break;
+            }
+
+            if (nextDiscState == opponentDiscState) {
+                prevDiscState = opponentDiscState;
+                continue;
+            }
+
+            if (nextDiscState == -1 && prevDiscState != discState) {
+                Integer[] move = new Integer[2];
+                move[0] = i;
+                move[1] = col;
+                result.add(move);
+                break;
+            } else if (nextDiscState == -1 && prevDiscState == discState) {
+                break;
+            }
+        }
+
+        row = disc.getRow();
+        col = disc.getCol();
+        discState = disc.getState();
+        nextDiscState = -1;
+        opponentDiscState = 0;
+        prevDiscState = discState;
+
+        if (disc.getState() == 0) {
+            opponentDiscState = 1;
+        } else if (disc.getState() == 1) {
+            opponentDiscState = 0;
+        }
+
+        // diagonal up left
+        for (int i = col - 1; i > 0; i--) {
+            row--;
+
+            if (row < 0) {
+                break;
+            }
+
+            nextDiscState = board.getDiscFromBoard(row, i).getState();
+
+            if (nextDiscState == discState) {
+                break;
+            }
+
+            if (nextDiscState == opponentDiscState) {
+                prevDiscState = opponentDiscState;
+                continue;
+            }
+
+            if (nextDiscState == -1 && prevDiscState != discState) {
+                Integer[] move = new Integer[2];
+                move[0] = row;
+                move[1] = i;
+                result.add(move);
+                break;
+            } else if (nextDiscState == -1 && prevDiscState == discState) {
+                break;
+            }
+        }
+
+        row = disc.getRow();
+        col = disc.getCol();
+        discState = disc.getState();
+        nextDiscState = -1;
+        opponentDiscState = 0;
+        prevDiscState = discState;
+
+        if (disc.getState() == 0) {
+            opponentDiscState = 1;
+        } else if (disc.getState() == 1) {
+            opponentDiscState = 0;
+        }
+
+        // diagonal down right
+        for (int i = col + 1; i < board.getBoardGrid().length; i++) {
+            row++;
+
+            if (row > board.getBoardGrid().length - 1) {
+                break;
+            }
+
+            nextDiscState = board.getDiscFromBoard(row, i).getState();
+
+            if (nextDiscState == discState) {
+                break;
+            }
+
+            if (nextDiscState == opponentDiscState) {
+                prevDiscState = opponentDiscState;
+                continue;
+            }
+
+            if (nextDiscState == -1 && prevDiscState != discState) {
+                Integer[] move = new Integer[2];
+                move[0] = row;
+                move[1] = i;
+                result.add(move);
+                break;
+            } else if (nextDiscState == -1 && prevDiscState == discState) {
+                break;
+            }
+        }
+        return result;
+    }
+
     private void getValidMoves(Integer playerTurn) {
         allValidMoves.clear();
         // generate posible moves for player
@@ -241,6 +417,10 @@ public class Controller {
                 allValidMoves.add(move);
             }
 
+            ArrayList<Integer[]> dMoves = getDiagonalMoves(disc);
+            for (Integer[] move : dMoves) {
+                allValidMoves.add(move);
+            }
         }
     }
 
