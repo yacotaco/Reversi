@@ -23,8 +23,8 @@ public class View {
     private final double WIDTH = 75.0;
     private final double HEIGHT = 75.0;
     private final double RADIUS = 27.0;
-    private final double MAIN_WIDTH = 1200;
-    private final double MAIN_HEIGHT = 800;
+    private final double MAIN_WIDTH = 750;
+    private final double MAIN_HEIGHT = 700;
     private final int STROKE_WIDTH = 4;
     private final double MARKER_WIDTH = WIDTH - 2;
     private final double MARKER_HEIGHT = HEIGHT - 2;
