@@ -527,7 +527,6 @@ public class Controller {
         Integer tmpCol = col;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
-
         // add loop to check if placed move "close" opponent discs (diagonal up right)
         for (int i = row - 1; i >= 0; i--) {
             col++;
@@ -563,7 +562,6 @@ public class Controller {
             if (col < 0) {
                 break;
             }
-
 
             nextDiscState = board.getDiscFromBoard(i, col).getState();
             if (nextDiscState != primaryDiscState) {
@@ -620,7 +618,6 @@ public class Controller {
             if (col > board.getBoardGrid().length - 1) {
                 break;
             }
-
 
             nextDiscState = board.getDiscFromBoard(i, col).getState();
             if (nextDiscState != primaryDiscState) {
@@ -707,13 +704,13 @@ public class Controller {
                 File file;
                 LocalDateTime localDateTime = LocalDateTime.now();
                 Disc[][] boardGrid = board.getBoardGrid();
+
                 try {
                     String suffix = "_DATETIME_" + localDateTime;
                     file = File.createTempFile("REVERSI_GAME_SAVE_", suffix);
                     FileWriter fw = new FileWriter(file);
                     BufferedWriter bw = new BufferedWriter(fw);
-                    System.out.println(file.getAbsolutePath());
-                   
+
                     for (int row = 0; row < boardGrid.length; row++) {
                         for (int col = 0; col < boardGrid[row].length; col++) {
                             Disc disc = board.getDiscFromBoard(row, col);
@@ -726,9 +723,8 @@ public class Controller {
                         }
                     }
                     bw.close();
-                } 
-                catch (IOException e) {
-                        e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
             }
         });
