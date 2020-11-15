@@ -722,6 +722,8 @@ public class Controller {
                             }
                         }
                     }
+                    String playerTurnString = Integer.toString(playerTurn);
+                    bw.write(playerTurnString);
                     bw.close();
                 } catch (IOException e) {
                     e.printStackTrace();
