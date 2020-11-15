@@ -686,7 +686,7 @@ public class Controller {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                playerTurn = 1;
+                setPlayerTurn(1);
                 board.initBoard();
                 getValidMoves(playerTurn);
                 updateBoardView();
