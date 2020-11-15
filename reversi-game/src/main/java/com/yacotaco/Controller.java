@@ -1,7 +1,9 @@
 package com.yacotaco;
 
+import java.io.BufferedReader;
 import java.io.BufferedWriter;
 import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
@@ -10,6 +12,8 @@ import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.stage.FileChooser;
+import javafx.stage.Stage;
 
 /**
  * Controller
@@ -17,6 +21,7 @@ import javafx.scene.layout.StackPane;
 public class Controller {
     private Board board;
     private View view;
+    private Stage stage;
     private View.BoardGrid bg;
     private View.DiscView dv;
     private Player playerOne;
@@ -33,9 +38,10 @@ public class Controller {
      * @param playerTwo Player class
      */
 
-    public Controller(Board board, View view) {
+    public Controller(Board board, View view, Stage stage) {
         this.board = board;
         this.view = view;
+        this.stage = stage;
         this.bg = view.new BoardGrid();
         this.dv = view.new DiscView();
         this.playerOne = new Player();
@@ -49,6 +55,7 @@ public class Controller {
         onExitButtonClick();
         onNewGameButtonClick();
         onSaveButtonClick();
+        onLoadButtonClick();
         setPlayerTurn(1);
         getValidMoves(playerTurn);
         updateBoardView();
@@ -726,6 +733,39 @@ public class Controller {
                     bw.write(playerTurnString);
                     bw.close();
                 } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+    }
+
+    private void onLoadButtonClick() {
+        view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {  
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setTitle("Open Game File");
+                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
+                File file = fileChooser.showOpenDialog(stage);
+                try {
+                    FileReader fr = new FileReader(file);
+                    BufferedReader br = new BufferedReader(fr);
+                    String line;
+                    while ((line = br.readLine()) != null) {
+                        if (line.length() > 1) {
+                            String[] splitLine = line.split(",");
+                            int row = Integer.valueOf(splitLine[0]);
+                            int col = Integer.valueOf(splitLine[1]);
+                            int discState = Integer.valueOf(splitLine[2]);
+                            board.getDiscFromBoard(row, col).setState(discState);
+                        } else {
+                            int playerState = Integer.valueOf(line);
+                            setPlayerTurn(playerState);
+                            getValidMoves(playerTurn);
+                            updateBoardView();
+                        }
+                    }
+                } catch (Exception e) {
                     e.printStackTrace();
                 }
             }

@@ -12,7 +12,7 @@ public class App extends Application {
     public void start(Stage stage) {
         Board board = new Board();
         View view = new View(stage);
-        Controller controller = new Controller(board, view);
+        Controller controller = new Controller(board, view, stage);
     }
 
     public static void main(String[] args) {
