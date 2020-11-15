@@ -41,6 +41,7 @@ public class Controller {
     private void initController() {
         initPlayer();
         onGridClick();
+        onExitButtonClick();
         setPlayerTurn(1);
         getValidMoves(playerTurn);
         updateBoardView();
@@ -668,6 +669,15 @@ public class Controller {
                     }
                 }
             });
+        });
+    }
+
+    private void onExitButtonClick() {
+        view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                System.exit(0);
+            }
         });
     }
 }
