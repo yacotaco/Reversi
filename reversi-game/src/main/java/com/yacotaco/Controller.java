@@ -734,8 +734,15 @@ public class Controller {
                     String playerTurnString = Integer.toString(playerTurn);
                     bw.write(playerTurnString);
                     bw.close();
+                    
+                    Alert alert = new Alert(AlertType.INFORMATION);
+                    alert.setContentText("File saved!");
+                    alert.show(); 
+
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setContentText("Can't save file!");
+                    alert.show(); 
                 }
             }
         });
