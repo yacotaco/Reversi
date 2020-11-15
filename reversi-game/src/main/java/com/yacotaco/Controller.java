@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 import javafx.stage.FileChooser;
@@ -765,8 +767,11 @@ public class Controller {
                             updateBoardView();
                         }
                     }
-                } catch (Exception e) {
-                    e.printStackTrace();
+                } catch (NumberFormatException | IOException e) {
+                    Alert alert = new Alert(AlertType.ERROR);
+                    alert.setAlertType(AlertType.ERROR); 
+                    alert.setContentText("Can't read file!");
+                    alert.show(); 
                 }
             }
         });
