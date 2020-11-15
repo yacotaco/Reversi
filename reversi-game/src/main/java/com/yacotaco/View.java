@@ -21,6 +21,9 @@ public class View {
     private final double RADIUS = 27.0;
     private final double MAIN_WIDTH = 1200;
     private final double MAIN_HEIGHT = 800;
+    private final int STROKE_WIDTH = 4;
+    private final double MARKER_WIDTH = WIDTH - 2;
+    private final double MARKER_HEIGHT = HEIGHT - 2;
 
     /**
      * @param borderPane organize elements in border layout
@@ -76,9 +79,9 @@ public class View {
         }
 
         public Rectangle validMoveMarker() {
-            Rectangle rectangle = new Rectangle(WIDTH, HEIGHT, Color.web("#EE4540", 0.25));
-            rectangle.setStroke(Color.web("#EE4540", 1.0));
-            rectangle.setStrokeWidth(3);
+            Rectangle rectangle = new Rectangle(MARKER_WIDTH, MARKER_HEIGHT, Color.web("#9DC8E4", 0.30));
+            rectangle.setStroke(Color.web("#9DC8E4", 1.0));
+            rectangle.setStrokeWidth(STROKE_WIDTH);
             rectangle.setStrokeType(StrokeType.INSIDE);
             return rectangle;
         }
