@@ -1,9 +1,12 @@
 package com.yacotaco;
 
+import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
@@ -32,8 +35,64 @@ public class View {
     public View(Stage stage) {
         this.borderPane = new BorderPane();
         new BoardGrid();
+        new TopBorderPane();
         stage.setScene(new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT));
         stage.show();
+    }
+
+    public class TopBorderPane {
+        private Button newGameButton = new Button("New Game");
+        private Button loadButton = new Button("Load");
+        private Button saveButton = new Button("Save");
+        private Button exitButton = new Button("Exit");
+        private HBox hbox;
+
+        public HBox addHBox() {
+            hbox.setPadding(new Insets(15, 12, 15, 12));
+            hbox.setSpacing(15);
+            hbox.setStyle("-fx-background-color: #336459;");
+
+            newGameButton.setPrefSize(100, 20);
+        
+            loadButton.setPrefSize(100, 20);
+        
+            saveButton.setPrefSize(100, 20);
+
+            exitButton.setPrefSize(100, 20);
+
+            hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
+        
+            return hbox;
+        }
+
+        public TopBorderPane() {
+            this.hbox = new HBox();
+            borderPane.setTop(addHBox());
+        }
+
+        public Button getNewGameButton() {
+            return newGameButton;
+        }
+
+        public Button getLoadButton() {
+            return loadButton;
+        }
+
+        public Button getSaveButton() {
+            return saveButton;
+        }
+
+        public Button getExitButton() {
+            return exitButton;
+        }
+
+        public HBox getHbox() {
+            return hbox;
+        }
+
+        public void setHbox(HBox hbox) {
+            this.hbox = hbox;
+        }
     }
 
     public class BoardGrid {
@@ -106,5 +165,13 @@ public class View {
             }
             return circle;
         }
+    }
+
+    public BorderPane getBorderPane() {
+        return borderPane;
+    }
+
+    public void setBorderPane(BorderPane borderPane) {
+        this.borderPane = borderPane;
     }
 }
