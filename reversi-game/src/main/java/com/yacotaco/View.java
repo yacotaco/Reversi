@@ -86,14 +86,6 @@ public class View {
         public Button getExitButton() {
             return exitButton;
         }
-
-        public HBox getHbox() {
-            return hbox;
-        }
-
-        public void setHbox(HBox hbox) {
-            this.hbox = hbox;
-        }
     }
 
     public class BoardGrid {
