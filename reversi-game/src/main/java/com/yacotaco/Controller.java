@@ -42,6 +42,7 @@ public class Controller {
         initPlayer();
         onGridClick();
         onExitButtonClick();
+        onNewGameButtonClick();
         setPlayerTurn(1);
         getValidMoves(playerTurn);
         updateBoardView();
@@ -677,6 +678,18 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 System.exit(0);
+            }
+        });
+    }
+
+    private void onNewGameButtonClick() {
+        view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                playerTurn = 1;
+                board.initBoard();
+                getValidMoves(playerTurn);
+                updateBoardView();
             }
         });
     }
