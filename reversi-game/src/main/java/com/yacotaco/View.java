@@ -19,6 +19,7 @@ import javafx.stage.Stage;
  */
 public class View {
     private BorderPane borderPane;
+    private TopBorderPane topBorderPane;
     private final double WIDTH = 75.0;
     private final double HEIGHT = 75.0;
     private final double RADIUS = 27.0;
@@ -34,8 +35,8 @@ public class View {
 
     public View(Stage stage) {
         this.borderPane = new BorderPane();
+        this.topBorderPane = new TopBorderPane();
         new BoardGrid();
-        new TopBorderPane();
         stage.setScene(new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT));
         stage.show();
     }
@@ -173,5 +174,9 @@ public class View {
 
     public void setBorderPane(BorderPane borderPane) {
         this.borderPane = borderPane;
+    }
+
+    public TopBorderPane getTopBorderPane() {
+        return topBorderPane;
     }
 }
