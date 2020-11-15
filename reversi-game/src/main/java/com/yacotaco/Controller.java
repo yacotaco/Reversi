@@ -1,5 +1,10 @@
 package com.yacotaco;
 
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
@@ -43,6 +48,7 @@ public class Controller {
         onGridClick();
         onExitButtonClick();
         onNewGameButtonClick();
+        onSaveButtonClick();
         setPlayerTurn(1);
         getValidMoves(playerTurn);
         updateBoardView();
@@ -690,6 +696,40 @@ public class Controller {
                 board.initBoard();
                 getValidMoves(playerTurn);
                 updateBoardView();
+            }
+        });
+    }
+
+    private void onSaveButtonClick() {
+        view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                File file;
+                LocalDateTime localDateTime = LocalDateTime.now();
+                Disc[][] boardGrid = board.getBoardGrid();
+                try {
+                    String suffix = "_DATETIME_" + localDateTime;
+                    file = File.createTempFile("REVERSI_GAME_SAVE_", suffix);
+                    FileWriter fw = new FileWriter(file);
+                    BufferedWriter bw = new BufferedWriter(fw);
+                    System.out.println(file.getAbsolutePath());
+                   
+                    for (int row = 0; row < boardGrid.length; row++) {
+                        for (int col = 0; col < boardGrid[row].length; col++) {
+                            Disc disc = board.getDiscFromBoard(row, col);
+                            String s = row + "," + col + "," + disc.getState() + "\n";
+                            try {
+                                bw.write(s);
+                            } catch (IOException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    }
+                    bw.close();
+                } 
+                catch (IOException e) {
+                        e.printStackTrace();
+                }
             }
         });
     }
