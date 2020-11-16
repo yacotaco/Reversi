@@ -8,9 +8,11 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Optional;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
+import javafx.scene.control.ButtonType;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
@@ -710,7 +712,14 @@ public class Controller {
         view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                System.exit(0);
+                Alert alert = new Alert(AlertType.CONFIRMATION);
+                alert.setContentText("Do you want to exit game?");
+                Optional<ButtonType> option = alert.showAndWait();
+
+                if (ButtonType.OK.equals(option.get()) == true) {
+                    System.exit(0);
+                }
+                
             }
         });
     }
