@@ -8,6 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
+import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
@@ -56,31 +57,39 @@ public class View {
         private StackPane whiteCounter;
         private StackPane blackCounter;
         private HBox hbox;
+        private HBox menu;
+        private VBox vbox;
 
         public HBox addHBox() {
             hbox.setPadding(new Insets(15, 12, 15, 12));
-            hbox.setSpacing(15);
+            hbox.setSpacing(20);
             hbox.setStyle("-fx-background-color: #336459;");
-
-            newGameButton.setPrefSize(100, 20);
-
-            loadButton.setPrefSize(100, 20);
-
-            saveButton.setPrefSize(100, 20);
-
-            exitButton.setPrefSize(100, 20);
-
+            hbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
 
-            hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton, whiteCounter, blackCounter);
+            hbox.getChildren().addAll(whiteCounter, blackCounter);
 
             return hbox;
         }
 
+        public HBox addMenu() {
+            newGameButton.setPrefSize(100, 10);
+            loadButton.setPrefSize(100, 10);
+            saveButton.setPrefSize(100, 10);
+            exitButton.setPrefSize(100, 10);
+
+            menu.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
+
+            return menu;
+        }
+
         public TopBorderPane() {
             this.hbox = new HBox();
-            borderPane.setTop(addHBox());
+            this.menu = new HBox();
+            this.vbox = new VBox();
+            vbox.getChildren().addAll(addMenu(), addHBox());
+            borderPane.setTop(vbox);
         }
 
         public Button getNewGameButton() {
