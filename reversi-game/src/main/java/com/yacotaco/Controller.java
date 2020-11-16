@@ -33,6 +33,7 @@ public class Controller {
     private Player playerOne;
     private Player playerTwo;
     private Integer playerTurn;
+    private final Integer initPlayerTurn = 0;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
     /**
@@ -62,7 +63,7 @@ public class Controller {
         onNewGameButtonClick();
         onSaveButtonClick();
         onLoadButtonClick();
-        setPlayerTurn(0);
+        setPlayerTurn(initPlayerTurn);
         getValidMoves(playerTurn);
         updateBoardView();
     }
@@ -748,7 +749,7 @@ public class Controller {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                setPlayerTurn(1);
+                setPlayerTurn(initPlayerTurn);
                 board.initBoard();
                 getValidMoves(playerTurn);
                 updateBoardView();
