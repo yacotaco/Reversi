@@ -738,7 +738,7 @@ public class Controller {
                 if (ButtonType.OK.equals(option.get()) == true) {
                     System.exit(0);
                 }
-                
+
             }
         });
     }
@@ -783,15 +783,15 @@ public class Controller {
                     String playerTurnString = Integer.toString(playerTurn);
                     bw.write(playerTurnString);
                     bw.close();
-                    
+
                     Alert alert = new Alert(AlertType.INFORMATION);
                     alert.setContentText("File saved!");
-                    alert.show(); 
+                    alert.show();
 
                 } catch (IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText("Can't save file!");
-                    alert.show(); 
+                    alert.show();
                 }
             }
         });
@@ -800,7 +800,7 @@ public class Controller {
     private void onLoadButtonClick() {
         view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {  
+            public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
                 fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
@@ -825,9 +825,9 @@ public class Controller {
                     }
                 } catch (NumberFormatException | IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
-                    alert.setAlertType(AlertType.ERROR); 
+                    alert.setAlertType(AlertType.ERROR);
                     alert.setContentText("Can't read file!");
-                    alert.show(); 
+                    alert.show();
                 }
             }
         });

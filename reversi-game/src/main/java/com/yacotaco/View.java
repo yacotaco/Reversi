@@ -58,9 +58,9 @@ public class View {
             hbox.setStyle("-fx-background-color: #336459;");
 
             newGameButton.setPrefSize(100, 20);
-        
+
             loadButton.setPrefSize(100, 20);
-        
+
             saveButton.setPrefSize(100, 20);
 
             exitButton.setPrefSize(100, 20);
@@ -69,7 +69,7 @@ public class View {
             blackCounter = dv.makePointsCounterView(1);
 
             hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton, whiteCounter, blackCounter);
-        
+
             return hbox;
         }
 
@@ -178,12 +178,12 @@ public class View {
             Circle indicator = new Circle();
             indicator.setCenterX(WIDTH);
             indicator.setCenterY(HEIGHT);
-            indicator.setRadius(RADIUS+STROKE_WIDTH);
+            indicator.setRadius(RADIUS + STROKE_WIDTH);
             indicator.setFill(Color.web("#9DC8E4", 0.05));
             indicator.setStroke(Color.web("#9DC8E4", 1.0));
             indicator.setStrokeWidth(STROKE_WIDTH);
             indicator.setStrokeType(StrokeType.INSIDE);
-            return indicator; 
+            return indicator;
         }
 
         public StackPane makePointsCounterView(Integer discState) {
@@ -192,13 +192,13 @@ public class View {
             StackPane stack = new StackPane();
             Text discText = new Text();
             discText.setStrokeWidth(4);
-    
+
             if (discState == 1) {
                 discText.setFill(Color.WHITE);
             }
-        
+
             stack.getChildren().addAll(disc, discText);
-    
+
             return stack;
         }
     }
