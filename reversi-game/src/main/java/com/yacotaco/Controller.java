@@ -810,7 +810,6 @@ public class Controller {
             public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
-                fileChooser.setInitialDirectory(new File(System.getProperty("user.home")));
                 File file = fileChooser.showOpenDialog(stage);
                 try {
                     FileReader fr = new FileReader(file);
