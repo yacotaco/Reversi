@@ -7,6 +7,7 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
 import javafx.event.EventHandler;
@@ -755,17 +756,23 @@ public class Controller {
         });
     }
 
+    private String getDateTime() {
+        String format = "yyyy-MM-dd_HH:mm:ss";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String formatDateTime = localDateTime.format(formatter);
+        return formatDateTime;
+    }
+
     private void onSaveButtonClick() {
         view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                File file;
-                LocalDateTime localDateTime = LocalDateTime.now();
+                FileChooser fileChooser = new FileChooser();
+                fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
-
+                File file = fileChooser.showSaveDialog(stage);
                 try {
-                    String suffix = "_DATETIME_" + localDateTime;
-                    file = File.createTempFile("REVERSI_GAME_SAVE_", suffix);
                     FileWriter fw = new FileWriter(file);
                     BufferedWriter bw = new BufferedWriter(fw);
 
