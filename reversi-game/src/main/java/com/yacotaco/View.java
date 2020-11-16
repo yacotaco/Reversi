@@ -27,6 +27,11 @@ public class View {
     private final double MAIN_WIDTH = 750;
     private final double MAIN_HEIGHT = 700;
     private final int STROKE_WIDTH = 4;
+    private final int FRAME_STROKE_WIDTH = 2;
+    private final double FRAME_IN_WIDTH = 600;
+    private final double FRAME_IN_HEIGHT = 600;
+    private final double FRAME_OUT_WIDTH = 620;
+    private final double FRAME_OUT_HEIGHT = 620;
     private final double MARKER_WIDTH = WIDTH - 2;
     private final double MARKER_HEIGHT = HEIGHT - 2;
 
@@ -134,7 +139,21 @@ public class View {
                     boardGridPane.add(square, col, row);
                 }
             }
-            borderPane.setCenter(boardGridPane);
+            borderPane.setCenter(addBoardToFrame(boardGridPane));
+        }
+
+        private StackPane addBoardToFrame(GridPane boardGridPane) {
+            StackPane stack = new StackPane();
+            Rectangle rectangleOut = new Rectangle(FRAME_OUT_WIDTH, FRAME_OUT_HEIGHT, Color.web("#332211", 0.80));
+            Rectangle rectangleIn = new Rectangle(FRAME_IN_WIDTH, FRAME_IN_HEIGHT, Color.web("#332211", 0.80));
+            rectangleOut.setStroke(Color.BLACK);
+            rectangleOut.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleIn.setStroke(Color.BLACK);
+            rectangleIn.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleOut.setStrokeType(StrokeType.OUTSIDE);
+            rectangleIn.setStrokeType(StrokeType.OUTSIDE);
+            stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
+            return stack;
         }
 
         public GridPane getBoardGridPane() {
