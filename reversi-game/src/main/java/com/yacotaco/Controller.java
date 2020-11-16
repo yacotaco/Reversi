@@ -87,7 +87,20 @@ public class Controller {
         playerTwo.setName("B");
     }
 
+    private void switchOnNoValidMoves() {
+        // switch player if there are no valid moves
+        if (allValidMoves.size() == 0) {
+            changePlayerTurn(playerTurn);
+            updatePointsCounters();
+            updatePlayerTurnIndicators();
+            getValidMoves(playerTurn);
+        }
+    }
+
     private void updateBoardView() {
+
+        switchOnNoValidMoves();
+        
         for (Node square : bg.getBoardGridPane().getChildren()) {
             Integer col = bg.getBoardGridPane().getColumnIndex(square);
             Integer row = bg.getBoardGridPane().getRowIndex(square);
