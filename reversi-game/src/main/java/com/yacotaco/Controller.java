@@ -109,6 +109,25 @@ public class Controller {
             }
         }
         updatePointsCounters();
+
+        updatePlayerTurnIndicators();
+    }
+
+    private void updatePlayerTurnIndicators() {
+        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
+        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
+
+        if (playerTurn == 0) {
+            view.getTopBorderPane().getWhiteCounter().getChildren().add(2, dv.makePlayerIndicator());
+        } else if (playerTurn == 1) {
+            view.getTopBorderPane().getBlackCounter().getChildren().add(2, dv.makePlayerIndicator());
+        }
+
+        if (elementsInWhiteCounter == 3) {
+            view.getTopBorderPane().getWhiteCounter().getChildren().remove(2);
+        } else if (elementsInBlackCounter == 3) {
+            view.getTopBorderPane().getBlackCounter().getChildren().remove(2);
+        }
     }
 
     private void updatePointsCounters() {

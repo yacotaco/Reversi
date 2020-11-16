@@ -174,6 +174,18 @@ public class View {
             return circle;
         }
 
+        public Circle makePlayerIndicator() {
+            Circle indicator = new Circle();
+            indicator.setCenterX(WIDTH);
+            indicator.setCenterY(HEIGHT);
+            indicator.setRadius(RADIUS+STROKE_WIDTH);
+            indicator.setFill(Color.web("#9DC8E4", 0.05));
+            indicator.setStroke(Color.web("#9DC8E4", 1.0));
+            indicator.setStrokeWidth(STROKE_WIDTH);
+            indicator.setStrokeType(StrokeType.INSIDE);
+            return indicator; 
+        }
+
         public StackPane makePointsCounterView(Integer discState) {
             DiscView dv = new DiscView();
             Circle disc = dv.makeDisc(discState);
