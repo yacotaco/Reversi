@@ -12,6 +12,7 @@ import javafx.scene.paint.Color;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Rectangle;
 import javafx.scene.shape.StrokeType;
+import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
 /**
@@ -46,6 +47,8 @@ public class View {
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
         private Button exitButton = new Button("Exit");
+        private StackPane whiteCounter;
+        private StackPane blackCounter;
         private HBox hbox;
 
         public HBox addHBox() {
@@ -61,7 +64,10 @@ public class View {
 
             exitButton.setPrefSize(100, 20);
 
-            hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
+            whiteCounter = makePointsCounterView(0);
+            blackCounter = makePointsCounterView(1);
+
+            hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton, whiteCounter, blackCounter);
         
             return hbox;
         }
@@ -85,6 +91,14 @@ public class View {
 
         public Button getExitButton() {
             return exitButton;
+        }
+
+        public StackPane getWhiteCounter() {
+            return whiteCounter;
+        }
+
+        public StackPane getBlackCounter() {
+            return blackCounter;
         }
     }
 
@@ -158,6 +172,22 @@ public class View {
             }
             return circle;
         }
+    }
+
+    public StackPane makePointsCounterView(Integer discState) {
+        DiscView dv = new DiscView();
+        Circle disc = dv.makeDisc(discState);
+        StackPane stack = new StackPane();
+        Text discText = new Text();
+        discText.setStrokeWidth(4);
+
+        if (discState == 1) {
+            discText.setFill(Color.WHITE);
+        }
+    
+        stack.getChildren().addAll(disc, discText);
+
+        return stack;
     }
 
     public BorderPane getBorderPane() {

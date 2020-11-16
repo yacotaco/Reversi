@@ -14,6 +14,7 @@ import javafx.scene.control.Alert;
 import javafx.scene.control.Alert.AlertType;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
+import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 
@@ -58,7 +59,7 @@ public class Controller {
         onNewGameButtonClick();
         onSaveButtonClick();
         onLoadButtonClick();
-        setPlayerTurn(1);
+        setPlayerTurn(0);
         getValidMoves(playerTurn);
         updateBoardView();
     }
@@ -105,6 +106,26 @@ public class Controller {
                 sp.getChildren().remove(2, sp.getChildren().size() - 1);
             }
         }
+        updatePointsCounters();
+    }
+
+    private void updatePointsCounters() {
+        countPlayerPoints(playerOne);
+        countPlayerPoints(playerTwo);
+        // update white disc
+        Node nodeWhite = view.getTopBorderPane().getWhiteCounter().getChildren().get(1);
+        Text textWhite = (Text) nodeWhite;
+        textWhite.setText(Integer.toString(playerOne.getPoints()));
+
+        // update black disc
+        Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
+        Text textBlack = (Text) nodeBlack;
+        textBlack.setText(Integer.toString(playerTwo.getPoints()));
+    }
+
+    private void countPlayerPoints(Player player) {
+        Integer discState = player.getDiscState();
+        player.setPoints(board.getAllPlayerDiscs(discState).size());
     }
 
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
