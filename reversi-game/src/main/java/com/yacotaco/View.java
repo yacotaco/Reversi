@@ -43,6 +43,7 @@ public class View {
     }
 
     public class TopBorderPane {
+        DiscView dv = new DiscView();
         private Button newGameButton = new Button("New Game");
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
@@ -64,8 +65,8 @@ public class View {
 
             exitButton.setPrefSize(100, 20);
 
-            whiteCounter = makePointsCounterView(0);
-            blackCounter = makePointsCounterView(1);
+            whiteCounter = dv.makePointsCounterView(0);
+            blackCounter = dv.makePointsCounterView(1);
 
             hbox.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton, whiteCounter, blackCounter);
         
@@ -172,22 +173,22 @@ public class View {
             }
             return circle;
         }
-    }
 
-    public StackPane makePointsCounterView(Integer discState) {
-        DiscView dv = new DiscView();
-        Circle disc = dv.makeDisc(discState);
-        StackPane stack = new StackPane();
-        Text discText = new Text();
-        discText.setStrokeWidth(4);
-
-        if (discState == 1) {
-            discText.setFill(Color.WHITE);
-        }
+        public StackPane makePointsCounterView(Integer discState) {
+            DiscView dv = new DiscView();
+            Circle disc = dv.makeDisc(discState);
+            StackPane stack = new StackPane();
+            Text discText = new Text();
+            discText.setStrokeWidth(4);
     
-        stack.getChildren().addAll(disc, discText);
-
-        return stack;
+            if (discState == 1) {
+                discText.setFill(Color.WHITE);
+            }
+        
+            stack.getChildren().addAll(disc, discText);
+    
+            return stack;
+        }
     }
 
     public BorderPane getBorderPane() {
