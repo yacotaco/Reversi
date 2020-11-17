@@ -79,10 +79,15 @@ public class View {
 
         public HBox addMenu() {
             newGameButton.setPrefSize(100, 10);
+            newGameButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             loadButton.setPrefSize(100, 10);
+            loadButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             saveButton.setPrefSize(100, 10);
+            saveButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             exitButton.setPrefSize(100, 10);
-
+            exitButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+        
+            menu.setStyle("-fx-background-color: #332211;");
             menu.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
 
             return menu;

@@ -60,9 +60,13 @@ public class Controller {
         initPlayer();
         onGridClick();
         onExitButtonClick();
+        onExitButtonHover();
         onNewGameButtonClick();
+        onNewGameButtonHover();
         onSaveButtonClick();
+        onSaveButtonHover();
         onLoadButtonClick();
+        onLoadButtonHover();
         setPlayerTurn(initPlayerTurn);
         getValidMoves(playerTurn);
         updateBoardView();
@@ -758,6 +762,24 @@ public class Controller {
         });
     }
 
+    private void onExitButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getExitButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getExitButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+        
+        // mouse out
+        view.getTopBorderPane().getExitButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getExitButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+            }
+        });
+    }
+
     private void onNewGameButtonClick() {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -766,6 +788,24 @@ public class Controller {
                 board.initBoard();
                 getValidMoves(playerTurn);
                 updateBoardView();
+            }
+        });
+    }
+
+    private void onNewGameButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getNewGameButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getNewGameButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+
+        // mouse out
+        view.getTopBorderPane().getNewGameButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getNewGameButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
     }
@@ -821,6 +861,24 @@ public class Controller {
         });
     }
 
+    private void onSaveButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getSaveButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getSaveButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+        
+        // mouse out
+        view.getTopBorderPane().getSaveButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getSaveButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+            }   
+        });
+    }
+
     private void onLoadButtonClick() {
         view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -854,6 +912,24 @@ public class Controller {
                     alert.setContentText("Can't read file!");
                     alert.show();
                 }
+            }
+        });
+    }
+
+    private void onLoadButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getLoadButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getLoadButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+        
+        // mouse out
+        view.getTopBorderPane().getLoadButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getLoadButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
     }
