@@ -44,8 +44,13 @@ public class View {
         this.borderPane = new BorderPane();
         this.topBorderPane = new TopBorderPane();
         new BoardGrid();
+        setBorderPaneStyle();
         stage.setScene(new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT));
         stage.show();
+    }
+
+    private void setBorderPaneStyle() {
+        this.borderPane.setStyle("-fx-background-color: #2A363B; -fx-border-width: 1; -fx-border-color: #000000;");
     }
 
     public class TopBorderPane {
