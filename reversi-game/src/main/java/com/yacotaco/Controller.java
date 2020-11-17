@@ -785,30 +785,31 @@ public class Controller {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
-                File file = fileChooser.showSaveDialog(stage);
                 try {
-                    FileWriter fw = new FileWriter(file);
-                    BufferedWriter bw = new BufferedWriter(fw);
+                    File file = fileChooser.showSaveDialog(stage);
+                    if (file != null) {
+                        FileWriter fw = new FileWriter(file);
+                        BufferedWriter bw = new BufferedWriter(fw);
 
-                    for (int row = 0; row < boardGrid.length; row++) {
-                        for (int col = 0; col < boardGrid[row].length; col++) {
-                            Disc disc = board.getDiscFromBoard(row, col);
-                            String s = row + "," + col + "," + disc.getState() + "\n";
-                            try {
-                                bw.write(s);
-                            } catch (IOException e) {
-                                e.printStackTrace();
+                        for (int row = 0; row < boardGrid.length; row++) {
+                            for (int col = 0; col < boardGrid[row].length; col++) {
+                                Disc disc = board.getDiscFromBoard(row, col);
+                                String s = row + "," + col + "," + disc.getState() + "\n";
+                                try {
+                                    bw.write(s);
+                                } catch (IOException e) {
+                                    e.printStackTrace();
+                                }
                             }
                         }
+                        String playerTurnString = Integer.toString(playerTurn);
+                        bw.write(playerTurnString);
+                        bw.close();
+
+                        Alert alert = new Alert(AlertType.INFORMATION);
+                        alert.setContentText("File saved!");
+                        alert.show();
                     }
-                    String playerTurnString = Integer.toString(playerTurn);
-                    bw.write(playerTurnString);
-                    bw.close();
-
-                    Alert alert = new Alert(AlertType.INFORMATION);
-                    alert.setContentText("File saved!");
-                    alert.show();
-
                 } catch (IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
                     alert.setContentText("Can't save file!");
@@ -824,23 +825,25 @@ public class Controller {
             public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
-                File file = fileChooser.showOpenDialog(stage);
                 try {
-                    FileReader fr = new FileReader(file);
-                    BufferedReader br = new BufferedReader(fr);
-                    String line;
-                    while ((line = br.readLine()) != null) {
-                        if (line.length() > 1) {
-                            String[] splitLine = line.split(",");
-                            int row = Integer.valueOf(splitLine[0]);
-                            int col = Integer.valueOf(splitLine[1]);
-                            int discState = Integer.valueOf(splitLine[2]);
-                            board.getDiscFromBoard(row, col).setState(discState);
-                        } else {
-                            int playerState = Integer.valueOf(line);
-                            setPlayerTurn(playerState);
-                            getValidMoves(playerTurn);
-                            updateBoardView();
+                    File file = fileChooser.showOpenDialog(stage);
+                    if (file != null) {
+                        FileReader fr = new FileReader(file);
+                        BufferedReader br = new BufferedReader(fr);
+                        String line;
+                        while ((line = br.readLine()) != null) {
+                            if (line.length() > 1) {
+                                String[] splitLine = line.split(",");
+                                int row = Integer.valueOf(splitLine[0]);
+                                int col = Integer.valueOf(splitLine[1]);
+                                int discState = Integer.valueOf(splitLine[2]);
+                                board.getDiscFromBoard(row, col).setState(discState);
+                            } else {
+                                int playerState = Integer.valueOf(line);
+                                setPlayerTurn(playerState);
+                                getValidMoves(playerTurn);
+                                updateBoardView();
+                            }
                         }
                     }
                 } catch (NumberFormatException | IOException e) {
