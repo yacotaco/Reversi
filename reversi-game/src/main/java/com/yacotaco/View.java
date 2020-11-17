@@ -49,7 +49,7 @@ public class View {
     }
 
     public class TopBorderPane {
-        DiscView dv = new DiscView();
+        private DiscView dv = new DiscView();
         private TimerView timerViewWhite = new TimerView(0);
         private TimerView timerViewBlack = new TimerView(1);
         private Button newGameButton = new Button("New Game");
