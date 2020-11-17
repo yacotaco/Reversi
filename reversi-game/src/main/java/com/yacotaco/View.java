@@ -50,7 +50,7 @@ public class View {
         stage.show();
     }
 
-    public void highightPoints(Text textWhite, Text textBlack, Integer playerTurn) {
+    public void highLightPoints(Text textWhite, Text textBlack, Integer playerTurn) {
         if (playerTurn == 0) {
             textWhite.setFill(Color.web("#9DC8E4", 1.0));
             textBlack.setFill(Color.WHITE);
