@@ -57,7 +57,6 @@ public class Controller {
     }
 
     private void initController() {
-        initPlayer();
         onGridClick();
         onExitButtonClick();
         onExitButtonHover();
@@ -67,9 +66,6 @@ public class Controller {
         onSaveButtonHover();
         onLoadButtonClick();
         onLoadButtonHover();
-        setPlayerTurn(initPlayerTurn);
-        getValidMoves(playerTurn);
-        updateBoardView();
     }
 
     private void setPlayerTurn(Integer state) {
@@ -785,6 +781,7 @@ public class Controller {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                initPlayer();
                 setPlayerTurn(initPlayerTurn);
                 board.initBoard();
                 getValidMoves(playerTurn);
