@@ -266,6 +266,7 @@ public class View {
             StackPane stack = new StackPane();
             Text discText = new Text();
             discText.setStrokeWidth(4);
+            discText.setStyle("-fx-font-size: 15;");
 
             if (discState == 1) {
                 discText.setFill(Color.WHITE);
