@@ -161,6 +161,7 @@ public class Controller {
         Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
         Text textBlack = (Text) nodeBlack;
         textBlack.setText(Integer.toString(playerTwo.getPoints()));
+        view.highightPoints(textWhite, textBlack, playerTurn);
     }
 
     private void countPlayerPoints(Player player) {

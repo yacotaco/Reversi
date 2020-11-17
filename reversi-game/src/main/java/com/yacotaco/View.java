@@ -50,6 +50,16 @@ public class View {
         stage.show();
     }
 
+    public void highightPoints(Text textWhite, Text textBlack, Integer playerTurn) {
+        if (playerTurn == 0) {
+            textWhite.setFill(Color.web("#9DC8E4", 1.0));
+            textBlack.setFill(Color.WHITE);
+        } else if (playerTurn == 1) {
+            textBlack.setFill(Color.web("#9DC8E4", 1.0));
+            textWhite.setFill(Color.BLACK);
+        }
+    }
+
     private void setBorderPaneStyle() {
         this.borderPane.setStyle("-fx-background-color: #2A363B; -fx-border-width: 1; -fx-border-color: #000000;");
     }
