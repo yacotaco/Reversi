@@ -148,9 +148,6 @@ public class View {
             Text timerText = new Text();
             timerText.setStrokeWidth(4);
             timerText.setStyle("-fx-font-size: 15;");
-            if (discState == 0) {
-                timerText.setFill(Color.WHITE);
-            }
             return timerText;
         }
 
@@ -161,6 +158,15 @@ public class View {
         public void setTimerView(String timerValue) {
             this.timerView.setText(timerValue);
         }
+
+        public void addHighlight() {
+            this.timerView.setFill(Color.web("#9DC8E4", 1.0));
+        }
+
+        public void removeHighlight () {
+            this.timerView.setFill(Color.BLACK);
+        }
+
     }
 
     public class BoardGrid {
