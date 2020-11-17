@@ -58,23 +58,23 @@ public class View {
         private Button exitButton = new Button("Exit");
         private StackPane whiteCounter;
         private StackPane blackCounter;
-        private HBox hbox;
+        private HBox scoreHbox;
         private HBox menu;
         private VBox vbox;
 
-        public HBox addHBox() {
-            hbox.setPadding(new Insets(15, 12, 15, 12));
-            hbox.setSpacing(20);
-            hbox.setStyle("-fx-background-color: #336459;");
-            hbox.setAlignment(Pos.CENTER);
+        public HBox addScoreHBox() {
+            scoreHbox.setPadding(new Insets(15, 12, 15, 12));
+            scoreHbox.setSpacing(20);
+            scoreHbox.setStyle("-fx-background-color: #336459;");
+            scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
             Text timerWhite = timerViewWhite.getTimerView();
             Text timerBlack = timerViewBlack.getTimerView();
 
-            hbox.getChildren().addAll(timerWhite, whiteCounter, blackCounter, timerBlack);
+            scoreHbox.getChildren().addAll(timerWhite, whiteCounter, blackCounter, timerBlack);
 
-            return hbox;
+            return scoreHbox;
         }
 
         public HBox addMenu() {
@@ -89,10 +89,10 @@ public class View {
         }
 
         public TopBorderPane() {
-            this.hbox = new HBox();
+            this.scoreHbox = new HBox();
             this.menu = new HBox();
             this.vbox = new VBox();
-            vbox.getChildren().addAll(addMenu(), addHBox());
+            vbox.getChildren().addAll(addMenu(), addScoreHBox());
             borderPane.setTop(vbox);
         }
 
