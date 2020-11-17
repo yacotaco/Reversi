@@ -70,7 +70,7 @@ public class View {
         public HBox addScoreHBox() {
             scoreHbox.setPadding(new Insets(15, 12, 15, 12));
             scoreHbox.setSpacing(20);
-            scoreHbox.setStyle("-fx-background-color: #336459;");
+            scoreHbox.setStyle("-fx-background-color: #336459; -fx-border-width: 1; -fx-border-color: #000000;");
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
