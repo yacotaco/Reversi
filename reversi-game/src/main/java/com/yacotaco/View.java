@@ -50,6 +50,8 @@ public class View {
 
     public class TopBorderPane {
         DiscView dv = new DiscView();
+        private TimerView timerViewWhite = new TimerView(0);
+        private TimerView timerViewBlack = new TimerView(1);
         private Button newGameButton = new Button("New Game");
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
@@ -67,8 +69,10 @@ public class View {
             hbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
+            Text timerWhite = timerViewWhite.getTimerView();
+            Text timerBlack = timerViewBlack.getTimerView();
 
-            hbox.getChildren().addAll(whiteCounter, blackCounter);
+            hbox.getChildren().addAll(timerWhite, whiteCounter, blackCounter, timerBlack);
 
             return hbox;
         }
@@ -114,6 +118,48 @@ public class View {
 
         public StackPane getBlackCounter() {
             return blackCounter;
+        }
+
+        public TimerView getTimerViewWhite() {
+            return timerViewWhite;
+        }
+
+        public void setTimerViewWhite(TimerView timerViewWhite) {
+            this.timerViewWhite = timerViewWhite;
+        }
+
+        public TimerView getTimerViewBlack() {
+            return timerViewBlack;
+        }
+
+        public void setTimerViewBlack(TimerView timerViewBlack) {
+            this.timerViewBlack = timerViewBlack;
+        }
+    }
+
+    public class TimerView {
+        private Text timerView;
+
+        public TimerView(Integer discState) {
+            this.timerView = makeTimerView(discState);
+        }
+
+        private Text makeTimerView(Integer discState) {
+            Text timerText = new Text();
+            timerText.setStrokeWidth(4);
+            timerText.setStyle("-fx-font-size: 15;");
+            if (discState == 0) {
+                timerText.setFill(Color.WHITE);
+            }
+            return timerText;
+        }
+
+        public Text getTimerView() {
+            return timerView;
+        }
+
+        public void setTimerView(String timerValue) {
+            this.timerView.setText(timerValue);
         }
     }
 
