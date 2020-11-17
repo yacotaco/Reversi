@@ -798,7 +798,9 @@ public class Controller {
                                 try {
                                     bw.write(s);
                                 } catch (IOException e) {
-                                    e.printStackTrace();
+                                    Alert alert = new Alert(AlertType.INFORMATION);
+                                    alert.setContentText("Can't write to file!");
+                                    alert.show();
                                 }
                             }
                         }
