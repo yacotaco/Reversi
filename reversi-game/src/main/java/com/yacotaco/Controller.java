@@ -111,7 +111,7 @@ public class Controller {
                 sp.getChildren().remove(1);
             }
 
-            sp.getChildren().add(dv.makeDisc(discState));
+            sp.getChildren().add(dv.addDropShadow(dv.makeDisc(discState)));
 
             for (Integer[] move : allValidMoves) {
                 if (row == move[0] && col == move[1]) {

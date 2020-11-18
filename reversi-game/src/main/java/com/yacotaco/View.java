@@ -4,6 +4,7 @@ import javafx.geometry.Insets;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.effect.DropShadow;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -287,6 +288,16 @@ public class View {
                 circle.setFill(Color.BLACK);
             }
             return circle;
+        }
+
+        public Circle addDropShadow(Circle disc) {
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(1);
+            dropShadow.setOffsetX(3);
+            dropShadow.setOffsetY(3);
+            dropShadow.setColor(Color.web("#333333"));
+            disc.setEffect(dropShadow);
+            return disc;
         }
 
         public Circle makePlayerIndicator() {
