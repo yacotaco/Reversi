@@ -40,7 +40,7 @@ public class View {
     private final double SHADOW_OPACITY = 0.35;
 
     /**
-     * @param borderPane organize elements in border layout
+     * @param stage JavaFX container
      */
 
     public View(Stage stage) {
@@ -117,7 +117,7 @@ public class View {
             saveButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             exitButton.setPrefSize(100, 10);
             exitButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
-        
+
             menu.setStyle("-fx-background-color: #332211;");
             menu.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
 
@@ -199,7 +199,7 @@ public class View {
             this.timerView.setFill(Color.web("#9DC8E4", 1.0));
         }
 
-        public void removeHighlight () {
+        public void removeHighlight() {
             this.timerView.setFill(Color.BLACK);
         }
 

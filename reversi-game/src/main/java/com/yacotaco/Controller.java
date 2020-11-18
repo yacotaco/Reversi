@@ -37,12 +37,9 @@ public class Controller {
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
     /**
-     * @param board     Board class passed to controller
-     * @param view      View class passed to controller
-     * @param bg        BoardGrid view nested class
-     * @param dv        DiscView view nested class
-     * @param playerOne Player class
-     * @param playerTwo Player class
+     * @param board Board class
+     * @param view  View class
+     * @param stage JavaFX container
      */
 
     public Controller(Board board, View view, Stage stage) {
@@ -100,7 +97,7 @@ public class Controller {
     private void updateBoardView() {
 
         switchOnNoValidMoves();
-        
+
         for (Node square : bg.getBoardGridPane().getChildren()) {
             Integer col = bg.getBoardGridPane().getColumnIndex(square);
             Integer row = bg.getBoardGridPane().getRowIndex(square);
@@ -761,18 +758,20 @@ public class Controller {
 
     private void onExitButtonHover() {
         // mouse in
-        view.getTopBorderPane().getExitButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getExitButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getExitButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+                view.getTopBorderPane().getExitButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
             }
         });
-        
+
         // mouse out
-        view.getTopBorderPane().getExitButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getExitButton().setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getExitButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+                view.getTopBorderPane().getExitButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
     }
@@ -792,18 +791,20 @@ public class Controller {
 
     private void onNewGameButtonHover() {
         // mouse in
-        view.getTopBorderPane().getNewGameButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getNewGameButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getNewGameButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+                view.getTopBorderPane().getNewGameButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
             }
         });
 
         // mouse out
-        view.getTopBorderPane().getNewGameButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getNewGameButton().setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getNewGameButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+                view.getTopBorderPane().getNewGameButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
     }
@@ -861,19 +862,21 @@ public class Controller {
 
     private void onSaveButtonHover() {
         // mouse in
-        view.getTopBorderPane().getSaveButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getSaveButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getSaveButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+                view.getTopBorderPane().getSaveButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
             }
         });
-        
+
         // mouse out
-        view.getTopBorderPane().getSaveButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getSaveButton().setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getSaveButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
-            }   
+                view.getTopBorderPane().getSaveButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+            }
         });
     }
 
@@ -916,18 +919,20 @@ public class Controller {
 
     private void onLoadButtonHover() {
         // mouse in
-        view.getTopBorderPane().getLoadButton().setOnMouseEntered(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getLoadButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getLoadButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+                view.getTopBorderPane().getLoadButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
             }
         });
-        
+
         // mouse out
-        view.getTopBorderPane().getLoadButton().setOnMouseExited(new EventHandler<MouseEvent>(){
+        view.getTopBorderPane().getLoadButton().setOnMouseExited(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
-                view.getTopBorderPane().getLoadButton().setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+                view.getTopBorderPane().getLoadButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
     }

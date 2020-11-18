@@ -12,10 +12,6 @@ public class Board {
         initBoard();
     }
 
-    /**
-     * @param boardGrid 2d array of disc objects
-     */
-
     public void initBoard() {
         Integer state = -1;
         for (int row = 0; row < boardGrid.length; row++) {
