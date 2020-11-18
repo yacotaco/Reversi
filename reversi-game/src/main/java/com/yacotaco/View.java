@@ -22,8 +22,8 @@ import javafx.stage.Stage;
 public class View {
     private BorderPane borderPane;
     private TopBorderPane topBorderPane;
-    private final double WIDTH = 70.0;
-    private final double HEIGHT = 70.0;
+    private final double WIDTH = 65.0;
+    private final double HEIGHT = 65.0;
     private final double RADIUS = 26.0;
     private final double MAIN_WIDTH = 700;
     private final double MAIN_HEIGHT = 800;
