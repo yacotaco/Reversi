@@ -28,6 +28,7 @@ public class View {
     private final double MAIN_WIDTH = 800;
     private final double MAIN_HEIGHT = 800;
     private final int STROKE_WIDTH = 2;
+    private final int INDICATOR_RADIUS = 30;
     private final int FRAME_STROKE_WIDTH = 2;
     private final double FRAME_IN_WIDTH = 600;
     private final double FRAME_IN_HEIGHT = 600;
@@ -290,7 +291,7 @@ public class View {
             Circle indicator = new Circle();
             indicator.setCenterX(WIDTH);
             indicator.setCenterY(HEIGHT);
-            indicator.setRadius(RADIUS + STROKE_WIDTH);
+            indicator.setRadius(INDICATOR_RADIUS);
             indicator.setFill(Color.web("#9DC8E4", 0.05));
             indicator.setStroke(Color.web("#9DC8E4", 1.0));
             indicator.setStrokeWidth(STROKE_WIDTH);
