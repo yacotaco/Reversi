@@ -744,6 +744,9 @@ public class Controller {
         view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                // remove highlight after click
+                view.getTopBorderPane().getExitButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
@@ -821,6 +824,9 @@ public class Controller {
         view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                // remove highlight after click
+                view.getTopBorderPane().getSaveButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
@@ -884,6 +890,9 @@ public class Controller {
         view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                // remove highlight after click
+                view.getTopBorderPane().getLoadButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
                 try {
