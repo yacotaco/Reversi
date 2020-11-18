@@ -223,10 +223,10 @@ public class View {
                 for (int col = 0; col < colNum; col++) {
                     square = new StackPane();
                     if ((row + col) % 2 == 0) {
-                        Color lightGreen = Color.web("#00cc00", 1.0);
+                        Color lightGreen = Color.web("#9fa881", 1.0);
                         square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, lightGreen));
                     } else {
-                        Color darkGreen = Color.web("#008000", 1.0);
+                        Color darkGreen = Color.web("#6f7d42", 1.0);
                         square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, darkGreen));
                     }
                     boardGridPane.add(square, col, row);
