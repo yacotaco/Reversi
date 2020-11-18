@@ -37,6 +37,7 @@ public class View {
     private final double FRAME_OUT_HEIGHT = 620;
     private final double MARKER_WIDTH = WIDTH - 2;
     private final double MARKER_HEIGHT = HEIGHT - 2;
+    private final double SHADOW_OPACITY = 0.35;
 
     /**
      * @param borderPane organize elements in border layout
@@ -254,7 +255,7 @@ public class View {
             // add shadow to board
             dropShadow.setOffsetX(10);
             dropShadow.setOffsetY(10);
-            dropShadow.setColor(Color.web("#000000", 0.35));
+            dropShadow.setColor(Color.web("#000000", SHADOW_OPACITY));
             rectangleOut.setEffect(dropShadow);
 
             stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
@@ -303,7 +304,7 @@ public class View {
             dropShadow.setRadius(1);
             dropShadow.setOffsetX(3);
             dropShadow.setOffsetY(3);
-            dropShadow.setColor(Color.web("#333333"));
+            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
             disc.setEffect(dropShadow);
             return disc;
         }
