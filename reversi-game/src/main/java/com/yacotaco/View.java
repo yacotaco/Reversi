@@ -223,6 +223,7 @@ public class View {
             for (int row = 0; row < rowNum; row++) {
                 for (int col = 0; col < colNum; col++) {
                     square = new StackPane();
+                    square.setStyle("-fx-border-width: 0.25; -fx-border-color: #000000;");
                     if ((row + col) % 2 == 0) {
                         Color lightGreen = Color.web("#9fa881", 1.0);
                         square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, lightGreen));
