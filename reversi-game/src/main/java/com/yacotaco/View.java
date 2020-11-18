@@ -27,7 +27,7 @@ public class View {
     private final double RADIUS = 27.0;
     private final double MAIN_WIDTH = 800;
     private final double MAIN_HEIGHT = 800;
-    private final int STROKE_WIDTH = 4;
+    private final int STROKE_WIDTH = 2;
     private final int FRAME_STROKE_WIDTH = 2;
     private final double FRAME_IN_WIDTH = 600;
     private final double FRAME_IN_HEIGHT = 600;
