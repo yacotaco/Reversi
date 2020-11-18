@@ -902,10 +902,11 @@ public class Controller {
                             } else {
                                 int playerState = Integer.valueOf(line);
                                 setPlayerTurn(playerState);
-                                getValidMoves(playerTurn);
-                                updateBoardView();
                             }
                         }
+                        initPlayer();
+                        getValidMoves(playerTurn);
+                        updateBoardView();
                     }
                 } catch (NumberFormatException | IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
