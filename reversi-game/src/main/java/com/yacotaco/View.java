@@ -24,7 +24,7 @@ public class View {
     private TopBorderPane topBorderPane;
     private final double WIDTH = 70.0;
     private final double HEIGHT = 70.0;
-    private final double RADIUS = 27.0;
+    private final double RADIUS = 26.0;
     private final double MAIN_WIDTH = 700;
     private final double MAIN_HEIGHT = 800;
     private final int STROKE_WIDTH = 2;
