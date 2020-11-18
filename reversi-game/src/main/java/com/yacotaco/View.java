@@ -241,6 +241,7 @@ public class View {
 
         private StackPane addBoardToFrame(GridPane boardGridPane) {
             StackPane stack = new StackPane();
+            DropShadow dropShadow = new DropShadow();
             Rectangle rectangleOut = new Rectangle(FRAME_OUT_WIDTH, FRAME_OUT_HEIGHT, Color.web("#332211", 0.80));
             Rectangle rectangleIn = new Rectangle(FRAME_IN_WIDTH, FRAME_IN_HEIGHT, Color.web("#332211", 0.80));
             rectangleOut.setStroke(Color.BLACK);
@@ -249,6 +250,13 @@ public class View {
             rectangleIn.setStrokeWidth(FRAME_STROKE_WIDTH);
             rectangleOut.setStrokeType(StrokeType.OUTSIDE);
             rectangleIn.setStrokeType(StrokeType.OUTSIDE);
+
+            // add shadow to board
+            dropShadow.setOffsetX(10);
+            dropShadow.setOffsetY(10);
+            dropShadow.setColor(Color.web("#000000", 0.35));
+            rectangleOut.setEffect(dropShadow);
+
             stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
             return stack;
         }
