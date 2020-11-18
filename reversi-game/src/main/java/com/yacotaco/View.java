@@ -91,8 +91,8 @@ public class View {
         private VBox vbox;
 
         public HBox addScoreHBox() {
-            scoreHbox.setPadding(new Insets(15, 12, 15, 12));
-            scoreHbox.setSpacing(20);
+            scoreHbox.setPadding(new Insets(10, 0, 10, 0));
+            scoreHbox.setSpacing(25);
             scoreHbox.setStyle("-fx-background-color: #336459; -fx-border-width: 1; -fx-border-color: #000000;");
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
