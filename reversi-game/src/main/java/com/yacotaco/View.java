@@ -82,6 +82,8 @@ public class View {
         private DiscView dv = new DiscView();
         private TimerView timerViewWhite = new TimerView();
         private TimerView timerViewBlack = new TimerView();
+        private Text timerValueWhite;
+        private Text timerValueBlack;
         private Button newGameButton = new Button("New Game");
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
@@ -108,8 +110,8 @@ public class View {
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
-            Text timerValueWhite = timerViewWhite.getTimerValue();
-            Text timerValueBlack = timerViewBlack.getTimerValue();
+            timerValueWhite = timerViewWhite.getTimerValue();
+            timerValueBlack = timerViewBlack.getTimerValue();
 
             scoreHbox.getChildren().addAll(timerViewWhite.makeClockView(timerValueWhite), whiteCounter, blackCounter,
                     timerViewBlack.makeClockView(timerValueBlack));
