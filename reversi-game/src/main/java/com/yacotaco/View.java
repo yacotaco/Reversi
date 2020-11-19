@@ -111,7 +111,8 @@ public class View {
             Text timerWhite = timerViewWhite.getTimerValue();
             Text timerBlack = timerViewBlack.getTimerValue();
 
-            scoreHbox.getChildren().addAll(timerWhite, whiteCounter, blackCounter, timerBlack);
+            scoreHbox.getChildren().addAll(timerViewWhite.makeClockView(timerWhite), whiteCounter, blackCounter,
+                    timerViewBlack.makeClockView(timerBlack));
 
             return scoreHbox;
         }
@@ -178,6 +179,20 @@ public class View {
 
         public TimerView() {
             this.timerValue = new Text();
+        }
+
+        public StackPane makeClockView(Text timerValue) {
+            StackPane timerStack = new StackPane();
+            timerStack.setAlignment(Pos.CENTER);
+            Rectangle r = new Rectangle(70, 30, Color.web("#332211"));
+            r.setArcHeight(30);
+            r.setArcWidth(30);
+            r.setStroke(Color.web("#000000"));
+            r.setStrokeWidth(1);
+            timerValue.setStrokeWidth(4);
+            timerValue.setStyle("-fx-font-size: 15;");
+            timerStack.getChildren().addAll(r, timerValue);
+            return timerStack;
         }
 
         public Text getTimerValue() {
