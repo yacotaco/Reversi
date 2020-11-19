@@ -108,11 +108,11 @@ public class View {
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
-            Text timerWhite = timerViewWhite.getTimerValue();
-            Text timerBlack = timerViewBlack.getTimerValue();
+            Text timerValueWhite = timerViewWhite.getTimerValue();
+            Text timerValueBlack = timerViewBlack.getTimerValue();
 
-            scoreHbox.getChildren().addAll(timerViewWhite.makeClockView(timerWhite), whiteCounter, blackCounter,
-                    timerViewBlack.makeClockView(timerBlack));
+            scoreHbox.getChildren().addAll(timerViewWhite.makeClockView(timerValueWhite), whiteCounter, blackCounter,
+                    timerViewBlack.makeClockView(timerValueBlack));
 
             return scoreHbox;
         }
