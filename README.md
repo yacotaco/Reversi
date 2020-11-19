@@ -5,8 +5,8 @@
 ### Project assumptions:
 
  * Easy to use UI
- * Load/save state of game from/to file
+ * Load/Save state of game
  * Multiplayer (2 player)
  * Timer
  * Game summary
- * Use of MVC design pattern
+ * MVC design pattern
