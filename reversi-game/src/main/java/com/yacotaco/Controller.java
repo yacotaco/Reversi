@@ -10,6 +10,12 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
+
+import javafx.animation.KeyFrame;
+import javafx.animation.KeyValue;
+import javafx.animation.Timeline;
+import javafx.beans.value.WritableValue;
+import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.scene.Node;
 import javafx.scene.control.Alert;
@@ -20,6 +26,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.text.Text;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 /**
  * Controller
@@ -33,6 +40,7 @@ public class Controller {
     private Player playerOne;
     private Player playerTwo;
     private Integer playerTurn;
+    private Timeline timeline = new Timeline();
     private final Integer initPlayerTurn = 0;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
@@ -123,6 +131,84 @@ public class Controller {
         updatePointsCounters();
 
         updatePlayerTurnIndicators();
+
+        setGameTimer();
+    }
+
+    private void resetTimerViewOnTimelineStop() {
+        // reset timer view
+        if (playerTurn == 0) {
+            view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
+            view.getTopBorderPane().getTimerViewWhite().removeHighlight();
+        } else if (playerTurn == 1) {
+            view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
+            view.getTopBorderPane().getTimerViewBlack().removeHighlight();
+        }
+    }
+
+    private void setGameTimer() {
+        timeline = new Timeline();
+        timeline.setCycleCount(1);
+        timeline.setAutoReverse(true);
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(15000), new KeyValue(new WritableValue<Integer>() {
+
+            @Override
+            public Integer getValue() {
+                return null;
+            }
+
+            @Override
+            public void setValue(Integer value) {
+                if (playerTurn == 0) {
+                    Duration currentTime = timeline.getCurrentTime();
+                    Duration totoalTurnTime = timeline.getTotalDuration();
+                    Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
+
+                    view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds.intValue()));
+
+                    if (seconds > 10) {
+                        view.getTopBorderPane().getTimerViewWhite().addHighlight();
+                    } else {
+                        view.getTopBorderPane().getTimerViewWhite().timeoutHighlight();
+                    }
+
+                } else if (playerTurn == 1) {
+                    Duration currentTime = timeline.getCurrentTime();
+                    Duration totoalTurnTime = timeline.getTotalDuration();
+                    Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
+
+                    view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds.intValue()));
+
+                    if (seconds > 10) {
+                        view.getTopBorderPane().getTimerViewBlack().addHighlight();
+                    } else {
+                        view.getTopBorderPane().getTimerViewBlack().timeoutHighlight();
+                    }
+                }
+            }
+
+        }, null)));
+
+        timeline.setOnFinished(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent event) {
+                if (playerTurn == 0) {
+                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
+                    changePlayerTurn(playerTurn);
+                    getValidMoves(playerTurn);
+                    updateBoardView();
+
+                } else if (playerTurn == 1) {
+                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
+                    changePlayerTurn(playerTurn);
+                    getValidMoves(playerTurn);
+                    updateBoardView();
+                }
+            }
+        });
+
+        timeline.play();
     }
 
     private void updatePlayerTurnIndicators() {
@@ -728,6 +814,12 @@ public class Controller {
                         flipHorizontalDiscs(row, col, playerTurn);
                         flipVerticalDiscs(row, col, playerTurn);
                         flipDiagonalDiscs(row, col, playerTurn);
+
+                        // stop timeline
+                        timeline.stop();
+
+                        resetTimerViewOnTimelineStop();
+
                         // change player after update
                         changePlayerTurn(playerTurn);
 
