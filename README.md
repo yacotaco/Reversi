@@ -1,4 +1,6 @@
-## This is Reversi game project for GUI lectures in JavaFX.
+## This is Reversi game project for GUI lectures (in JavaFX).
+
+![Image](reversi-game/resource/reversi.png)
 
 ### Project assumptions:
 
@@ -8,4 +10,3 @@
  * Timer
  * Game summary
  * Use of MVC design pattern
- 
