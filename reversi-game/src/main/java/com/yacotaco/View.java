@@ -213,6 +213,10 @@ public class View {
             this.timerValue.setFill(Color.BLACK);
         }
 
+        public void timeoutHighlight() {
+            this.timerValue.setFill(Color.RED);
+        }
+
     }
 
     public class BoardGrid {
