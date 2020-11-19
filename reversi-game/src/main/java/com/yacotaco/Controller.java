@@ -841,12 +841,14 @@ public class Controller {
                 // remove highlight after click
                 view.getTopBorderPane().getExitButton()
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+                timeline.pause();
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
-
                 if (ButtonType.OK.equals(option.get()) == true) {
                     System.exit(0);
+                } else {
+                    timeline.play();
                 }
 
             }
@@ -924,6 +926,7 @@ public class Controller {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
+                timeline.pause();
                 try {
                     File file = fileChooser.showSaveDialog(stage);
                     if (file != null) {
@@ -950,6 +953,8 @@ public class Controller {
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setContentText("File saved!");
                         alert.show();
+                    } else {
+                        timeline.play();
                     }
                 } catch (IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
@@ -989,6 +994,7 @@ public class Controller {
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
+                timeline.pause();
                 try {
                     File file = fileChooser.showOpenDialog(stage);
                     if (file != null) {
@@ -1010,6 +1016,8 @@ public class Controller {
                         initPlayer();
                         getValidMoves(playerTurn);
                         updateBoardView();
+                    } else {
+                        timeline.play();
                     }
                 } catch (NumberFormatException | IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
