@@ -882,6 +882,14 @@ public class Controller {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
+                
+                if (timeline != null) {
+                    timeline.stop();
+                    timeline = new Timeline();
+                } else {
+                    timeline = new Timeline();
+                }
+
                 initPlayer();
                 setPlayerTurn(initPlayerTurn);
                 board.initBoard();
