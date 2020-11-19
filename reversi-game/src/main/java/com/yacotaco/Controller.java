@@ -40,7 +40,7 @@ public class Controller {
     private Player playerOne;
     private Player playerTwo;
     private Integer playerTurn;
-    private Timeline timeline = new Timeline();
+    private Timeline timeline;
     private final Integer initPlayerTurn = 0;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
@@ -169,6 +169,8 @@ public class Controller {
                     Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
 
                     view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds.intValue()));
+                    view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
 
                     if (seconds > 10) {
                         view.getTopBorderPane().getTimerViewWhite().addHighlight();
@@ -182,6 +184,8 @@ public class Controller {
                     Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
 
                     view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds.intValue()));
+                    view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
 
                     if (seconds > 10) {
                         view.getTopBorderPane().getTimerViewBlack().addHighlight();
