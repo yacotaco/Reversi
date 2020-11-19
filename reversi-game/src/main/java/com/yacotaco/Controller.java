@@ -152,7 +152,6 @@ public class Controller {
     }
     
     private void setGameTimer() {
-        timeline = new Timeline();
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(15000), new KeyValue(new WritableValue<Integer>() {
