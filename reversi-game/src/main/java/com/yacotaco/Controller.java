@@ -146,6 +146,11 @@ public class Controller {
         }
     }
 
+    private void resetTimer() {
+        timeline.stop();
+        resetTimerViewOnTimelineStop();
+    }
+    
     private void setGameTimer() {
         timeline = new Timeline();
         timeline.setCycleCount(1);
@@ -815,10 +820,7 @@ public class Controller {
                         flipVerticalDiscs(row, col, playerTurn);
                         flipDiagonalDiscs(row, col, playerTurn);
 
-                        // stop timeline
-                        timeline.stop();
-
-                        resetTimerViewOnTimelineStop();
+                        resetTimer();
 
                         // change player after update
                         changePlayerTurn(playerTurn);
