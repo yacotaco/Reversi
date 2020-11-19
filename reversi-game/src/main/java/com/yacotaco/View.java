@@ -80,8 +80,8 @@ public class View {
 
     public class TopBorderPane {
         private DiscView dv = new DiscView();
-        private TimerView timerViewWhite = new TimerView(0);
-        private TimerView timerViewBlack = new TimerView(1);
+        private TimerView timerViewWhite = new TimerView();
+        private TimerView timerViewBlack = new TimerView();
         private Button newGameButton = new Button("New Game");
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
@@ -108,8 +108,8 @@ public class View {
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
-            Text timerWhite = timerViewWhite.getTimerView();
-            Text timerBlack = timerViewBlack.getTimerView();
+            Text timerWhite = timerViewWhite.getTimerValue();
+            Text timerBlack = timerViewBlack.getTimerValue();
 
             scoreHbox.getChildren().addAll(timerWhite, whiteCounter, blackCounter, timerBlack);
 
@@ -174,33 +174,26 @@ public class View {
     }
 
     public class TimerView {
-        private Text timerView;
+        private Text timerValue;
 
-        public TimerView(Integer discState) {
-            this.timerView = makeTimerView(discState);
+        public TimerView() {
+            this.timerValue = new Text();
         }
 
-        private Text makeTimerView(Integer discState) {
-            Text timerText = new Text();
-            timerText.setStrokeWidth(4);
-            timerText.setStyle("-fx-font-size: 15;");
-            return timerText;
+        public Text getTimerValue() {
+            return timerValue;
         }
 
-        public Text getTimerView() {
-            return timerView;
-        }
-
-        public void setTimerView(String timerValue) {
-            this.timerView.setText(timerValue);
+        public void setTimerValue(String timerValue) {
+            this.timerValue.setText(timerValue);
         }
 
         public void addHighlight() {
-            this.timerView.setFill(Color.web("#9DC8E4", 1.0));
+            this.timerValue.setFill(Color.web("#9DC8E4", 1.0));
         }
 
         public void removeHighlight() {
-            this.timerView.setFill(Color.BLACK);
+            this.timerValue.setFill(Color.BLACK);
         }
 
     }
