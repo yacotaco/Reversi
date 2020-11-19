@@ -1017,6 +1017,7 @@ public class Controller {
                                 setPlayerTurn(playerState);
                             }
                         }
+                        resetTimer();
                         initPlayer();
                         getValidMoves(playerTurn);
                         updateBoardView();
