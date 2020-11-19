@@ -92,6 +92,14 @@ public class View {
         private HBox menu;
         private VBox vbox;
 
+        public TopBorderPane() {
+            this.scoreHbox = new HBox();
+            this.menu = new HBox();
+            this.vbox = new VBox();
+            vbox.getChildren().addAll(addMenu(), addScoreHBox());
+            borderPane.setTop(vbox);
+        }
+
         public HBox addScoreHBox() {
             scoreHbox.setPadding(new Insets(5, 0, 5, 0));
             scoreHbox.setSpacing(25);
@@ -122,14 +130,6 @@ public class View {
             menu.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
 
             return menu;
-        }
-
-        public TopBorderPane() {
-            this.scoreHbox = new HBox();
-            this.menu = new HBox();
-            this.vbox = new VBox();
-            vbox.getChildren().addAll(addMenu(), addScoreHBox());
-            borderPane.setTop(vbox);
         }
 
         public Button getNewGameButton() {
