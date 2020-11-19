@@ -952,7 +952,11 @@ public class Controller {
 
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setContentText("File saved!");
-                        alert.show();
+                       
+                        Optional<ButtonType> option = alert.showAndWait();
+                        if (ButtonType.OK.equals(option.get()) == true) {
+                            timeline.play();
+                        };
                     } else {
                         timeline.play();
                     }
