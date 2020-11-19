@@ -113,8 +113,8 @@ public class View {
             timerValueWhite = timerViewWhite.getTimerValue();
             timerValueBlack = timerViewBlack.getTimerValue();
 
-            scoreHbox.getChildren().addAll(timerViewWhite.makeClockView(timerValueWhite), whiteCounter, blackCounter,
-                    timerViewBlack.makeClockView(timerValueBlack));
+            scoreHbox.getChildren().addAll(timerViewWhite.makeTimerView(timerValueWhite), whiteCounter, blackCounter,
+                    timerViewBlack.makeTimerView(timerValueBlack));
 
             return scoreHbox;
         }
@@ -183,7 +183,7 @@ public class View {
             this.timerValue = new Text();
         }
 
-        public StackPane makeClockView(Text timerValue) {
+        public StackPane makeTimerView(Text timerValue) {
             StackPane timerStack = new StackPane();
             timerStack.setAlignment(Pos.CENTER);
             Rectangle r = new Rectangle(70, 30, Color.web("#332211"));
