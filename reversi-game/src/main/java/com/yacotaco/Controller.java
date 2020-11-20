@@ -1077,6 +1077,7 @@ public class Controller {
                             getValidMoves(playerTurn);
                             updateBoardView();
                         } else {
+                            timeline = new Timeline();
                             initPlayer();
                             getValidMoves(playerTurn);
                             updateBoardView();
