@@ -142,7 +142,8 @@ public class View {
 
             menu.setSpacing(25);
             menu.setStyle("-fx-background-color: #332211;");
-            menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton, exitButton);
+            menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton,
+                    exitButton);
 
             return menu;
         }

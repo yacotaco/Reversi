@@ -157,7 +157,7 @@ public class Controller {
         timeline.stop();
         resetTimerViewOnTimelineStop();
     }
-    
+
     private void setGameTimer() {
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
@@ -899,11 +899,11 @@ public class Controller {
                     } else {
                         timeline = new Timeline();
                     }
-                } else if (isTimerSwitched == false){
+                } else if (isTimerSwitched == false) {
                     timeline = new Timeline();
                     timeline.pause();
                 }
-    
+
                 initPlayer();
                 setPlayerTurn(initPlayerTurn);
                 board.initBoard();
@@ -977,11 +977,12 @@ public class Controller {
 
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setContentText("File saved!");
-                       
+
                         Optional<ButtonType> option = alert.showAndWait();
                         if (ButtonType.OK.equals(option.get()) == true) {
                             timeline.play();
-                        };
+                        }
+                        ;
                     } else {
                         timeline.play();
                     }
@@ -1081,7 +1082,7 @@ public class Controller {
 
     private void onTimerButtonClick() {
         view.getTopBorderPane().getNewTimedGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            
+
             @Override
             public void handle(MouseEvent event) {
                 isTimerSwitched = true;
@@ -1099,7 +1100,7 @@ public class Controller {
                     view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
                 }
             }
-            
+
         });
     }
 
