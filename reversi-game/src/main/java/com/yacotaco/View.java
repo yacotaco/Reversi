@@ -186,6 +186,14 @@ public class View {
         public void setTimerViewBlack(TimerView timerViewBlack) {
             this.timerViewBlack = timerViewBlack;
         }
+
+        public Button getNewTimedGameButton() {
+            return newTimedGameButton;
+        }
+
+        public void setNewTimedGameButton(Button newTimedGameButton) {
+            this.newTimedGameButton = newTimedGameButton;
+        }
     }
 
     public class TimerView {
