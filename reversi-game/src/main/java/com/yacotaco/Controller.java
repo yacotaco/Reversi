@@ -41,6 +41,7 @@ public class Controller {
     private Player playerTwo;
     private Integer playerTurn;
     private Timeline timeline;
+    private Boolean isTimerSwitched;
     private final Double TOTAL_TURN_TIME = 15000.0;
     private final Integer initPlayerTurn = 0;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
@@ -59,6 +60,7 @@ public class Controller {
         this.dv = view.new DiscView();
         this.playerOne = new Player();
         this.playerTwo = new Player();
+        this.isTimerSwitched = false;
         initController();
     }
 
@@ -72,6 +74,7 @@ public class Controller {
         onSaveButtonHover();
         onLoadButtonClick();
         onLoadButtonHover();
+        onTimerButtonClick();
         onTimerButtonHover();
     }
 
@@ -134,7 +137,9 @@ public class Controller {
 
         updatePlayerTurnIndicators();
 
-        setGameTimer();
+        if (isTimerSwitched == true) {
+            setGameTimer();
+        }
     }
 
     private void resetTimerViewOnTimelineStop() {
@@ -825,7 +830,9 @@ public class Controller {
                         flipVerticalDiscs(row, col, playerTurn);
                         flipDiagonalDiscs(row, col, playerTurn);
 
-                        resetTimer();
+                        if (isTimerSwitched == true) {
+                            resetTimer();
+                        }
 
                         // change player after update
                         changePlayerTurn(playerTurn);
@@ -885,13 +892,18 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
 
-                if (timeline != null) {
-                    timeline.stop();
+                if (isTimerSwitched == true) {
+                    if (timeline != null) {
+                        timeline.stop();
+                        timeline = new Timeline();
+                    } else {
+                        timeline = new Timeline();
+                    }
+                } else if (isTimerSwitched == false){
                     timeline = new Timeline();
-                } else {
-                    timeline = new Timeline();
+                    timeline.pause();
                 }
-
+    
                 initPlayer();
                 setPlayerTurn(initPlayerTurn);
                 board.initBoard();
@@ -1064,6 +1076,19 @@ public class Controller {
                 view.getTopBorderPane().getLoadButton()
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
+        });
+    }
+
+    private void onTimerButtonClick() {
+        view.getTopBorderPane().getNewTimedGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+            
+            @Override
+            public void handle(MouseEvent event) {
+                isTimerSwitched = true;
+                view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
+                view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
+            }
+            
         });
     }
 
