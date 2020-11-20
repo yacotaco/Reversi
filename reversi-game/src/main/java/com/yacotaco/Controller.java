@@ -957,7 +957,11 @@ public class Controller {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
-                timeline.pause();
+
+                if (timeline != null) {
+                    timeline.pause();
+                }
+
                 try {
                     File file = fileChooser.showSaveDialog(stage);
                     if (file != null) {
@@ -986,16 +990,25 @@ public class Controller {
 
                         Optional<ButtonType> option = alert.showAndWait();
                         if (ButtonType.OK.equals(option.get()) == true) {
+                            if (timeline != null) {
+                                timeline.play();
+                            }
+                        }
+                    } else {
+                        if (timeline != null) {
                             timeline.play();
                         }
-                        ;
-                    } else {
-                        timeline.play();
                     }
-                } catch (IOException e) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setContentText("Can't save file!");
-                    alert.show();
+                } catch (IOException | NullPointerException e) {
+                    if (e.getMessage() == null) {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setContentText("Board is empty!");
+                        alert.show();
+                    } else {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setContentText("Can't save file!");
+                        alert.show();
+                    }
                 }
             }
         });
