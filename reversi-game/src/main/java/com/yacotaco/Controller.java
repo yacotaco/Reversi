@@ -1066,8 +1066,15 @@ public class Controller {
                                 setPlayerTurn(playerState);
                             }
                         }
+                        
                         if (timeline != null) {
                             resetTimer();
+                            if (isTimerSwitched == false) {
+                                view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
+                                view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                            }
+                            getValidMoves(playerTurn);
+                            updateBoardView();
                         } else {
                             initPlayer();
                             getValidMoves(playerTurn);
