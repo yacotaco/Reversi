@@ -1078,11 +1078,18 @@ public class Controller {
                             timeline.play();
                         }
                     }
-                } catch (NumberFormatException | IOException e) {
-                    Alert alert = new Alert(AlertType.ERROR);
-                    alert.setAlertType(AlertType.ERROR);
-                    alert.setContentText("Can't read file!");
-                    alert.show();
+                } catch (NumberFormatException | IOException | NullPointerException e) {
+                    if (e.getMessage() == null) {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setAlertType(AlertType.ERROR);
+                        alert.setContentText("File is empty!");
+                        alert.show();
+                    } else {
+                        Alert alert = new Alert(AlertType.ERROR);
+                        alert.setAlertType(AlertType.ERROR);
+                        alert.setContentText("Can't read file!");
+                        alert.show();
+                    }
                 }
             }
         });
