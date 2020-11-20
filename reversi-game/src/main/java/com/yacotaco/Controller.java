@@ -1066,7 +1066,8 @@ public class Controller {
                                 setPlayerTurn(playerState);
                             }
                         }
-                        
+                        br.close();
+
                         if (timeline != null) {
                             resetTimer();
                             if (isTimerSwitched == false) {
