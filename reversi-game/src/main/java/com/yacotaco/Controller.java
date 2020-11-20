@@ -853,14 +853,20 @@ public class Controller {
                 // remove highlight after click
                 view.getTopBorderPane().getExitButton()
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
-                timeline.pause();
+
+                if (timeline != null) {
+                    timeline.pause();
+                }
+
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
                 if (ButtonType.OK.equals(option.get()) == true) {
                     System.exit(0);
                 } else {
-                    timeline.play();
+                    if (timeline != null) {
+                        timeline.play();
+                    }
                 }
 
             }
@@ -1024,7 +1030,11 @@ public class Controller {
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
-                timeline.pause();
+
+                if (timeline != null) {
+                    timeline.pause();
+                }
+
                 try {
                     File file = fileChooser.showOpenDialog(stage);
                     if (file != null) {
@@ -1043,12 +1053,17 @@ public class Controller {
                                 setPlayerTurn(playerState);
                             }
                         }
-                        resetTimer();
-                        initPlayer();
-                        getValidMoves(playerTurn);
-                        updateBoardView();
+                        if (timeline != null) {
+                            resetTimer();
+                        } else {
+                            initPlayer();
+                            getValidMoves(playerTurn);
+                            updateBoardView();
+                        }
                     } else {
-                        timeline.play();
+                        if (timeline != null) {
+                            timeline.play();
+                        }
                     }
                 } catch (NumberFormatException | IOException e) {
                     Alert alert = new Alert(AlertType.ERROR);
