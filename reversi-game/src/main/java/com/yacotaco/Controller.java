@@ -72,6 +72,7 @@ public class Controller {
         onSaveButtonHover();
         onLoadButtonClick();
         onLoadButtonHover();
+        onTimerButtonHover();
     }
 
     private void setPlayerTurn(Integer state) {
@@ -1061,6 +1062,26 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 view.getTopBorderPane().getLoadButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+            }
+        });
+    }
+
+    private void onTimerButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getNewTimedGameButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getNewTimedGameButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+
+        // mouse out
+        view.getTopBorderPane().getNewTimedGameButton().setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getNewTimedGameButton()
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
