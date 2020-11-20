@@ -85,6 +85,8 @@ public class View {
         private Text timerValueWhite;
         private Text timerValueBlack;
         private Button newGameButton = new Button("New Game");
+        private Button newTimedGameButton = new Button("Timer");
+        private Button aiPlayerButton = new Button("AI Player");
         private Button loadButton = new Button("Load");
         private Button saveButton = new Button("Save");
         private Button exitButton = new Button("Exit");
@@ -122,15 +124,25 @@ public class View {
         public HBox addMenu() {
             newGameButton.setPrefSize(100, 10);
             newGameButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+
+            newTimedGameButton.setPrefSize(100, 10);
+            newTimedGameButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+
+            aiPlayerButton.setPrefSize(100, 10);
+            aiPlayerButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+
             loadButton.setPrefSize(100, 10);
             loadButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+
             saveButton.setPrefSize(100, 10);
             saveButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+
             exitButton.setPrefSize(100, 10);
             exitButton.setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
 
+            menu.setSpacing(25);
             menu.setStyle("-fx-background-color: #332211;");
-            menu.getChildren().addAll(newGameButton, loadButton, saveButton, exitButton);
+            menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton, exitButton);
 
             return menu;
         }
