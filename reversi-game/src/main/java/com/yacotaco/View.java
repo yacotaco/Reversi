@@ -243,6 +243,10 @@ public class View {
             this.timerValue.setFill(Color.RED);
         }
 
+        public void switchOffTimer() {
+            this.timerValue.setFill(Color.web("#332211", 1.0));
+        }
+
     }
 
     public class BoardGrid {
