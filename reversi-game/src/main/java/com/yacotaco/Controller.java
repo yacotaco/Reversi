@@ -42,7 +42,7 @@ public class Controller {
     private Integer playerTurn;
     private Timeline timeline;
     private Boolean isTimerSwitched;
-    private final Double TOTAL_TURN_TIME = 15000.0;
+    private final Double TURN_TIME = 30000.0;
     private final Integer initPlayerTurn = 0;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
@@ -161,7 +161,7 @@ public class Controller {
     private void setGameTimer() {
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(TOTAL_TURN_TIME), new KeyValue(new WritableValue<Integer>() {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(TURN_TIME), new KeyValue(new WritableValue<Integer>() {
 
             @Override
             public Integer getValue() {
