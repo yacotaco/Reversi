@@ -1093,6 +1093,10 @@ public class Controller {
                     timeline.stop();
                     view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                } else if (event.getClickCount() == 2) {
+                    isTimerSwitched = false;
+                    view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
+                    view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
                 }
             }
             
