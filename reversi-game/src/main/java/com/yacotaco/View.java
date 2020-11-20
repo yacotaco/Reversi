@@ -214,7 +214,13 @@ public class View {
         }
 
         public void setTimerValue(String timerValue) {
-            this.timerValue.setText(timerValue);
+            if (timerValue.length() < 2) {
+                String time = "00:0" + timerValue;
+                this.timerValue.setText(time);
+            } else {
+                String time = "00:" + timerValue;
+                this.timerValue.setText(time);
+            }
         }
 
         public void addHighlight() {
