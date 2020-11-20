@@ -5,8 +5,12 @@
 ### Project assumptions:
 
  * Easy to use UI
- * Load/Save state of game
- * Multiplayer (2 player)
- * Timer
- * Game summary
  * MVC design pattern
+
+ ### Project features:
+ 
+ * Timed Game (one click/double click -> on/off)
+ * Load/Save state of game
+ * Game summary
+ * [TODO] AI Player module
+ 
