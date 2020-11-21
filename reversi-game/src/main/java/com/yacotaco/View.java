@@ -402,6 +402,11 @@ public class View {
         private Player playerTwo;
         private Text text;
 
+        /**
+         * @param playerOne Player class object
+         * @param playerTwo Player class object
+         */
+
         public SummaryView(Player playerOne, Player playerTwo) {
             this.summary = new StackPane();
             this.text = new Text();
