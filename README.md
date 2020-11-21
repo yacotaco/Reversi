@@ -12,5 +12,6 @@
  * Timed Game (one click/double click -> on/off)
  * Load/Save state of game
  * Game summary
- * [TODO] AI Player module
+ * [TODO] AI Player module (based on MCTS)
+ * [TODO] Code refactoring
  
