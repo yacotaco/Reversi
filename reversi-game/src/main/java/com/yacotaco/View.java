@@ -395,4 +395,70 @@ public class View {
     public TopBorderPane getTopBorderPane() {
         return topBorderPane;
     }
+
+    public class SummaryView {
+        private StackPane summary;
+        private Player playerOne;
+        private Player playerTwo;
+        private Text text;
+
+        public SummaryView(Player playerOne, Player playerTwo) {
+            this.summary = new StackPane();
+            this.text = new Text();
+            this.playerOne = playerOne;
+            this.playerTwo = playerTwo;
+            createSummaryView();
+        }
+
+        private StackPane createSummaryView() {
+
+            summary = addDropShadow(summary);
+            summary.setAlignment(Pos.CENTER);
+            summary.setMaxHeight(150);
+            summary.setMaxWidth(300);
+            summary.setStyle("-fx-background-color: #2A363B; -fx-border-width: 10; -fx-border-color: #336459;");
+
+            if (playerOne.getPoints() > playerTwo.getPoints()) {
+                text = new Text("White wins!");
+                text.setFill(Color.WHITE);
+                text.setStyle("-fx-font-size: 25;");
+            } else if (playerOne.getPoints() < playerTwo.getPoints()) {
+                text = new Text("Black wins!");
+                text.setFill(Color.BLACK);
+                text.setStyle("-fx-font-size: 25;");
+            } else {
+                text = new Text("Draw!");
+                text.setFill(Color.BROWN);
+                text.setStyle("-fx-font-size: 25;");
+            }
+
+            VBox vbox = new VBox();
+            vbox.setSpacing(40);
+            vbox.setAlignment(Pos.CENTER);
+            vbox.getChildren().addAll(text);
+            summary.getChildren().addAll(vbox);
+
+            return summary;
+        }
+
+        private StackPane addDropShadow(StackPane summary) {
+            DropShadow dropShadow = new DropShadow();
+            dropShadow.setRadius(1);
+            dropShadow.setOffsetX(4);
+            dropShadow.setOffsetY(4);
+            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
+            summary.setEffect(dropShadow);
+            return summary;
+        }
+
+        public StackPane getSummary() {
+            return summary;
+        }
+
+        public void setSummary(StackPane summary) {
+            this.summary = summary;
+        }
+
+    }
+
 }
