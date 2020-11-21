@@ -37,6 +37,7 @@ public class Controller {
     private Stage stage;
     private View.BoardGrid bg;
     private View.DiscView dv;
+    private View.SummaryView sv;
     private Player playerOne;
     private Player playerTwo;
     private Integer playerTurn;
@@ -140,6 +141,11 @@ public class Controller {
         if (isTimerSwitched == true) {
             setGameTimer();
         }
+
+        if (allValidMoves.size() == 0) {
+            addSummary(playerOne, playerTwo);
+        }
+
     }
 
     private void resetTimerViewOnTimelineStop() {
@@ -893,6 +899,25 @@ public class Controller {
         });
     }
 
+    private void addSummary(Player playerOne, Player playerTwo) {
+        if (timeline != null) {
+            timeline.pause();
+        }
+        sv = view.new SummaryView(playerOne, playerTwo);
+        StackPane summary = sv.getSummary();
+        Node node = view.getBorderPane().getCenter();
+        StackPane sp = (StackPane) node;
+        sp.getChildren().add(3, summary);
+    }
+
+    private void removeSummary() {
+        Node node = view.getBorderPane().getCenter();
+        StackPane sp = (StackPane) node;
+        if (sp.getChildren().size() == 4) {
+            sp.getChildren().remove(3);
+        }
+    }
+
     private void onNewGameButtonClick() {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -915,6 +940,7 @@ public class Controller {
                 board.initBoard();
                 getValidMoves(playerTurn);
                 updateBoardView();
+                removeSummary();
             }
         });
     }
@@ -1047,6 +1073,8 @@ public class Controller {
                 if (timeline != null) {
                     timeline.pause();
                 }
+                // loading file when previous game ended
+                removeSummary();
 
                 try {
                     File file = fileChooser.showOpenDialog(stage);
