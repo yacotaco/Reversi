@@ -13,5 +13,7 @@
  * Load/Save state of game
  * Game summary
  * [TODO] AI Player module (based on MCTS)
- * [TODO] Code refactoring
+
+  ### TODO:
+  * Code refactoring
  
