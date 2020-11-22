@@ -724,7 +724,7 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
-            } else if (i - 1 < 0) {
+            } else if (i - 1 < 0 || col + 1 > board.getBoardGrid().length - 1) {
                 discsToFlip.clear();
                 break;
             }
@@ -755,7 +755,7 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
-            } else if (i + 1 > board.getBoardGrid().length - 1) {
+            } else if (i + 1 > board.getBoardGrid().length - 1 || col - 1 < 0) {
                 discsToFlip.clear();
                 break;
             }
@@ -786,7 +786,7 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
-            } else if (i - 1 < 0) {
+            } else if (i - 1 < 0 || col - 1 < 0) {
                 discsToFlip.clear();
                 break;
             }
@@ -817,7 +817,7 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
-            } else if (i + 1 > board.getBoardGrid().length - 1) {
+            } else if (i + 1 > board.getBoardGrid().length - 1 || col + 1 > board.getBoardGrid().length - 1) {
                 discsToFlip.clear();
                 break;
             }
