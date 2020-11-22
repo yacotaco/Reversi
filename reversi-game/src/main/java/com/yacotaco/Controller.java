@@ -601,7 +601,7 @@ public class Controller {
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs on right
-        for (int i = col + 1; i < board.getBoardGrid().length - 1; i++) {
+        for (int i = col + 1; i <= board.getBoardGrid().length - 1; i++) {
             nextDiscState = board.getDiscFromBoard(row, i).getState();
             if (nextDiscState != primaryDiscState) {
                 Disc opponentDisc = board.getDiscFromBoard(row, i);
@@ -615,6 +615,9 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
+            } else if (i + 1 > board.getBoardGrid().length - 1) {
+                discsToFlip.clear();
                 break;
             }
         }
@@ -634,6 +637,9 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
+            } else if (i - 1 < 0) {
+                discsToFlip.clear();
                 break;
             }
         }
@@ -660,6 +666,9 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
+            } else if (i - 1 < 0) {
+                discsToFlip.clear();
+                break;
             }
         }
 
@@ -678,6 +687,9 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
+            } else if (i + 1 > board.getBoardGrid().length - 1) {
+                discsToFlip.clear();
                 break;
             }
         }
@@ -712,6 +724,9 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
+            } else if (i - 1 < 0) {
+                discsToFlip.clear();
+                break;
             }
         }
 
@@ -739,6 +754,9 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
+            } else if (i + 1 > board.getBoardGrid().length - 1) {
+                discsToFlip.clear();
                 break;
             }
         }
@@ -768,6 +786,9 @@ public class Controller {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
                 break;
+            } else if (i - 1 < 0) {
+                discsToFlip.clear();
+                break;
             }
         }
 
@@ -795,6 +816,9 @@ public class Controller {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
                 }
+                break;
+            } else if (i + 1 > board.getBoardGrid().length - 1) {
+                discsToFlip.clear();
                 break;
             }
         }
