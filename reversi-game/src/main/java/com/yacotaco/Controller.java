@@ -284,9 +284,7 @@ public class Controller {
         }
 
         // search right
-        if (colRight > board.getBoardGrid().length - 1) {
-            return result;
-        } else {
+        if (colRight <= board.getBoardGrid().length - 1) {
             nextDiscState = board.getDiscFromBoard(discRow, colRight).getState();
         }
 
@@ -312,9 +310,7 @@ public class Controller {
         Integer colLeft = discCol - 1;
         Integer nextDiscStateLeft = -1;
 
-        if (colLeft < 0) {
-            return result;
-        } else {
+        if (colLeft >= 0) {
             nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
         }
 
@@ -353,9 +349,7 @@ public class Controller {
         }
 
         // search up
-        if (rowUp < 0) {
-            return result;
-        } else {
+        if (rowUp >= 0) {
             nextDiscStateUp = board.getDiscFromBoard(rowUp, discCol).getState();
         }
 
@@ -380,11 +374,9 @@ public class Controller {
         Integer nextDiscStateDown = -1;
 
         // search down
-        if (rowDown > board.getBoardGrid().length - 1) {
-            return result;
-        } else {
+        if (rowDown <= board.getBoardGrid().length - 1) {
             nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
-        }
+        } 
 
         while (nextDiscStateDown == opponentDiscState) {
             rowDown++;
@@ -421,7 +413,7 @@ public class Controller {
         }
 
         // diagonal up right
-        for (int i = row - 1; i > 0; i--) {
+        for (int i = row - 1; i >= 0; i--) {
             col++;
 
             if (col > board.getBoardGrid().length - 1) {
@@ -507,7 +499,7 @@ public class Controller {
         }
 
         // diagonal up left
-        for (int i = col - 1; i > 0; i--) {
+        for (int i = col - 1; i >= 0; i--) {
             row--;
 
             if (row < 0) {
