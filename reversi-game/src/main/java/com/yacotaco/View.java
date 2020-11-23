@@ -38,6 +38,7 @@ public class View {
     private final double MARKER_WIDTH = WIDTH - 2;
     private final double MARKER_HEIGHT = HEIGHT - 2;
     private final double SHADOW_OPACITY = 0.35;
+    private final double MARKER_RADIUS = 5.0;
 
     /**
      * @param stage JavaFX container
@@ -476,7 +477,7 @@ public class View {
             Circle circle = new Circle();
             circle.setCenterX(WIDTH);
             circle.setCenterY(HEIGHT);
-            circle.setRadius(RADIUS-20);
+            circle.setRadius(MARKER_RADIUS);
             circle.setFill(Color.RED);
             return circle;
         }
