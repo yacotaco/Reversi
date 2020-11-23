@@ -466,4 +466,19 @@ public class View {
 
     }
 
+    public class DebugMarkers {
+
+        public DebugMarkers() {
+
+        }
+
+        public Circle flipDebugMarker() {
+            Circle circle = new Circle();
+            circle.setCenterX(WIDTH);
+            circle.setCenterY(HEIGHT);
+            circle.setRadius(RADIUS-20);
+            circle.setFill(Color.RED);
+            return circle;
+        }
+    }
 }
