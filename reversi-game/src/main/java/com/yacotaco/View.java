@@ -27,11 +27,11 @@ public class View {
     private TopBorderPane topBorderPane;
     private final double WIDTH = 65.0;
     private final double HEIGHT = 65.0;
-    private final double RADIUS = 26.0;
+    private final double RADIUS = 28.0;
     private final double MAIN_WIDTH = 700;
     private final double MAIN_HEIGHT = 800;
     private final int STROKE_WIDTH = 2;
-    private final int INDICATOR_RADIUS = 30;
+    private final int INDICATOR_RADIUS = 32;
     private final int FRAME_STROKE_WIDTH = 2;
     private final double FRAME_IN_WIDTH = 600;
     private final double FRAME_IN_HEIGHT = 600;
