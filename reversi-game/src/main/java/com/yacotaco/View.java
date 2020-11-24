@@ -366,7 +366,7 @@ public class View {
                 light.setColor(Color.WHITE); 
                 light.setX(4); 
                 light.setY(1); 
-                light.setZ(40); 
+                light.setZ(55); 
                 Lighting lighting = new Lighting(); 
                 lighting.setLight(light);
                 disc.setEffect(lighting);  
@@ -375,7 +375,7 @@ public class View {
                 light.setColor(Color.WHITE); 
                 light.setX(4); 
                 light.setY(1); 
-                light.setZ(40); 
+                light.setZ(55); 
                 Lighting lighting = new Lighting(); 
                 lighting.setLight(light);
                 disc.setEffect(lighting);  
