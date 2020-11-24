@@ -5,6 +5,8 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.effect.DropShadow;
+import javafx.scene.effect.Light;
+import javafx.scene.effect.Lighting;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.HBox;
@@ -342,6 +344,9 @@ public class View {
                 circle.setRadius(RADIUS);
                 circle.setFill(Color.BLACK);
             }
+
+            // add spot effect
+            circle = addSpotEffect(circle, discState);
             return circle;
         }
 
@@ -352,6 +357,29 @@ public class View {
             dropShadow.setOffsetY(3);
             dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
             disc.setEffect(dropShadow);
+            return disc;
+        }
+
+        public Circle addSpotEffect(Circle disc, Integer discState) {
+            if (discState == 1) {
+                Light.Spot light = new Light.Spot(); 
+                light.setColor(Color.WHITE); 
+                light.setX(4); 
+                light.setY(1); 
+                light.setZ(40); 
+                Lighting lighting = new Lighting(); 
+                lighting.setLight(light);
+                disc.setEffect(lighting);  
+            } else if (discState == 0) {
+                Light.Spot light = new Light.Spot(); 
+                light.setColor(Color.WHITE); 
+                light.setX(4); 
+                light.setY(1); 
+                light.setZ(40); 
+                Lighting lighting = new Lighting(); 
+                lighting.setLight(light);
+                disc.setEffect(lighting);  
+            }
             return disc;
         }
 
