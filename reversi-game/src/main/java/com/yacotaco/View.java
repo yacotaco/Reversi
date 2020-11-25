@@ -198,6 +198,14 @@ public class View {
         public void setNewTimedGameButton(Button newTimedGameButton) {
             this.newTimedGameButton = newTimedGameButton;
         }
+
+        public Button getAiPlayerButton() {
+            return aiPlayerButton;
+        }
+
+        public void setAiPlayerButton(Button aiPlayerButton) {
+            this.aiPlayerButton = aiPlayerButton;
+        }
     }
 
     public class TimerView {
