@@ -45,6 +45,7 @@ public class Controller {
     private Boolean isTimerSwitched;
     private final Double TURN_TIME = 30000.0;
     private final Integer initPlayerTurn = 0;
+    private final Boolean DEBUG_MARKER = true;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
     /**
