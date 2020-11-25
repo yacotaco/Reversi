@@ -79,6 +79,7 @@ public class Controller {
         onLoadButtonHover();
         onTimerButtonClick();
         onTimerButtonHover();
+        onAiPlayerButtonHover();
     }
 
     private void setPlayerTurn(Integer state) {
@@ -1211,6 +1212,26 @@ public class Controller {
             @Override
             public void handle(MouseEvent event) {
                 view.getTopBorderPane().getNewTimedGameButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
+            }
+        });
+    }
+
+    private void onAiPlayerButtonHover() {
+        // mouse in
+        view.getTopBorderPane().getAiPlayerButton().setOnMouseEntered(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getAiPlayerButton()
+                        .setStyle("-fx-background-color: transparent; -fx-text-fill: #9DC8E4;");
+            }
+        });
+
+        // mouse out
+        view.getTopBorderPane().getAiPlayerButton().setOnMouseExited(new EventHandler<MouseEvent>() {
+            @Override
+            public void handle(MouseEvent event) {
+                view.getTopBorderPane().getAiPlayerButton()
                         .setStyle("-fx-background-color: transparent; -fx-text-fill: #336459;");
             }
         });
