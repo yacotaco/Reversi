@@ -46,6 +46,7 @@ public class Controller {
     private final Double TURN_TIME = 30000.0;
     private final Integer initPlayerTurn = 0;
     private final Boolean DEBUG_MARKER = true;
+    private final Boolean MOVE_MARKER = true;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
 
     /**
@@ -125,9 +126,11 @@ public class Controller {
 
             sp.getChildren().add(dv.makeDisc(discState));
 
-            for (Integer[] move : allValidMoves) {
-                if (row == move[0] && col == move[1]) {
-                    sp.getChildren().add(bg.validMoveMarker());
+            if (MOVE_MARKER == true) {
+                for (Integer[] move : allValidMoves) {
+                    if (row == move[0] && col == move[1]) {
+                        sp.getChildren().add(bg.validMoveMarker());
+                    }
                 }
             }
 
