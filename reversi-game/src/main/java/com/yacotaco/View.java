@@ -370,23 +370,23 @@ public class View {
 
         public Circle addSpotEffect(Circle disc, Integer discState) {
             if (discState == 1) {
-                Light.Spot light = new Light.Spot(); 
-                light.setColor(Color.WHITE); 
-                light.setX(4); 
-                light.setY(1); 
-                light.setZ(55); 
-                Lighting lighting = new Lighting(); 
+                Light.Spot light = new Light.Spot();
+                light.setColor(Color.WHITE);
+                light.setX(4);
+                light.setY(1);
+                light.setZ(55);
+                Lighting lighting = new Lighting();
                 lighting.setLight(light);
-                disc.setEffect(lighting);  
+                disc.setEffect(lighting);
             } else if (discState == 0) {
-                Light.Spot light = new Light.Spot(); 
-                light.setColor(Color.WHITE); 
-                light.setX(4); 
-                light.setY(1); 
-                light.setZ(55); 
-                Lighting lighting = new Lighting(); 
+                Light.Spot light = new Light.Spot();
+                light.setColor(Color.WHITE);
+                light.setX(4);
+                light.setY(1);
+                light.setZ(55);
+                Lighting lighting = new Lighting();
                 lighting.setLight(light);
-                disc.setEffect(lighting);  
+                disc.setEffect(lighting);
             }
             return disc;
         }
