@@ -696,7 +696,7 @@ public class Controller {
         }
 
         // add loop to check if placed move "close" opponent discs down
-        for (int i = row + 1; i < board.getBoardGrid().length - 1; i++) {
+        for (int i = row + 1; i <= board.getBoardGrid().length - 1; i++) {
             nextDiscState = board.getDiscFromBoard(i, col).getState();
             if (nextDiscState != primaryDiscState) {
                 Disc opponentDisc = board.getDiscFromBoard(i, col);
