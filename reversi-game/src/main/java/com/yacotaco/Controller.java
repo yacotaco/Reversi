@@ -48,6 +48,7 @@ public class Controller {
     private final Boolean DEBUG_MARKER = true;
     private final Boolean MOVE_MARKER = true;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
+    private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
     /**
      * @param board Board class
@@ -125,7 +126,20 @@ public class Controller {
                 sp.getChildren().remove(1);
             }
 
-            sp.getChildren().add(dv.makeDisc(discState));
+            if (DEBUG_MARKER == true) {
+                View.DebugMarkers dm = view.new DebugMarkers();
+                sp.getChildren().add(dv.makeDisc(discState));
+                for (Disc disc : flipedDiscsToMark){
+                    if (disc.getRow() == row && disc.getCol() == col) {
+                        StackPane spWithMarker = new StackPane();
+                        sp.getChildren().remove(1);
+                        spWithMarker.getChildren().addAll(dv.makeDisc(discState), dm.flipDebugMarker());
+                        sp.getChildren().add(spWithMarker);
+                    } 
+                }
+            } else if (DEBUG_MARKER == false) {
+                sp.getChildren().add(dv.makeDisc(discState));
+            }
 
             if (MOVE_MARKER == true) {
                 for (Integer[] move : allValidMoves) {
@@ -151,6 +165,7 @@ public class Controller {
             addSummary(playerOne, playerTwo);
         }
 
+        flipedDiscsToMark.clear();
     }
 
     private void resetTimerViewOnTimelineStop() {
@@ -619,6 +634,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i + 1 > board.getBoardGrid().length - 1) {
@@ -641,6 +657,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i - 1 < 0) {
@@ -669,6 +686,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i - 1 < 0) {
@@ -691,6 +709,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i + 1 > board.getBoardGrid().length - 1) {
@@ -727,6 +746,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i - 1 < 0 || col + 1 > board.getBoardGrid().length - 1) {
@@ -758,6 +778,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i + 1 > board.getBoardGrid().length - 1 || col - 1 < 0) {
@@ -789,6 +810,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i - 1 < 0 || col - 1 < 0) {
@@ -820,6 +842,7 @@ public class Controller {
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
                     board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    flipedDiscsToMark.add(disc);
                 }
                 break;
             } else if (i + 1 > board.getBoardGrid().length - 1 || col + 1 > board.getBoardGrid().length - 1) {
