@@ -129,13 +129,13 @@ public class Controller {
             if (DEBUG_MARKER == true) {
                 View.DebugMarkers dm = view.new DebugMarkers();
                 sp.getChildren().add(dv.makeDisc(discState));
-                for (Disc disc : flipedDiscsToMark){
+                for (Disc disc : flipedDiscsToMark) {
                     if (disc.getRow() == row && disc.getCol() == col) {
                         StackPane spWithMarker = new StackPane();
                         sp.getChildren().remove(1);
                         spWithMarker.getChildren().addAll(dv.makeDisc(discState), dm.flipDebugMarker());
                         sp.getChildren().add(spWithMarker);
-                    } 
+                    }
                 }
             } else if (DEBUG_MARKER == false) {
                 sp.getChildren().add(dv.makeDisc(discState));
@@ -396,7 +396,7 @@ public class Controller {
         // search down
         if (rowDown <= board.getBoardGrid().length - 1) {
             nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
-        } 
+        }
 
         while (nextDiscStateDown == opponentDiscState) {
             rowDown++;
