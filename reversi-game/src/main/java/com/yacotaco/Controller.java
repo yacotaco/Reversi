@@ -149,8 +149,8 @@ public class Controller {
                 }
             }
 
-            if (sp.getChildren().size() > 3) {
-                sp.getChildren().remove(2, sp.getChildren().size() - 1);
+            if (sp.getChildren().size() > 2) {
+                sp.getChildren().remove(1, sp.getChildren().size() - 1);
             }
         }
         updatePointsCounters();
