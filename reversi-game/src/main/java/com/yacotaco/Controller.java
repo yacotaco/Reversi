@@ -905,7 +905,7 @@ public class Controller {
                 if (ButtonType.OK.equals(option.get()) == true) {
                     System.exit(0);
                 } else {
-                    if (timeline != null) {
+                    if (timeline != null && isTimerSwitched == true) {
                         timeline.play();
                     }
                 }
