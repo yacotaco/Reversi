@@ -51,7 +51,6 @@ public class View {
         this.topBorderPane = new TopBorderPane();
         new BoardGrid();
         new BottomBorderPane();
-        setBorderPaneStyle();
         Scene scene = new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT);
         scene.getStylesheets().add(getClass().getResource("resources/style.css").toExternalForm());
         stage.setScene(scene);
@@ -66,10 +65,6 @@ public class View {
             textBlack.setFill(Color.web("#9DC8E4", 1.0));
             textWhite.setFill(Color.BLACK);
         }
-    }
-
-    private void setBorderPaneStyle() {
-        this.borderPane.setStyle("-fx-background-color: #2A363B; -fx-border-width: 1; -fx-border-color: #000000;");
     }
 
     public class BottomBorderPane {
