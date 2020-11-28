@@ -68,7 +68,7 @@ public class Controller {
         initController();
     }
 
-    // *** INITS ***
+    // ************** INITS **************
 
     private void initController() {
         onGridClick();
@@ -86,7 +86,7 @@ public class Controller {
         playerTwo.setName("B");
     }
 
-    // *** HELPER FUNCTIONS *** 
+    // ************** HELPER FUNCTIONS **************
 
     private void setPlayerTurn(Integer state) {
         this.playerTurn = state;
@@ -132,7 +132,7 @@ public class Controller {
         }
     }
 
-    // *** VIEW UPDATE ***
+    // ************** VIEW UPDATE **************
 
     private void updateBoardView() {
 
@@ -233,7 +233,7 @@ public class Controller {
         view.highLightPoints(textWhite, textBlack, playerTurn);
     }
 
-    // *** TIMER ***
+    // ************** TIMER **************
 
     private void resetTimer() {
         timeline.stop();
@@ -308,7 +308,7 @@ public class Controller {
         timeline.play();
     }
 
-    // SEARCH AND VALIDATE MOVES
+    // ************** SEARCH AND VALIDATE MOVES **************
 
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
@@ -656,7 +656,7 @@ public class Controller {
         return result;
     }
 
-    // *** FLIP OPPONENT DISCS *** 
+    // ************** FLIP OPPONENT DISCS **************
 
     private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
         Integer nextDiscState = -1;
@@ -895,7 +895,7 @@ public class Controller {
         }
     }
 
-    // *** CLICK HANDLERS ***
+    // ************** CLICK HANDLERS **************
 
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
