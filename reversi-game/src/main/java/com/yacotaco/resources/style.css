@@ -22,3 +22,8 @@
 .hbox2 {
     -fx-background-color: #332211;
 }
+
+.pane {
+    -fx-border-width: 0.25;
+    -fx-border-color: #000000;
+}
