@@ -17,10 +17,10 @@
   ### TODO:
   * Code refactoring
 
-  1. Move styles to css file.
-  2. Divide methods for smaller and more readable.
-  3. Add sections to Controller (OnClickHandlers, HoverHandlers, searchMethods, flipMethods..)
-  4. Rename some methods.
+  1. [X] Move styles to css file.
+  2. [] Divide methods for smaller and more readable.
+  3. [] Add sections to Controller (OnClickHandlers, HoverHandlers, searchMethods, flipMethods..)
+  4. [] Rename some methods.
 
   * Web version
 
