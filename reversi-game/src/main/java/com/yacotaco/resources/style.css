@@ -23,11 +23,13 @@
     -fx-background-color: #332211;
 }
 
+/* board square */
 .pane {
     -fx-border-width: 0.25;
     -fx-border-color: #000000;
 }
 
+/* summary */
 .pane2 {
     -fx-background-color: #2A363B;
     -fx-border-width: 10;
