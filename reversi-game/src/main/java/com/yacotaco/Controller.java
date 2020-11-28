@@ -1022,12 +1022,12 @@ public class Controller {
 
                         Optional<ButtonType> option = alert.showAndWait();
                         if (ButtonType.OK.equals(option.get()) == true) {
-                            if (timeline != null) {
+                            if (timeline != null && isTimerSwitched == true) {
                                 timeline.play();
                             }
                         }
                     } else {
-                        if (timeline != null) {
+                        if (timeline != null && isTimerSwitched == true) {
                             timeline.play();
                         }
                     }
