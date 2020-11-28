@@ -443,7 +443,7 @@ public class View {
             summary.setAlignment(Pos.CENTER);
             summary.setMaxHeight(150);
             summary.setMaxWidth(300);
-            summary.setStyle("-fx-background-color: #2A363B; -fx-border-width: 10; -fx-border-color: #336459;");
+            summary.getStyleClass().add("pane2");
 
             if (playerOne.getPoints() > playerTwo.getPoints()) {
                 text = new Text("White wins!");
