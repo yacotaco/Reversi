@@ -68,6 +68,8 @@ public class Controller {
         initController();
     }
 
+    // *** INITS ***
+
     private void initController() {
         onGridClick();
         onExitButtonClick();
@@ -76,6 +78,15 @@ public class Controller {
         onLoadButtonClick();
         onTimerButtonClick();
     }
+
+    private void initPlayer() {
+        playerOne.setDiscState(0);
+        playerOne.setName("A");
+        playerTwo.setDiscState(1);
+        playerTwo.setName("B");
+    }
+
+    // *** HELPER FUNCTIONS *** 
 
     private void setPlayerTurn(Integer state) {
         this.playerTurn = state;
@@ -89,22 +100,39 @@ public class Controller {
         }
     }
 
-    private void initPlayer() {
-        playerOne.setDiscState(0);
-        playerOne.setName("A");
-        playerTwo.setDiscState(1);
-        playerTwo.setName("B");
+    private void countPlayerPoints(Player player) {
+        Integer discState = player.getDiscState();
+        player.setPoints(board.getAllPlayerDiscs(discState).size());
     }
 
-    private void switchOnNoValidMoves() {
-        // switch player if there are no valid moves
-        if (allValidMoves.size() == 0) {
-            changePlayerTurn(playerTurn);
-            updatePointsCounters();
-            updatePlayerTurnIndicators();
-            getValidMoves(playerTurn);
+    private String getDateTime() {
+        String format = "yyyy-MM-dd_HH:mm:ss";
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
+        LocalDateTime localDateTime = LocalDateTime.now();
+        String formatDateTime = localDateTime.format(formatter);
+        return formatDateTime;
+    }
+
+    private void addSummary(Player playerOne, Player playerTwo) {
+        if (timeline != null) {
+            timeline.pause();
+        }
+        sv = view.new SummaryView(playerOne, playerTwo);
+        StackPane summary = sv.getSummary();
+        Node node = view.getBorderPane().getCenter();
+        StackPane sp = (StackPane) node;
+        sp.getChildren().add(3, summary);
+    }
+
+    private void removeSummary() {
+        Node node = view.getBorderPane().getCenter();
+        StackPane sp = (StackPane) node;
+        if (sp.getChildren().size() == 4) {
+            sp.getChildren().remove(3);
         }
     }
+
+    // *** VIEW UPDATE ***
 
     private void updateBoardView() {
 
@@ -172,6 +200,40 @@ public class Controller {
             view.getTopBorderPane().getTimerViewBlack().removeHighlight();
         }
     }
+
+    private void updatePlayerTurnIndicators() {
+        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
+        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
+
+        if (playerTurn == 0) {
+            view.getTopBorderPane().getWhiteCounter().getChildren().add(2, dv.makePlayerIndicator());
+        } else if (playerTurn == 1) {
+            view.getTopBorderPane().getBlackCounter().getChildren().add(2, dv.makePlayerIndicator());
+        }
+
+        if (elementsInWhiteCounter == 3) {
+            view.getTopBorderPane().getWhiteCounter().getChildren().remove(2);
+        } else if (elementsInBlackCounter == 3) {
+            view.getTopBorderPane().getBlackCounter().getChildren().remove(2);
+        }
+    }
+
+    private void updatePointsCounters() {
+        countPlayerPoints(playerOne);
+        countPlayerPoints(playerTwo);
+        // update white disc
+        Node nodeWhite = view.getTopBorderPane().getWhiteCounter().getChildren().get(1);
+        Text textWhite = (Text) nodeWhite;
+        textWhite.setText(Integer.toString(playerOne.getPoints()));
+
+        // update black disc
+        Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
+        Text textBlack = (Text) nodeBlack;
+        textBlack.setText(Integer.toString(playerTwo.getPoints()));
+        view.highLightPoints(textWhite, textBlack, playerTurn);
+    }
+
+    // *** TIMER ***
 
     private void resetTimer() {
         timeline.stop();
@@ -246,42 +308,7 @@ public class Controller {
         timeline.play();
     }
 
-    private void updatePlayerTurnIndicators() {
-        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
-        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
-
-        if (playerTurn == 0) {
-            view.getTopBorderPane().getWhiteCounter().getChildren().add(2, dv.makePlayerIndicator());
-        } else if (playerTurn == 1) {
-            view.getTopBorderPane().getBlackCounter().getChildren().add(2, dv.makePlayerIndicator());
-        }
-
-        if (elementsInWhiteCounter == 3) {
-            view.getTopBorderPane().getWhiteCounter().getChildren().remove(2);
-        } else if (elementsInBlackCounter == 3) {
-            view.getTopBorderPane().getBlackCounter().getChildren().remove(2);
-        }
-    }
-
-    private void updatePointsCounters() {
-        countPlayerPoints(playerOne);
-        countPlayerPoints(playerTwo);
-        // update white disc
-        Node nodeWhite = view.getTopBorderPane().getWhiteCounter().getChildren().get(1);
-        Text textWhite = (Text) nodeWhite;
-        textWhite.setText(Integer.toString(playerOne.getPoints()));
-
-        // update black disc
-        Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
-        Text textBlack = (Text) nodeBlack;
-        textBlack.setText(Integer.toString(playerTwo.getPoints()));
-        view.highLightPoints(textWhite, textBlack, playerTurn);
-    }
-
-    private void countPlayerPoints(Player player) {
-        Integer discState = player.getDiscState();
-        player.setPoints(board.getAllPlayerDiscs(discState).size());
-    }
+    // SEARCH AND VALIDATE MOVES
 
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
@@ -609,6 +636,28 @@ public class Controller {
         }
     }
 
+    private void switchOnNoValidMoves() {
+        // switch player if there are no valid moves
+        if (allValidMoves.size() == 0) {
+            changePlayerTurn(playerTurn);
+            updatePointsCounters();
+            updatePlayerTurnIndicators();
+            getValidMoves(playerTurn);
+        }
+    }
+
+    private boolean validatePlacedMove(Integer row, Integer col) {
+        boolean result = false;
+        for (Integer[] move : allValidMoves) {
+            if (row == move[0] && col == move[1]) {
+                result = true;
+            }
+        }
+        return result;
+    }
+
+    // *** FLIP OPPONENT DISCS *** 
+
     private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
         Integer nextDiscState = -1;
         Integer primaryDiscState = playerTurn;
@@ -846,15 +895,7 @@ public class Controller {
         }
     }
 
-    private boolean validatePlacedMove(Integer row, Integer col) {
-        boolean result = false;
-        for (Integer[] move : allValidMoves) {
-            if (row == move[0] && col == move[1]) {
-                result = true;
-            }
-        }
-        return result;
-    }
+    // *** CLICK HANDLERS ***
 
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
@@ -914,25 +955,6 @@ public class Controller {
         });
     }
 
-    private void addSummary(Player playerOne, Player playerTwo) {
-        if (timeline != null) {
-            timeline.pause();
-        }
-        sv = view.new SummaryView(playerOne, playerTwo);
-        StackPane summary = sv.getSummary();
-        Node node = view.getBorderPane().getCenter();
-        StackPane sp = (StackPane) node;
-        sp.getChildren().add(3, summary);
-    }
-
-    private void removeSummary() {
-        Node node = view.getBorderPane().getCenter();
-        StackPane sp = (StackPane) node;
-        if (sp.getChildren().size() == 4) {
-            sp.getChildren().remove(3);
-        }
-    }
-
     private void onNewGameButtonClick() {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -958,14 +980,6 @@ public class Controller {
                 removeSummary();
             }
         });
-    }
-
-    private String getDateTime() {
-        String format = "yyyy-MM-dd_HH:mm:ss";
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
-        LocalDateTime localDateTime = LocalDateTime.now();
-        String formatDateTime = localDateTime.format(formatter);
-        return formatDateTime;
     }
 
     private void onSaveButtonClick() {
