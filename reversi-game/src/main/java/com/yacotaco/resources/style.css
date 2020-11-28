@@ -4,6 +4,12 @@
     -fx-text-fill: #336459;
 }
 
+/* highlight on hover */
+.button:hover {
+    -fx-background-color: transparent;
+    -fx-text-fill: #9DC8E4;
+}
+
 /* main window background */
 .root {
     -fx-background-color: #2A363B;
