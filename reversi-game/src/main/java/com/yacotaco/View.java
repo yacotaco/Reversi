@@ -72,7 +72,7 @@ public class View {
 
         public BottomBorderPane() {
             this.bottomBox = new HBox();
-            bottomBox.setStyle("-fx-background-color: #336459; -fx-border-width: 1; -fx-border-color: #000000;");
+            bottomBox.getStyleClass().add("hbox");
             bottomBox.setPadding(new Insets(10, 12, 10, 12));
             borderPane.setBottom(bottomBox);
         }
@@ -108,7 +108,7 @@ public class View {
             scoreHbox.setPadding(new Insets(5, 0, 5, 0));
             scoreHbox.setSpacing(25);
             scoreHbox.setPrefHeight(80);
-            scoreHbox.setStyle("-fx-background-color: #336459; -fx-border-width: 1; -fx-border-color: #000000;");
+            scoreHbox.getStyleClass().add("hbox");
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
             blackCounter = dv.makePointsCounterView(1);
