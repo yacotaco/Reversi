@@ -1,14 +1,17 @@
+/* buttons in menu */
 .button {
     -fx-background-color: transparent;
     -fx-text-fill: #336459;
 }
 
+/* main window background */
 .root {
     -fx-background-color: #2A363B;
     -fx-border-width: 1;
     -fx-border-color: #000000;
 }
 
+/* score panel, bottom panel */
 .hbox {
     -fx-background-color: #336459;
     -fx-border-width: 1;
