@@ -129,7 +129,7 @@ public class View {
             saveButton.setPrefSize(100, 10);
             exitButton.setPrefSize(100, 10);
             menu.setSpacing(25);
-            menu.setStyle("-fx-background-color: #332211;");
+            menu.getStyleClass().add("hbox2");
             menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton,
                     exitButton);
 
