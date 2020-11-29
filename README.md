@@ -18,7 +18,7 @@
   * Code refactoring
 
   1. [X] Move styles to css file.
-  2. [] Divide methods for smaller and more readable.
+  2. [X] Divide methods for smaller and more readable.
   3. [X] Add sections to Controller (OnClickHandlers, HoverHandlers, searchMethods, flipMethods..)
   4. [] Rename some methods.
 
