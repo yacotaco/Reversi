@@ -219,11 +219,19 @@ public class View {
         }
 
         public void setTimerValue(String timerValue) {
-            if (timerValue.length() < 2) {
-                String time = "00:0" + timerValue;
+            Integer min = Integer.valueOf(timerValue) / 60;
+            Integer sec = Integer.valueOf(timerValue) % 60;
+            if (min >= 10 && sec >= 10) {
+                String time = String.format("%d:%d", min, sec);
                 this.timerValue.setText(time);
-            } else {
-                String time = "00:" + timerValue;
+            } else if (min < 10 && sec < 10) {
+                String time = String.format("0%d:0%d", min, sec);
+                this.timerValue.setText(time);
+            } else if (min < 10 && sec >= 10) {
+                String time = String.format("0%d:%d", min, sec);
+                this.timerValue.setText(time);
+            } else if (min >= 10 && sec < 10) {
+                String time = String.format("%d:0%d", min, sec);
                 this.timerValue.setText(time);
             }
         }
