@@ -79,6 +79,7 @@ public class Controller {
         onSaveButtonClick();
         onLoadButtonClick();
         onTimerButtonClick();
+        onAiPlayerButtonClick();
     }
 
     private void initPlayer() {
@@ -1136,6 +1137,17 @@ public class Controller {
                     view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
                 }
+            }
+
+        });
+    }
+
+    private void onAiPlayerButtonClick() {
+        view.getTopBorderPane().getAiPlayerButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+
+            @Override
+            public void handle(MouseEvent event) {
+               aiPlayer = true;
             }
 
         });
