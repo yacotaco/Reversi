@@ -47,7 +47,7 @@ public class Controller {
     private final Integer initPlayerTurn = 0;
     private final Boolean DEBUG_MARKER = true;
     private final Boolean MOVE_MARKER = true;
-    private final Boolean AI_PLAYER = false;
+    private Boolean aiPlayer = false;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
     private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
@@ -66,6 +66,7 @@ public class Controller {
         this.playerOne = new Player();
         this.playerTwo = new Player();
         this.isTimerSwitched = false;
+        this.aiPlayer= false;
         initController();
     }
 
