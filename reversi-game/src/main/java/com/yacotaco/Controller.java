@@ -47,7 +47,7 @@ public class Controller {
     private final Integer initPlayerTurn = 0;
     private final Boolean DEBUG_MARKER = true;
     private final Boolean MOVE_MARKER = true;
-    private Boolean aiPlayer = false;
+    private Boolean aiPlayer;
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
     private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
