@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Optional;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import javafx.animation.KeyFrame;
 import javafx.animation.KeyValue;
@@ -151,6 +153,15 @@ public class Controller {
         }
     }
 
+    private void randomMoveGenerator() {
+        if (aiPlayer == true && playerTurn == 1) {
+            int max = allValidMoves.size();
+            Integer random = (int) (Math.random() * max);
+            Integer[] move = allValidMoves.get(random);
+            runOnClick(move[0], move[1]);
+        }
+    }
+
     // ************** VIEW UPDATE **************
 
     private void updateBoardView() {
@@ -207,6 +218,8 @@ public class Controller {
         }
 
         flipedDiscsToMark.clear();
+
+        randomMoveGenerator();
     }
 
     private void resetTimerViewOnTimelineStop() {
