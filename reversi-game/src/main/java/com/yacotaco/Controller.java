@@ -917,6 +917,30 @@ public class Controller {
 
     // ************** CLICK HANDLERS **************
 
+    private void runOnClick(Integer row, Integer col) {
+
+        boolean validMove = validatePlacedMove(row, col);
+
+        // player can place disc only on empty square
+        if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
+            board.modifyDiscState(row, col, playerTurn);
+            flipHorizontalDiscs(row, col, playerTurn);
+            flipVerticalDiscs(row, col, playerTurn);
+            flipDiagonalDiscs(row, col, playerTurn);
+
+            if (isTimerSwitched == true) {
+                resetTimer();
+            }
+
+            // change player after update
+            changePlayerTurn(playerTurn);
+
+            getValidMoves(playerTurn);
+
+            updateBoardView();
+        }
+    }
+
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
             square.setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -926,30 +950,13 @@ public class Controller {
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
 
-                    boolean validMove = validatePlacedMove(row, col);
+                    runOnClick(row, col);
 
-                    // player can place disc only on empty square
-                    if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
-                        board.modifyDiscState(row, col, playerTurn);
-                        flipHorizontalDiscs(row, col, playerTurn);
-                        flipVerticalDiscs(row, col, playerTurn);
-                        flipDiagonalDiscs(row, col, playerTurn);
-
-                        if (isTimerSwitched == true) {
-                            resetTimer();
-                        }
-
-                        // change player after update
-                        changePlayerTurn(playerTurn);
-
-                        getValidMoves(playerTurn);
-
-                        updateBoardView();
                     }
-                }
+                });
             });
-        });
     }
+    
 
     private void onExitButtonClick() {
         view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
