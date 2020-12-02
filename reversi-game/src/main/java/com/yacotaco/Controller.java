@@ -66,7 +66,7 @@ public class Controller {
         this.playerOne = new Player();
         this.playerTwo = new Player();
         this.isTimerSwitched = false;
-        this.aiPlayer= false;
+        this.aiPlayer = false;
         initController();
     }
 
@@ -146,7 +146,7 @@ public class Controller {
                         // System.out.println("removing " + jMove[0] + " " + jMove[1]);
                         allValidMoves.remove(j);
                     }
-                } 
+                }
             }
         }
     }
@@ -952,11 +952,10 @@ public class Controller {
 
                     runOnClick(row, col);
 
-                    }
-                });
+                }
             });
+        });
     }
-    
 
     private void onExitButtonClick() {
         view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
@@ -1171,7 +1170,7 @@ public class Controller {
 
             @Override
             public void handle(MouseEvent event) {
-               aiPlayer = true;
+                aiPlayer = true;
             }
 
         });
