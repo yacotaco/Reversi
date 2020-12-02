@@ -218,8 +218,6 @@ public class Controller {
         }
 
         flipedDiscsToMark.clear();
-
-        randomMoveGenerator();
     }
 
     private void resetTimerViewOnTimelineStop() {
@@ -964,7 +962,8 @@ public class Controller {
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
 
                     runOnClick(row, col);
-
+                    randomMoveGenerator();
+                    
                 }
             });
         });
