@@ -186,7 +186,7 @@ public class Controller {
             setGameTimer();
         }
 
-        if (allValidMoves.size() == 0) {
+        if (allValidMoves.isEmpty() == true) {
             addSummary(playerOne, playerTwo);
         }
 
@@ -641,7 +641,7 @@ public class Controller {
 
     private void switchOnNoValidMoves() {
         // switch player if there are no valid moves
-        if (allValidMoves.size() == 0) {
+        if (allValidMoves.isEmpty() == true) {
             changePlayerTurn(playerTurn);
             updatePointsCounters();
             updatePlayerTurnIndicators();
