@@ -12,7 +12,10 @@
  * Timed Game (one click/double click -> on/off)
  * Load/Save state of game
  * Game summary
- * [TODO] AI Player module (based on MCTS)
+ * [TODO] AI Player:
+  1. [] Monte Carlo tree search
+  2. [] Alpha–beta pruning
+  3. [] Reinforcement learning
 
   ### TODO:
   * Code refactoring
