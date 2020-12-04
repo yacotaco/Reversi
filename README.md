@@ -2,6 +2,9 @@
 
 ![Image](reversi-game/src/main/java/com/yacotaco/resources/reversi.png)
 
+### Run application:
+  `java -jar reversi-game-1.0-SNAPSHOT-jar-with-dependencies.jar`
+
 ### Project assumptions:
 
  * Easy to use UI
