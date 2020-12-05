@@ -27,4 +27,4 @@ jobs:
     - uses: actions/upload-artifact@v1
       with:
         name: Reversi
-        path: out/*-jar-with-dependencies.jar
+        path: out
