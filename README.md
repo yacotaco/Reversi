@@ -1,6 +1,6 @@
 ## This is Reversi game project for GUI lectures (in JavaFX).
 
-![Image](reversi-game/src/main/java/com/yacotaco/resources/reversi.png)
+![Image](reversi-game/src/main/resources/reversi.png)
 
 ### Run application:
   `java -jar reversi-game-1.0-SNAPSHOT-jar-with-dependencies.jar`
