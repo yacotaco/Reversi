@@ -52,7 +52,7 @@ public class View {
         new BoardGrid();
         new BottomBorderPane();
         Scene scene = new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("resources/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
