@@ -24,7 +24,6 @@ jobs:
       run: mvn -B package --file reversi-game/pom.xml
     - name: Make output directory and copy jar file
       run: mkdir out && cp reversi-game/target/*-jar-with-dependencies.jar out
-    - name: Upload output file
     - uses: actions/upload-artifact@v1
       with:
         name: Reversi
