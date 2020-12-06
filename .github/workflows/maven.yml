@@ -26,8 +26,5 @@ jobs:
       run: mkdir out && cp reversi-game/target/*-jar-with-dependencies.jar out
     - uses: actions/upload-artifact@v1
       with:
-        name: Reversi
+        name: Reversi-$(githubTag)
         path: out
-    - uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
