@@ -2,6 +2,8 @@
 
 ![Image](reversi-game/src/main/resources/reversi.png)
 
+![Java CI with Maven](https://github.com/yacotaco/Reversi/workflows/Java%20CI%20with%20Maven/badge.svg)
+
 ### Run application:
   `java -jar reversi-game-1.0-SNAPSHOT-jar-with-dependencies.jar`
 
