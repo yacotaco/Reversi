@@ -24,11 +24,18 @@ jobs:
       run: mvn -B package --file reversi-game/pom.xml
     - name: Make output directory and copy jar file
       run: mkdir out && cp reversi-game/target/*-jar-with-dependencies.jar out
-    - uses: Klemensas/action-autotag@stable
-      id: new_tag
-      with:
-        tag_prefix: "v"
     - uses: actions/upload-artifact@v1
       with:
-        name: Reversi ${{ steps.new_tag.outputs.tagname }}
+        name: Reversi
         path: out
+    - uses: Klemensas/action-autotag@stable
+      id: update_tag
+      with:
+        GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
+        tag_prefix: "v"
+    - name: Create Release
+      if: steps.update_tag.outputs.tagname
+      uses: actions/create-release@v1
+      id: create_release
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
