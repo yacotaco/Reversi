@@ -28,3 +28,6 @@ jobs:
       with:
         name: Reversi
         path: out
+    - uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
