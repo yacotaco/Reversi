@@ -18,8 +18,6 @@ jobs:
       uses: actions/setup-java@v1
       with:
         java-version: 11
-    - name: Run tests
-      run: mvn test
     - name: Build package with Maven
       run: mvn -B package --file reversi-game/pom.xml
     - name: Make output directory and copy jar file
