@@ -18,9 +18,9 @@
  * Load/Save state of game
  * Game summary
  * [TODO] AI Player:
-  1. [] Monte Carlo tree search
-  2. [] Alpha–beta pruning
-  3. [] Reinforcement learning
+  1. [] Monte Carlo tree search (v1.1)
+  2. [] Alpha–beta pruning (v1.2)
+  3. [] Reinforcement Learning (v1.3) 
 
   ### TODO:
   * Code refactoring
