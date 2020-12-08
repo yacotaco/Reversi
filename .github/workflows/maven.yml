@@ -29,19 +29,15 @@ jobs:
       with:
         name: Reversi
         path: out
-    - name: Extract tag name
-      id: tag
-      uses: actions/github-script@0.2.0
-      with:
-        github-token: ${{ secrets.GITHUB_TOKEN }} 
-        script: |
-          return context.payload.ref.replace(/\/refs\/tags\//, '');
+    - name: Extract tag
+      id: get_version
+      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
       with:
-        tag_name: ${{ steps.tag.outputs.result }}
+        tag_name: ${{ steps.get_version.outputs.VERSION }}
         draft: false
         prerelease: false
