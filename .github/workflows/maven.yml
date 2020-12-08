@@ -33,7 +33,7 @@ jobs:
       id: tag
       uses: actions/github-script@0.2.0
       with:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
+        github-token: ${{ secrets.GITHUB_TOKEN }} 
         script: |
           return context.payload.ref.replace(/\/refs\/tags\//, '');
     - name: Create Release
