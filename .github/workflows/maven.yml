@@ -31,7 +31,7 @@ jobs:
         path: out
     - name: Extract tag
       id: get_version
-      run: echo ::set-output name=VERSION::$(echo $GITHUB_REF | cut -d / -f 3)
+      run: echo ::set-output name=VERSION::${GITHUB_REF/refs\/tags\//}
     - name: Create Release
       id: create_release
       uses: actions/create-release@v1
