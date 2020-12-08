@@ -7,6 +7,8 @@ on:
   push:
     tags:
       - 'v*'
+  pull_request:
+    branches: [ master ]
 
 jobs:
   build:
@@ -27,12 +29,3 @@ jobs:
       with:
         name: Reversi
         path: out
-    - name: Create Release
-      id: create_release
-      uses: actions/create-release@v1
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} 
-      with:
-        tag_name: ${{ github.ref }}
-        draft: false
-        prerelease: false
