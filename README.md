@@ -2,7 +2,7 @@
 
 ![Image](reversi-game/src/main/resources/reversi.png)
 
-![build](https://github.com/yacotaco/Reversi/workflows/build/badge.svg)
+[![build](https://github.com/yacotaco/Reversi/workflows/build/badge.svg)](https://github.com/yacotaco/Reversi/actions?query=workflow%3Abuild)
 
 ### Run application:
   `java -jar reversi-game-[version]-jar-with-dependencies.jar`
