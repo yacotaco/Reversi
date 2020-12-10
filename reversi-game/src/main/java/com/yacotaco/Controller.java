@@ -154,7 +154,7 @@ public class Controller {
     private void randomMoveGenerator() {
         if (aiPlayer == true && playerTurn == 1) {
             int max = allValidMoves.size();
-            Integer random = (int) (Math.random() * max);
+            int random = (int) (Math.random() * max);
             Integer[] move = allValidMoves.get(random);
             runOnClick(move[0], move[1]);
         }
@@ -283,9 +283,9 @@ public class Controller {
                 if (playerTurn == 0) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
+                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds.intValue()));
+                    view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds));
                     view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
                     view.getTopBorderPane().getTimerViewBlack().removeHighlight();
 
@@ -298,9 +298,9 @@ public class Controller {
                 } else if (playerTurn == 1) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    Double seconds = totoalTurnTime.toSeconds() - currentTime.toSeconds();
+                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds.intValue()));
+                    view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds));
                     view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                     view.getTopBorderPane().getTimerViewWhite().removeHighlight();
 
@@ -341,9 +341,9 @@ public class Controller {
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
-        Integer colRight = discCol + 1;
-        Integer opponentDiscState = 0;
-        Integer nextDiscState = -1;
+        int colRight = discCol + 1;
+        int opponentDiscState = 0;
+        int nextDiscState = -1;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
@@ -376,8 +376,8 @@ public class Controller {
         }
 
         // search left
-        Integer colLeft = discCol - 1;
-        Integer nextDiscStateLeft = -1;
+        int colLeft = discCol - 1;
+        int nextDiscStateLeft = -1;
 
         if (colLeft >= 0) {
             nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
@@ -406,9 +406,9 @@ public class Controller {
     private ArrayList<Integer[]> getVerticalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
-        Integer rowUp = discRow - 1;
-        Integer opponentDiscState = 0;
-        Integer nextDiscStateUp = -1;
+        int rowUp = discRow - 1;
+        int opponentDiscState = 0;
+        int nextDiscStateUp = -1;
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
 
         if (disc.getState() == 0) {
@@ -439,8 +439,8 @@ public class Controller {
             }
         }
 
-        Integer rowDown = discRow + 1;
-        Integer nextDiscStateDown = -1;
+        int rowDown = discRow + 1;
+        int nextDiscStateDown = -1;
 
         // search down
         if (rowDown <= board.getBoardGrid().length - 1) {
@@ -471,9 +471,9 @@ public class Controller {
         Integer row = disc.getRow();
         Integer col = disc.getCol();
         Integer discState = disc.getState();
-        Integer nextDiscState = -1;
-        Integer opponentDiscState = 0;
-        Integer prevDiscState = discState;
+        int nextDiscState = -1;
+        int opponentDiscState = 0;
+        int prevDiscState = discState;
 
         if (disc.getState() == 0) {
             opponentDiscState = 1;
@@ -688,8 +688,8 @@ public class Controller {
     // ************** FLIP OPPONENT DISCS **************
 
     private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
-        Integer nextDiscState = -1;
-        Integer primaryDiscState = playerTurn;
+        int nextDiscState = -1;
+        int primaryDiscState = playerTurn;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs on right
@@ -740,8 +740,8 @@ public class Controller {
     }
 
     private void flipVerticalDiscs(Integer row, Integer col, Integer playerTurn) {
-        Integer nextDiscState = -1;
-        Integer primaryDiscState = playerTurn;
+        int nextDiscState = -1;
+        int primaryDiscState = playerTurn;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs up
@@ -792,10 +792,10 @@ public class Controller {
     }
 
     private void flipDiagonalDiscs(Integer row, Integer col, Integer playerTurn) {
-        Integer nextDiscState = -1;
-        Integer primaryDiscState = playerTurn;
-        Integer tmpRow = row;
-        Integer tmpCol = col;
+        int nextDiscState = -1;
+        int primaryDiscState = playerTurn;
+        int tmpRow = row;
+        int tmpCol = col;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs (diagonal up right)
