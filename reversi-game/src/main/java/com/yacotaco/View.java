@@ -258,11 +258,6 @@ public class View {
         private GridPane boardGridPane;
         private StackPane square;
 
-        /**
-         * @param boardGridPane 8x8 grid with StackPane object in each cell
-         * @param square        StackPane object holds rectangle and circle objects
-         */
-
         public BoardGrid() {
             this.boardGridPane = new GridPane();
             initBordView();

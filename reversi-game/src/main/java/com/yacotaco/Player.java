@@ -8,13 +8,6 @@ public class Player {
     private Integer points;
     private Integer discState;
 
-    /**
-     * @param playerName player name
-     * @param points     scored points
-     * @param discState  stores inforamtion which disc color(state) was assigned to
-     *                   player
-     */
-
     public Player() {
 
     }

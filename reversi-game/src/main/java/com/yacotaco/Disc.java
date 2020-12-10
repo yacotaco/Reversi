@@ -8,13 +8,6 @@ public class Disc {
     private Integer row;
     private Integer state;
 
-    /**
-     * @param col   column position on board
-     * @param row   row position on board
-     * @param state state translates to disc color (0 - white player, 1 - black
-     *              player)
-     */
-
     public Disc() {
     }
 
