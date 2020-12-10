@@ -3,6 +3,8 @@
 ![Image](reversi-game/src/main/resources/reversi.png)
 
 [![build](https://github.com/yacotaco/Reversi/workflows/build/badge.svg)](https://github.com/yacotaco/Reversi/actions?query=workflow%3Abuild)
+[![Language grade: Java](https://img.shields.io/lgtm/grade/java/g/yacotaco/Reversi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yacotaco/Reversi/context:java)
+[![Total alerts](https://img.shields.io/lgtm/alerts/g/yacotaco/Reversi.svg?logo=lgtm&logoWidth=18)](https://lgtm.com/projects/g/yacotaco/Reversi/alerts/)
 
 ### Run application:
   `java -jar reversi-game-[version]-jar-with-dependencies.jar`
