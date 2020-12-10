@@ -219,8 +219,8 @@ public class View {
         }
 
         public void setTimerValue(String timerValue) {
-            Integer min = Integer.valueOf(timerValue) / 60;
-            Integer sec = Integer.valueOf(timerValue) % 60;
+            int min = Integer.valueOf(timerValue) / 60;
+            int sec = Integer.valueOf(timerValue) % 60;
             if (min >= 10 && sec >= 10) {
                 String time = String.format("%d:%d", min, sec);
                 this.timerValue.setText(time);
