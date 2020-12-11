@@ -195,7 +195,9 @@ public class Controller {
 
             if (MOVE_MARKER == true) {
                 for (Integer[] move : allValidMoves) {
-                    if (row == move[0] && col == move[1]) {
+                    int validMoveRow = move[0];
+                    int validMoveCol = move[1];
+                    if (row == validMoveRow && col == validMoveCol) {
                         sp.getChildren().add(bg.validMoveMarker());
                     }
                 }
