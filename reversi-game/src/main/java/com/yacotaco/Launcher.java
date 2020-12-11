@@ -5,7 +5,7 @@ package com.yacotaco;
  *
  * @author Kamil Kurach
  * @author https://github.com/yacotaco
- * @version v1.0
+ * @version 1.0
  *
  * Additional Luncher class was needed to run jar file (main class
  * cannot extend any class).
