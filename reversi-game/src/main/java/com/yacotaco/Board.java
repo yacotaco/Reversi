@@ -44,12 +44,13 @@ public class Board {
         disc.setState(state);
     }
 
-    public ArrayList<Disc> getAllPlayerDiscs(Integer discState) {
+    public ArrayList<Disc> getAllPlayerDiscs(Integer currentPlayerDiscState) {
         ArrayList<Disc> list = new ArrayList<Disc>();
         for (int row = 0; row < boardGrid.length; row++) {
             for (int col = 0; col < boardGrid[row].length; col++) {
                 Disc disc = getDiscFromBoard(row, col);
-                if (disc.getState() == discState) {
+                int discState = disc.getState();
+                if (discState == currentPlayerDiscState) {
                     list.add(disc);
                 }
             }

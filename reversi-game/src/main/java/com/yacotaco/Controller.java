@@ -180,7 +180,9 @@ public class Controller {
                 View.DebugMarkers dm = view.new DebugMarkers();
                 sp.getChildren().add(dv.makeDisc(discState));
                 for (Disc disc : flipedDiscsToMark) {
-                    if (disc.getRow() == row && disc.getCol() == col) {
+                    int discRow = disc.getRow();
+                    int discCol = disc.getCol();
+                    if (discRow == row && discCol == col) {
                         StackPane spWithMarker = new StackPane();
                         sp.getChildren().remove(1);
                         spWithMarker.getChildren().addAll(dv.makeDisc(discState), dm.flipDebugMarker());
@@ -193,7 +195,9 @@ public class Controller {
 
             if (MOVE_MARKER == true) {
                 for (Integer[] move : allValidMoves) {
-                    if (row == move[0] && col == move[1]) {
+                    int validMoveRow = move[0];
+                    int validMoveCol = move[1];
+                    if (row == validMoveRow && col == validMoveCol) {
                         sp.getChildren().add(bg.validMoveMarker());
                     }
                 }
