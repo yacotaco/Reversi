@@ -138,13 +138,14 @@ public class Controller {
     private void removeDuplicatedValidMoves() {
         for (int i = 0; i < allValidMoves.size(); i++) {
             Integer[] iMove = allValidMoves.get(i);
+            int iRow = iMove[0];
+            int iCol = iMove[1];
             for (int j = 0; j < allValidMoves.size(); j++) {
                 Integer[] jMove = allValidMoves.get(j);
+                int jRow = jMove[0];
+                int jCol = jMove[1];
                 if (i != j) {
-                    if (iMove[0] == jMove[0] && iMove[1] == jMove[1]) {
-                        // debug print
-                        // System.out.println("removing " + jMove[0] + " " + jMove[1]);
-                        allValidMoves.remove(j);
+                    if (iRow == jRow && iCol == jCol) {
                     }
                 }
             }
