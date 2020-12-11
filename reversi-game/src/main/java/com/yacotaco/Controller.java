@@ -683,7 +683,9 @@ public class Controller {
     private boolean validatePlacedMove(Integer row, Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
-            if (row == move[0] && col == move[1]) {
+            int validMoveRow = move[0];
+            int validMoveCol = move[1];
+            if (row == validMoveRow && col == validMoveCol) {
                 result = true;
             }
         }
