@@ -3,12 +3,12 @@ package com.yacotaco;
 /**
  * Launcher class.
  *
+ * Additional Luncher class was needed to run jar file (main class
+ * cannot extend any class).
+ *
  * @author Kamil Kurach
  * @author https://github.com/yacotaco
  * @version 1.0
- *
- * Additional Luncher class was needed to run jar file (main class
- * cannot extend any class).
  */
 public final class Launcher {
 
