@@ -10,7 +10,6 @@ package com.yacotaco;
  * Additional Luncher class was needed to run jar file (main class
  * cannot extend any class).
  */
-
 public final class Launcher {
 
     /**
