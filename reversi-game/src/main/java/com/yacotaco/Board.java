@@ -48,14 +48,14 @@ public class Board {
      *
      * @param row   position in row.
      * @param col   position in column.
-     * @param state disc state.
+     * @param discState disc state.
      */
     private void addDisc(final Integer row, final Integer col,
-     final Integer state) {
+     final Integer discState) {
         Disc disc = new Disc();
         disc.setRow(row);
         disc.setCol(col);
-        disc.setState(state);
+        disc.setState(discState);
         boardGrid[row][col] = disc;
     }
 
@@ -76,12 +76,12 @@ public class Board {
      *
      * @param row   position in row.
      * @param col   position in column.
-     * @param state disc state.
+     * @param discState disc state.
      */
     public void modifyDiscState(final Integer row, final Integer col,
-     final Integer state) {
+     final Integer discState) {
         Disc disc = getDiscFromBoard(row, col);
-        disc.setState(state);
+        disc.setState(discState);
     }
 
     /**
