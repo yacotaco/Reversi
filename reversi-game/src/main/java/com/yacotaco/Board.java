@@ -46,8 +46,8 @@ public class Board {
     /**
      * Adds disc object to board array.
      *
-     * @param row   position in row.
-     * @param col   position in column.
+     * @param row       position in row.
+     * @param col       position in column.
      * @param discState disc state.
      */
     private void addDisc(final Integer row, final Integer col,
@@ -74,8 +74,8 @@ public class Board {
     /**
      * Modifies state of disc.
      *
-     * @param row   position in row.
-     * @param col   position in column.
+     * @param row       position in row.
+     * @param col       position in column.
      * @param discState disc state.
      */
     public void modifyDiscState(final Integer row, final Integer col,
