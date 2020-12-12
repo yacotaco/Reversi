@@ -36,11 +36,30 @@ public class Board {
                 addDisc(row, col, state);
             }
         }
+        initDiscs();
+    }
 
-        modifyDiscState(3, 3, 0);
-        modifyDiscState(3, 4, 1);
-        modifyDiscState(4, 3, 1);
-        modifyDiscState(4, 4, 0);
+    /**
+     * Inits two discs for each player.
+     */
+    private void initDiscs() {
+        final int firstWhiteDiscRow = 3;
+        final int firstWhiteDiscCol = 3;
+        final int whiteDiscState = 0;
+        modifyDiscState(firstWhiteDiscRow, firstWhiteDiscCol, whiteDiscState);
+
+        final int secWhiteDiscRow = 4;
+        final int secWhiteDiscCol = 4;
+        modifyDiscState(secWhiteDiscRow, secWhiteDiscCol, whiteDiscState);
+
+        final int firstBlackDiscRow = 3;
+        final int firstBlackDiscCol = 4;
+        final int blackDiscState = 1;
+        modifyDiscState(firstBlackDiscRow, firstBlackDiscCol, blackDiscState);
+
+        final int secBlackDiscRow = 3;
+        final int secBlackDiscCol = 4;
+        modifyDiscState(secBlackDiscRow, secBlackDiscCol, blackDiscState);
     }
 
     /**
