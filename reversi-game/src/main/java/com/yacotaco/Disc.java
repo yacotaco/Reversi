@@ -31,10 +31,10 @@ public class Disc {
     /**
      * Sets disc column coordinate.
      *
-     * @param col position in column.
+     * @param colValue position in column.
      */
-    public void setCol(final Integer col) {
-        this.col = col;
+    public void setCol(final Integer colValue) {
+        this.col = colValue;
     }
 
     /**
@@ -49,10 +49,10 @@ public class Disc {
     /**
      * Sets disc row coordiante.
      *
-     * @param row position in row.
+     * @param rowValue position in row.
      */
-    public void setRow(Integer row) {
-        this.row = row;
+    public void setRow(final Integer rowValue) {
+        this.row = rowValue;
     }
 
     /**
@@ -67,9 +67,9 @@ public class Disc {
     /**
      * Sets disc state.
      *
-     * @param state disc state.
+     * @param discState disc state.
      */
-    public void setState(Integer state) {
-        this.state = state;
+    public void setState(final Integer discState) {
+        this.state = discState;
     };
 }
