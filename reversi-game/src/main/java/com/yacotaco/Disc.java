@@ -8,10 +8,10 @@ package com.yacotaco;
  * @version 1.0
  */
 public class Disc {
-    /** Position in column. */
-    private Integer col;
     /** Position in row. */
     private Integer row;
+    /** Position in column. */
+    private Integer col;
     /** Disc state. */
     private Integer state;
 
