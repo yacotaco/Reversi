@@ -32,10 +32,10 @@ public class Player {
     /**
      * Sets player name.
      *
-     * @param name player name.
+     * @param playerName player name.
      */
-    public void setName(String name) {
-        this.name = name;
+    public void setName(final String playerName) {
+        this.name = playerName;
     }
 
     /**
@@ -50,10 +50,10 @@ public class Player {
     /**
      * Sets player points.
      *
-     * @param points player points.
+     * @param playerPoints player points.
      */
-    public void setPoints(Integer points) {
-        this.points = points;
+    public void setPoints(final Integer playerPoints) {
+        this.points = playerPoints;
     }
 
     /**
@@ -68,9 +68,9 @@ public class Player {
     /**
      * Sets disc state translated to color of disc on the board.
      *
-     * @param discState
+     * @param state disc state.
      */
-    public void setDiscState(Integer discState) {
-        this.discState = discState;
+    public void setDiscState(final Integer state) {
+        this.discState = state;
     }
 }
