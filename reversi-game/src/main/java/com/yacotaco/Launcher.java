@@ -3,8 +3,8 @@ package com.yacotaco;
 /**
  * Launcher class.
  *
- * Additional Luncher class was needed to run jar file (main class
- * cannot extend any class).
+ * Additional Luncher class was needed to run jar file (main class cannot extend
+ * any class).
  *
  * @author Kamil Kurach
  * @author https://github.com/yacotaco
@@ -15,10 +15,12 @@ public final class Launcher {
     /**
      * Launcher constructor.
      */
-    private Launcher() { }
+    private Launcher() {
+    }
 
     /**
      * Launcher main function runs App class main.
+     *
      * @param args args
      */
     public static void main(final String[] args) {
