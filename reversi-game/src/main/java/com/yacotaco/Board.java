@@ -57,8 +57,8 @@ public class Board {
         final int blackDiscState = 1;
         modifyDiscState(firstBlackDiscRow, firstBlackDiscCol, blackDiscState);
 
-        final int secBlackDiscRow = 3;
-        final int secBlackDiscCol = 4;
+        final int secBlackDiscRow = 4;
+        final int secBlackDiscCol = 3;
         modifyDiscState(secBlackDiscRow, secBlackDiscCol, blackDiscState);
     }
 
