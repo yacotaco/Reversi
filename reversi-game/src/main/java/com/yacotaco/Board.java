@@ -3,15 +3,32 @@ package com.yacotaco;
 import java.util.ArrayList;
 
 /**
- * Board
+ * Board class.
+ *
+ * @author Kamil Kurach
+ * @author https://github.com/yacotaco
+ * @version 1.0
  */
 public class Board {
-    private Disc[][] boardGrid = new Disc[8][8];
+    /** Number of rows. */
+    private final int rows = 8;
+    /** Number of columns. */
+    private final int cols = 8;
+    /** Representation of board in 2d array. */
+    private Disc[][] boardGrid = new Disc[rows][cols];
 
-    Board() {
+    /**
+     * Board constructor.
+     */
+    public Board() {
         initBoard();
     }
 
+    /**
+     * Inits board with two discs for each player.
+     * All discs are initially set to -1 which translates
+     * in view to empty square on board.
+     */
     public void initBoard() {
         Integer state = -1;
         for (int row = 0; row < boardGrid.length; row++) {
@@ -26,7 +43,15 @@ public class Board {
         modifyDiscState(4, 4, 0);
     }
 
-    private void addDisc(Integer row, Integer col, Integer state) {
+    /**
+     * Adds disc object to board array.
+     *
+     * @param row   position in row.
+     * @param col   position in column.
+     * @param state disc state.
+     */
+    private void addDisc(final Integer row, final Integer col,
+     final Integer state) {
         Disc disc = new Disc();
         disc.setRow(row);
         disc.setCol(col);
@@ -34,23 +59,45 @@ public class Board {
         boardGrid[row][col] = disc;
     }
 
-    public Disc getDiscFromBoard(Integer row, Integer col) {
+    /**
+     * Gets disc object from board for given coordinates.
+     *
+     * @param row position in row.
+     * @param col position in column.
+     * @return Disc object.
+     */
+    public Disc getDiscFromBoard(final Integer row, final Integer col) {
         Disc disc = boardGrid[row][col];
         return disc;
     }
 
-    public void modifyDiscState(Integer row, Integer col, Integer state) {
+    /**
+     * Modifies state of disc.
+     *
+     * @param row   position in row.
+     * @param col   position in column.
+     * @param state disc state.
+     */
+    public void modifyDiscState(final Integer row, final Integer col,
+     final Integer state) {
         Disc disc = getDiscFromBoard(row, col);
         disc.setState(state);
     }
 
-    public ArrayList<Disc> getAllPlayerDiscs(Integer currentPlayerDiscState) {
+    /**
+     * Gets all discs of particular player.
+     *
+     * @param currentPlayer player disc state (or playerTurn).
+     * @see playerTurn.
+     * @return list of Disc objects.
+     */
+    public ArrayList<Disc> getAllPlayerDiscs(final Integer currentPlayer) {
         ArrayList<Disc> list = new ArrayList<Disc>();
         for (int row = 0; row < boardGrid.length; row++) {
             for (int col = 0; col < boardGrid[row].length; col++) {
                 Disc disc = getDiscFromBoard(row, col);
                 int discState = disc.getState();
-                if (discState == currentPlayerDiscState) {
+                if (discState == currentPlayer) {
                     list.add(disc);
                 }
             }
@@ -58,6 +105,7 @@ public class Board {
         return list;
     }
 
+    /** Prints current state of the board to console. */
     public void printBoard() {
         for (int row = 0; row < boardGrid.length; row++) {
             for (int col = 0; col < boardGrid[row].length; col++) {
@@ -68,6 +116,11 @@ public class Board {
         }
     }
 
+    /**
+     * Gets boardGrid.
+     *
+     * @return 2d array of Disc objects.
+     */
     public Disc[][] getBoardGrid() {
         return boardGrid;
     }
