@@ -50,7 +50,7 @@ public class View {
      * @param stage JavaFX container
      */
 
-    public View(Stage stage) {
+    public View(final Stage stage) {
         this.borderPane = new BorderPane();
         this.topBorderPane = new TopBorderPane();
         new BoardGrid();
