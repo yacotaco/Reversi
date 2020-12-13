@@ -47,9 +47,10 @@ public class View {
     private final double MARKER_RADIUS = 5.0;
 
     /**
-     * @param stage JavaFX container
+     * View class constructor.
+     *
+     * @param stage JavaFX container.
      */
-
     public View(final Stage stage) {
         this.borderPane = new BorderPane();
         this.topBorderPane = new TopBorderPane();
