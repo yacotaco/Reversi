@@ -19,8 +19,12 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- * View
+ /**
+ * View class.
+ *
+ * @author Kamil Kurach
+ * @author https://github.com/yacotaco
+ * @version 1.0
  */
 public class View {
     private BorderPane borderPane;
