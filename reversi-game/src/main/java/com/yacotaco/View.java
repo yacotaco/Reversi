@@ -379,26 +379,25 @@ public class View {
             return disc;
         }
 
-        public Circle addSpotEffect(Circle disc, Integer discState) {
-            if (discState == 1) {
-                Light.Spot light = new Light.Spot();
-                light.setColor(Color.WHITE);
-                light.setX(4);
-                light.setY(1);
-                light.setZ(55);
-                Lighting lighting = new Lighting();
-                lighting.setLight(light);
-                disc.setEffect(lighting);
-            } else if (discState == 0) {
-                Light.Spot light = new Light.Spot();
-                light.setColor(Color.WHITE);
-                light.setX(4);
-                light.setY(1);
-                light.setZ(55);
-                Lighting lighting = new Lighting();
-                lighting.setLight(light);
-                disc.setEffect(lighting);
-            }
+        /** Adds spotlight effect to discs.
+         *
+         * @param disc disc object.
+         * @param discState disc state.
+         * @return disc with spotlight effect.
+         */
+        public Circle addSpotEffect(final Circle disc,
+                final Integer discState) {
+            Light.Spot light = new Light.Spot();
+            final int x = 4;
+            final int y = 1;
+            final int z = 55;
+            light.setColor(Color.WHITE);
+            light.setX(x);
+            light.setY(y);
+            light.setZ(z);
+            Lighting lighting = new Lighting();
+            lighting.setLight(light);
+            disc.setEffect(lighting);
             return disc;
         }
 
