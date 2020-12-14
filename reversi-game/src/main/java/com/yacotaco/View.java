@@ -283,23 +283,30 @@ public class View {
 
         public BoardGrid() {
             this.boardGridPane = new GridPane();
-            initBordView();
+            initBoardView();
         }
 
-        private void initBordView() {
+        /**
+         * Inits board view.
+         * Grid pane with squares.
+         */
+        private void initBoardView() {
             boardGridPane.setAlignment(Pos.CENTER);
-            int rowNum = 8;
-            int colNum = 8;
+            final int rowNum = 8;
+            final int colNum = 8;
+            final double opacity = 1.0;
             for (int row = 0; row < rowNum; row++) {
                 for (int col = 0; col < colNum; col++) {
                     square = new StackPane();
                     square.getStyleClass().add("pane");
                     if ((row + col) % 2 == 0) {
-                        Color lightGreen = Color.web("#9fa881", 1.0);
-                        square.getChildren().addAll(new Rectangle(width, height, lightGreen));
+                        Color lightGreen = Color.web("#9fa881", opacity);
+                        square.getChildren().addAll(new Rectangle(width,
+                            height, lightGreen));
                     } else {
-                        Color darkGreen = Color.web("#6f7d42", 1.0);
-                        square.getChildren().addAll(new Rectangle(width, height, darkGreen));
+                        Color darkGreen = Color.web("#6f7d42", opacity);
+                        square.getChildren().addAll(new Rectangle(width,
+                            height, darkGreen));
                     }
                     boardGridPane.add(square, col, row);
                 }
