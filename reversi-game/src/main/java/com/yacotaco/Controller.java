@@ -1138,7 +1138,7 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null) {
+                        if (timeline != null && isTimerSwitched == true) {
                             timeline.play();
                         }
                     }
