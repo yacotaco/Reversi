@@ -19,84 +19,163 @@ import javafx.scene.shape.StrokeType;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 
-/**
- * View
+ /**
+ * View class.
+ *
+ * @author Kamil Kurach
+ * @author https://github.com/yacotaco
+ * @version 1.0
  */
 public class View {
+    /** Main container which contains all view elemants. */
     private BorderPane borderPane;
+    /** Contains all elements placed in top part of border pane. */
     private TopBorderPane topBorderPane;
-    private final double WIDTH = 65.0;
-    private final double HEIGHT = 65.0;
-    private final double RADIUS = 28.0;
-    private final double MAIN_WIDTH = 700;
-    private final double MAIN_HEIGHT = 800;
-    private final int STROKE_WIDTH = 2;
-    private final int INDICATOR_RADIUS = 32;
-    private final int FRAME_STROKE_WIDTH = 2;
-    private final double FRAME_IN_WIDTH = 600;
-    private final double FRAME_IN_HEIGHT = 600;
-    private final double FRAME_OUT_WIDTH = 620;
-    private final double FRAME_OUT_HEIGHT = 620;
-    private final double MARKER_WIDTH = WIDTH - 2;
-    private final double MARKER_HEIGHT = HEIGHT - 2;
-    private final double SHADOW_OPACITY = 0.35;
-    private final double MARKER_RADIUS = 5.0;
+    /** Square size. Also sets center of disc.*/
+    private final double width = 65.0;
+    /** Square size. Also sets center of disc.*/
+    private final double height = 65.0;
+    /** Radius of disc.*/
+    private final double radius = 28.0;
+    /** Main window size parameter. */
+    private final double mainWidth = 700;
+    /** Main window size parameter.*/
+    private final double mainHeight = 800;
+    /** Radius of indicator circle. */
+    private final int indicatorRadius = 32;
+    /** Frame border stroke. */
+    private final int frameStrokeWidth = 2;
+    /** Frame size parameter. */
+    private final double frameInWidth = 600;
+    /** Frame size parameter. */
+    private final double frameInHeight = 600;
+    /** Frame size parameter. */
+    private final double frameOutWidth = 620;
+    /** Frame size parameter. */
+    private final double frameOutHeight = 620;
+    /** Valid move marker width. */
+    private final double markerWidth = width - 2;
+    /** Valid move marker height. */
+    private final double markerHeight = height - 2;
+    /** Board shadow effect opacity. */
+    private final double shadowOpacity = 0.35;
+    /** Flip marker radius. */
+    private final double markerRadius = 5.0;
 
     /**
-     * @param stage JavaFX container
+     * View class constructor.
+     *
+     * @param stage JavaFX container.
      */
-
-    public View(Stage stage) {
+    public View(final Stage stage) {
         this.borderPane = new BorderPane();
         this.topBorderPane = new TopBorderPane();
         new BoardGrid();
         new BottomBorderPane();
-        Scene scene = new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT);
-        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        Scene scene = new Scene(borderPane, mainWidth, mainHeight);
+        scene.getStylesheets().add(getClass()
+            .getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
 
-    public void highLightPoints(Text textWhite, Text textBlack, Integer playerTurn) {
+    /** Adds highlight effect to points counter.
+     *
+     * @param textWhite timer text value of white player.
+     * @param textBlack timer text value of black player.
+     * @param playerTurn current player.
+     */
+    public void highLightPoints(final Text textWhite, final Text textBlack,
+        final Integer playerTurn) {
+        final double opacity = 1.0;
         if (playerTurn == 0) {
-            textWhite.setFill(Color.web("#9DC8E4", 1.0));
+            textWhite.setFill(Color.web("#9DC8E4", opacity));
             textBlack.setFill(Color.WHITE);
         } else if (playerTurn == 1) {
-            textBlack.setFill(Color.web("#9DC8E4", 1.0));
+            textBlack.setFill(Color.web("#9DC8E4", opacity));
             textWhite.setFill(Color.BLACK);
         }
     }
 
+    /** BottomBorderPane class.
+     * Contains elements of bottom view.
+     */
     public class BottomBorderPane {
+        /** Hbox container with bottom view. */
         private HBox bottomBox;
 
+        /** Class constructor.
+         * Inits bottom view.
+         */
         public BottomBorderPane() {
-            this.bottomBox = new HBox();
-            bottomBox.getStyleClass().add("hbox");
-            bottomBox.setPadding(new Insets(10, 12, 10, 12));
+            makeBottomView();
             borderPane.setBottom(bottomBox);
+        }
+
+        /** Makes bottom view. */
+        private void makeBottomView() {
+            this.bottomBox = new HBox();
+            this.bottomBox.getStyleClass().add("hbox");
+            final double top = 10;
+            final double right = 12;
+            final double bottom = 10;
+            final double left = 12;
+            this.bottomBox.setPadding(new Insets(top, right, bottom, left));
         }
     }
 
+    /** TopBorderPane class.
+     * Contains all view elements of top border pane container.
+     */
     public class TopBorderPane {
-        private DiscView dv = new DiscView();
-        private TimerView timerViewWhite = new TimerView();
-        private TimerView timerViewBlack = new TimerView();
+        /** DiscView class object. */
+        private DiscView dv;
+        /** TimerView class object for white player. */
+        private TimerView timerViewWhite;
+        /** TimerView class object for balck player. */
+        private TimerView timerViewBlack;
+        /** Timer clock value to display. */
         private Text timerValueWhite;
+        /** Timer clock value to display.*/
         private Text timerValueBlack;
-        private Button newGameButton = new Button("New Game");
-        private Button newTimedGameButton = new Button("Timer");
-        private Button aiPlayerButton = new Button("AI Player");
-        private Button loadButton = new Button("Load");
-        private Button saveButton = new Button("Save");
-        private Button exitButton = new Button("Exit");
+        /** New game button. */
+        private Button newGameButton;
+        /** Timed game button. */
+        private Button newTimedGameButton;
+        /** AI Player button. */
+        private Button aiPlayerButton;
+        /** Load game button. */
+        private Button loadButton;
+        /** Save game button. */
+        private Button saveButton;
+        /** Exit game button. */
+        private Button exitButton;
+        /** Points counter view for white player.*/
         private StackPane whiteCounter;
+        /** Points counter view for black player.*/
         private StackPane blackCounter;
+        /** Score panel. */
         private HBox scoreHbox;
+        /** Menu bar.*/
         private HBox menu;
+        /** Vbox with menu and score panel elements
+         *  added to top border pane.
+         */
         private VBox vbox;
 
+        /** Class constructor.
+         * Inits menu bar and score panel view.
+        */
         public TopBorderPane() {
+            this.dv = new DiscView();
+            this.timerViewWhite = new TimerView();
+            this.timerViewBlack = new TimerView();
+            this.newGameButton = new Button("New Game");
+            this.newTimedGameButton = new Button("Timer");
+            this.aiPlayerButton = new Button("AI Player");
+            this.loadButton = new Button("Load");
+            this.saveButton = new Button("Save");
+            this.exitButton = new Button("Exit");
             this.scoreHbox = new HBox();
             this.menu = new HBox();
             this.vbox = new VBox();
@@ -104,10 +183,20 @@ public class View {
             borderPane.setTop(vbox);
         }
 
+        /** Adds score panel view.
+         *
+         * @return hbox object with score panel elements.
+         */
         public HBox addScoreHBox() {
-            scoreHbox.setPadding(new Insets(5, 0, 5, 0));
-            scoreHbox.setSpacing(25);
-            scoreHbox.setPrefHeight(80);
+            final double top = 5;
+            final double right = 0;
+            final double bottom = 5;
+            final double left = 0;
+            final int spacing = 25;
+            final int prefHeight = 80;
+            scoreHbox.setPadding(new Insets(top, right, bottom, left));
+            scoreHbox.setSpacing(spacing);
+            scoreHbox.setPrefHeight(prefHeight);
             scoreHbox.getStyleClass().add("hbox");
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
@@ -115,168 +204,285 @@ public class View {
             timerValueWhite = timerViewWhite.getTimerValue();
             timerValueBlack = timerViewBlack.getTimerValue();
 
-            scoreHbox.getChildren().addAll(timerViewWhite.makeTimerView(timerValueWhite), whiteCounter, blackCounter,
-                    timerViewBlack.makeTimerView(timerValueBlack));
+            scoreHbox.getChildren().addAll(
+                timerViewWhite.makeTimerView(timerValueWhite),
+                whiteCounter,
+                blackCounter,
+                timerViewBlack.makeTimerView(timerValueBlack));
 
             return scoreHbox;
         }
 
+        /** Adds menu bar.
+         *
+         * @return hbox object with menu elements.
+         */
         public HBox addMenu() {
-            newGameButton.setPrefSize(100, 10);
-            newTimedGameButton.setPrefSize(100, 10);
-            aiPlayerButton.setPrefSize(100, 10);
-            loadButton.setPrefSize(100, 10);
-            saveButton.setPrefSize(100, 10);
-            exitButton.setPrefSize(100, 10);
-            menu.setSpacing(25);
+            final int prefWidth = 100;
+            final int prefHeight = 10;
+            final int spacing = 25;
+            newGameButton.setPrefSize(prefWidth, prefHeight);
+            newTimedGameButton.setPrefSize(prefWidth, prefHeight);
+            aiPlayerButton.setPrefSize(prefWidth, prefHeight);
+            loadButton.setPrefSize(prefWidth, prefHeight);
+            saveButton.setPrefSize(prefWidth, prefHeight);
+            exitButton.setPrefSize(prefWidth, prefHeight);
+            menu.setSpacing(spacing);
             menu.getStyleClass().add("hbox2");
-            menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton,
-                    exitButton);
+            menu.getChildren().addAll(newGameButton,
+                newTimedGameButton,
+                aiPlayerButton,
+                loadButton,
+                saveButton,
+                exitButton);
 
             return menu;
         }
 
+        /** Gets new game button.
+         *
+         * @return new game button object.
+         */
         public Button getNewGameButton() {
             return newGameButton;
         }
 
+        /** Gets load game button.
+         *
+         * @return load game button object.
+         */
         public Button getLoadButton() {
             return loadButton;
         }
 
+        /** Gets save game button.
+         *
+         * @return save game button object.
+         */
         public Button getSaveButton() {
             return saveButton;
         }
 
+        /** Gets exit game button.
+         *
+         * @return exit button object.
+         */
         public Button getExitButton() {
             return exitButton;
         }
 
+        /** Gets points counter view for white player.
+         *
+         * @return stack pane object.
+         */
         public StackPane getWhiteCounter() {
             return whiteCounter;
         }
 
+        /** Gets points counter view for black player.
+         *
+         * @return stack pane object.
+         */
         public StackPane getBlackCounter() {
             return blackCounter;
         }
 
+        /** Gets timer clock view.
+         *
+         * @return timer view object.
+         */
         public TimerView getTimerViewWhite() {
             return timerViewWhite;
         }
 
-        public void setTimerViewWhite(TimerView timerViewWhite) {
-            this.timerViewWhite = timerViewWhite;
+        /** Sets timer view for white player.
+         *
+         * @param timerView timer view object.
+         */
+        public void setTimerViewWhite(final TimerView timerView) {
+            this.timerViewWhite = timerView;
         }
 
+        /** Gets timer view.
+         *
+         * @return timer view object.
+         */
         public TimerView getTimerViewBlack() {
             return timerViewBlack;
         }
 
-        public void setTimerViewBlack(TimerView timerViewBlack) {
-            this.timerViewBlack = timerViewBlack;
+        /** Sets timer view for black player.
+         *
+         * @param timerView timer view object.
+         */
+        public void setTimerViewBlack(final TimerView timerView) {
+            this.timerViewBlack = timerView;
         }
 
+        /** Gets timed game button.
+         *
+         * @return timed game button object.
+         */
         public Button getNewTimedGameButton() {
             return newTimedGameButton;
         }
 
-        public void setNewTimedGameButton(Button newTimedGameButton) {
-            this.newTimedGameButton = newTimedGameButton;
+        /** Sets timed game button.
+         *
+         * @param newTimedGame timed game button object.
+         */
+        public void setNewTimedGameButton(final Button newTimedGame) {
+            this.newTimedGameButton = newTimedGame;
         }
 
+        /** Gets AI Player button.
+         *
+         * @return AI Player button object.
+         */
         public Button getAiPlayerButton() {
             return aiPlayerButton;
         }
 
-        public void setAiPlayerButton(Button aiPlayerButton) {
-            this.aiPlayerButton = aiPlayerButton;
+        /** Sets AI Player button.
+         *
+         * @param aiButton AI Player button.
+         */
+        public void setAiPlayerButton(final Button aiButton) {
+            this.aiPlayerButton = aiButton;
         }
     }
 
+    /** TimerView class.
+     * Contains methods and effects related to timer clock.
+     */
     public class TimerView {
+        /** Value of timer to display in clock. */
         private Text timerValue;
 
+        /** TimerView constructor.
+         * Inits timer text field.
+         */
         public TimerView() {
             this.timerValue = new Text();
         }
 
-        public StackPane makeTimerView(Text timerValue) {
+        /** Makes view of timer clock.
+         *
+         * @param value timer value to display.
+         * @return stack pane with timer elements.
+         */
+        public StackPane makeTimerView(final Text value) {
+            final int arcHeight = 30;
+            final int arcWidth = 30;
+            final int rectWidth = 70;
+            final int rectHeight = 30;
+            final int rectStroke = 1;
+            final int timerStroke = 4;
             StackPane timerStack = new StackPane();
             timerStack.setAlignment(Pos.CENTER);
-            Rectangle r = new Rectangle(70, 30, Color.web("#332211"));
-            r.setArcHeight(30);
-            r.setArcWidth(30);
-            r.setStroke(Color.web("#000000"));
-            r.setStrokeWidth(1);
-            timerValue.setStrokeWidth(4);
+            Rectangle rectangle = new Rectangle(rectWidth, rectHeight,
+                Color.web("#332211"));
+            rectangle.setArcHeight(arcHeight);
+            rectangle.setArcWidth(arcWidth);
+            rectangle.setStroke(Color.web("#000000"));
+            rectangle.setStrokeWidth(rectStroke);
+            timerValue.setStrokeWidth(timerStroke);
             timerValue.setStyle("-fx-font-size: 15;");
-            timerStack.getChildren().addAll(r, timerValue);
+            timerStack.getChildren().addAll(rectangle, timerValue);
             return timerStack;
         }
 
+        /** Gets timer text object.
+         * @return text object.
+         */
         public Text getTimerValue() {
             return timerValue;
         }
 
-        public void setTimerValue(String timerValue) {
-            int min = Integer.valueOf(timerValue) / 60;
-            int sec = Integer.valueOf(timerValue) % 60;
-            if (min >= 10 && sec >= 10) {
+        /** Sets timer value.
+         *
+         * @param value value of timer.
+         */
+        public void setTimerValue(final String value) {
+            final int oneMinInSeconds = 60;
+            final int tenSec = 10;
+            int min = Integer.valueOf(value) / oneMinInSeconds;
+            int sec = Integer.valueOf(value) % oneMinInSeconds;
+            if (min >= tenSec && sec >= tenSec) {
                 String time = String.format("%d:%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min < 10 && sec < 10) {
+            } else if (min < tenSec && sec < tenSec) {
                 String time = String.format("0%d:0%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min < 10 && sec >= 10) {
+            } else if (min < tenSec && sec >= tenSec) {
                 String time = String.format("0%d:%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min >= 10 && sec < 10) {
+            } else if (min >= tenSec && sec < tenSec) {
                 String time = String.format("%d:0%d", min, sec);
                 this.timerValue.setText(time);
             }
         }
 
+        /** Adds highlight to timer value displayed in clock. */
         public void addHighlight() {
             this.timerValue.setFill(Color.web("#9DC8E4", 1.0));
         }
 
+        /** Removes highlight from timer value displayed in clock. */
         public void removeHighlight() {
             this.timerValue.setFill(Color.BLACK);
         }
 
+        /** Adds red highligt to timer on remaining 10s. */
         public void timeoutHighlight() {
             this.timerValue.setFill(Color.RED);
         }
 
+        /** Hides timer. Changes color of text to background color. */
         public void switchOffTimer() {
             this.timerValue.setFill(Color.web("#332211", 1.0));
         }
 
     }
 
+    /**
+     * BoardGrid class.
+     */
     public class BoardGrid {
+        /** Grid pane container. */
         private GridPane boardGridPane;
+        /** Square elements of board. */
         private StackPane square;
 
+        /**
+         * BoardGrid constructor.
+         */
         public BoardGrid() {
             this.boardGridPane = new GridPane();
-            initBordView();
+            initBoardView();
         }
 
-        private void initBordView() {
+        /**
+         * Inits board view.
+         * Fills grid pane container with squares.
+         */
+        private void initBoardView() {
             boardGridPane.setAlignment(Pos.CENTER);
-            int rowNum = 8;
-            int colNum = 8;
+            final int rowNum = 8;
+            final int colNum = 8;
+            final double opacity = 1.0;
             for (int row = 0; row < rowNum; row++) {
                 for (int col = 0; col < colNum; col++) {
                     square = new StackPane();
                     square.getStyleClass().add("pane");
                     if ((row + col) % 2 == 0) {
-                        Color lightGreen = Color.web("#9fa881", 1.0);
-                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, lightGreen));
+                        Color lightGreen = Color.web("#9fa881", opacity);
+                        square.getChildren().addAll(new Rectangle(width,
+                            height, lightGreen));
                     } else {
-                        Color darkGreen = Color.web("#6f7d42", 1.0);
-                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, darkGreen));
+                        Color darkGreen = Color.web("#6f7d42", opacity);
+                        square.getChildren().addAll(new Rectangle(width,
+                            height, darkGreen));
                     }
                     boardGridPane.add(square, col, row);
                 }
@@ -284,119 +490,177 @@ public class View {
             borderPane.setCenter(addBoardToFrame(boardGridPane));
         }
 
-        private StackPane addBoardToFrame(GridPane boardGridPane) {
+        /** Adds board to frame.
+         *
+         * @param boardGrid grid pane container with squares.
+         * @return stack pane with board and frame elements.
+         */
+        private StackPane addBoardToFrame(final GridPane boardGrid) {
+            final int x = 10;
+            final int y = 10;
+            final double opacity = 0.80;
             StackPane stack = new StackPane();
             DropShadow dropShadow = new DropShadow();
-            Rectangle rectangleOut = new Rectangle(FRAME_OUT_WIDTH, FRAME_OUT_HEIGHT, Color.web("#332211", 0.80));
-            Rectangle rectangleIn = new Rectangle(FRAME_IN_WIDTH, FRAME_IN_HEIGHT, Color.web("#332211", 0.80));
+            Rectangle rectangleOut = new Rectangle(frameOutWidth,
+                frameOutHeight, Color.web("#332211", opacity));
+            Rectangle rectangleIn = new Rectangle(frameInWidth,
+                frameInHeight, Color.web("#332211", opacity));
             rectangleOut.setStroke(Color.BLACK);
-            rectangleOut.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleOut.setStrokeWidth(frameStrokeWidth);
             rectangleIn.setStroke(Color.BLACK);
-            rectangleIn.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleIn.setStrokeWidth(frameStrokeWidth);
             rectangleOut.setStrokeType(StrokeType.OUTSIDE);
             rectangleIn.setStrokeType(StrokeType.OUTSIDE);
 
             // add shadow to board
-            dropShadow.setOffsetX(10);
-            dropShadow.setOffsetY(10);
-            dropShadow.setColor(Color.web("#000000", SHADOW_OPACITY));
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
+            dropShadow.setColor(Color.web("#000000", shadowOpacity));
             rectangleOut.setEffect(dropShadow);
 
-            stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
+            stack.getChildren().addAll(rectangleOut,
+                rectangleIn, boardGridPane);
+
             return stack;
         }
 
+        /** Gets board grid pane.
+         *
+         * @return grid pane object.
+         */
         public GridPane getBoardGridPane() {
             return boardGridPane;
         }
 
-        public void setBoardGridPane(GridPane boardGridPane) {
-            this.boardGridPane = boardGridPane;
+        /** Sets grid pane.
+         *
+         * @param boardGrid grid pane object.
+         */
+        public void setBoardGridPane(final GridPane boardGrid) {
+            this.boardGridPane = boardGrid;
         }
 
+        /** Makes valid move marker.
+         * It is used to highlight square on board grid.
+         * @return rectangle object.
+         */
         public Rectangle validMoveMarker() {
-            Rectangle rectangle = new Rectangle(MARKER_WIDTH, MARKER_HEIGHT, Color.web("#9DC8E4", 0.30));
-            rectangle.setStroke(Color.web("#9DC8E4", 1.0));
-            rectangle.setStrokeWidth(STROKE_WIDTH);
+            final double opacity = 0.30;
+            final double borderOpacity = 1.0;
+            final int strokeWidth = 2;
+            Rectangle rectangle = new Rectangle(markerWidth,
+                markerHeight, Color.web("#9DC8E4", opacity));
+            rectangle.setStroke(Color.web("#9DC8E4", borderOpacity));
+            rectangle.setStrokeWidth(strokeWidth);
             rectangle.setStrokeType(StrokeType.INSIDE);
             return rectangle;
         }
     }
 
+    /** DiscView class.
+     *  Contains all view generating functions and
+     *  effects related to disc object.
+     */
     public class DiscView {
 
-        public Circle makeDisc(Integer discState) {
+        /** Makes disc filled with color defined by state.
+         *
+         * @param discState disc state (0 - white, 1 - black).
+         * @return Circle object.
+         */
+        public Circle makeDisc(final Integer discState) {
             Circle circle = new Circle();
             if (discState == 0) {
                 // white disc
-                circle.setCenterX(WIDTH);
-                circle.setCenterY(HEIGHT);
-                circle.setRadius(RADIUS);
+                circle.setCenterX(width);
+                circle.setCenterY(height);
+                circle.setRadius(radius);
                 circle.setFill(Color.WHITE);
             } else if (discState == 1) {
                 // black disc
-                circle.setCenterX(WIDTH);
-                circle.setCenterY(HEIGHT);
-                circle.setRadius(RADIUS);
+                circle.setCenterX(width);
+                circle.setCenterY(height);
+                circle.setRadius(radius);
                 circle.setFill(Color.BLACK);
             }
 
-            // add spot effect
+            // add spotlight effect
             circle = addSpotEffect(circle, discState);
             return circle;
         }
 
-        public Circle addDropShadow(Circle disc) {
+        /** Adds drop shadow effect.
+         * @deprecated
+         * @param disc disc object.
+         * @return disc with drop shadow effect.
+         */
+        public Circle addDropShadow(final Circle disc) {
             DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(1);
-            dropShadow.setOffsetX(3);
-            dropShadow.setOffsetY(3);
-            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
+            final int r = 1;
+            final int x = 3;
+            final int y = 3;
+            dropShadow.setRadius(r);
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
+            dropShadow.setColor(Color.web("#333333", shadowOpacity));
             disc.setEffect(dropShadow);
             return disc;
         }
 
-        public Circle addSpotEffect(Circle disc, Integer discState) {
-            if (discState == 1) {
-                Light.Spot light = new Light.Spot();
-                light.setColor(Color.WHITE);
-                light.setX(4);
-                light.setY(1);
-                light.setZ(55);
-                Lighting lighting = new Lighting();
-                lighting.setLight(light);
-                disc.setEffect(lighting);
-            } else if (discState == 0) {
-                Light.Spot light = new Light.Spot();
-                light.setColor(Color.WHITE);
-                light.setX(4);
-                light.setY(1);
-                light.setZ(55);
-                Lighting lighting = new Lighting();
-                lighting.setLight(light);
-                disc.setEffect(lighting);
-            }
+        /** Adds spotlight effect to discs.
+         *
+         * @param disc disc object.
+         * @param discState disc state.
+         * @return disc with spotlight effect.
+         */
+        public Circle addSpotEffect(final Circle disc,
+                final Integer discState) {
+            Light.Spot light = new Light.Spot();
+            final int x = 4;
+            final int y = 1;
+            final int z = 55;
+            light.setColor(Color.WHITE);
+            light.setX(x);
+            light.setY(y);
+            light.setZ(z);
+            Lighting lighting = new Lighting();
+            lighting.setLight(light);
+            disc.setEffect(lighting);
             return disc;
         }
 
+        /** Makes highlight indicator to show player turn.
+         *  It is stacked with disc view and displayed on score panel.
+         *
+         * @return indicator circle.
+         */
         public Circle makePlayerIndicator() {
             Circle indicator = new Circle();
-            indicator.setCenterX(WIDTH);
-            indicator.setCenterY(HEIGHT);
-            indicator.setRadius(INDICATOR_RADIUS);
-            indicator.setFill(Color.web("#9DC8E4", 0.05));
-            indicator.setStroke(Color.web("#9DC8E4", 1.0));
-            indicator.setStrokeWidth(STROKE_WIDTH);
+            final double fillOpacity = 0.05;
+            final double strokeOpacity = 1.0;
+            final int strokeWidth = 2;
+            indicator.setCenterX(width);
+            indicator.setCenterY(height);
+            indicator.setRadius(indicatorRadius);
+            indicator.setFill(Color.web("#9DC8E4", fillOpacity));
+            indicator.setStroke(Color.web("#9DC8E4", strokeOpacity));
+            indicator.setStrokeWidth(strokeWidth);
             indicator.setStrokeType(StrokeType.INSIDE);
             return indicator;
         }
 
-        public StackPane makePointsCounterView(Integer discState) {
+        /** Makes view for counter to display player points.
+         *
+         * @param discState disc state.
+         * @return stack object with circel object and text filed.
+         */
+        public StackPane makePointsCounterView(final Integer discState) {
+            final int stroke = 4;
             DiscView dv = new DiscView();
             Circle disc = dv.makeDisc(discState);
             StackPane stack = new StackPane();
             Text discText = new Text();
-            discText.setStrokeWidth(4);
+            discText.setStrokeWidth(stroke);
             discText.setStyle("-fx-font-size: 15;");
 
             if (discState == 1) {
@@ -409,43 +673,69 @@ public class View {
         }
     }
 
+    /** Gets border pane.
+     *
+     * @return border pane object.
+     */
     public BorderPane getBorderPane() {
         return borderPane;
     }
 
-    public void setBorderPane(BorderPane borderPane) {
-        this.borderPane = borderPane;
+    /** Sets border pane.
+     *
+     * @param bPane border pane object.
+     */
+    public void setBorderPane(final BorderPane bPane) {
+        this.borderPane = bPane;
     }
 
+    /** Gets top border pane.
+     *
+     * @return class object with content of top border pane.
+     */
     public TopBorderPane getTopBorderPane() {
         return topBorderPane;
     }
 
+    /**
+    * SummaryView class.
+    */
     public class SummaryView {
+        /** Main view container. */
         private StackPane summary;
+        /** White player object.*/
         private Player playerOne;
+        /** Black player object. */
         private Player playerTwo;
+        /** Text filed object. */
         private Text text;
 
-        /**
-         * @param playerOne Player class object
-         * @param playerTwo Player class object
+        /** SummaryView constructor.
+         * Creates summary box with information about winner.
+         *
+         * @param whitePlayer Player class object.
+         * @param blackPlayer Player class object.
          */
-
-        public SummaryView(Player playerOne, Player playerTwo) {
+        public SummaryView(final Player whitePlayer, final Player blackPlayer) {
             this.summary = new StackPane();
             this.text = new Text();
-            this.playerOne = playerOne;
-            this.playerTwo = playerTwo;
+            this.playerOne = whitePlayer;
+            this.playerTwo = blackPlayer;
             createSummaryView();
         }
 
+        /** Creates summary view.
+         *
+         * @return stack pane with summery elements.
+         */
         private StackPane createSummaryView() {
-
+            final int maxHeight = 150;
+            final int maxWidth = 300;
+            final int spacing = 40;
             summary = addDropShadow(summary);
             summary.setAlignment(Pos.CENTER);
-            summary.setMaxHeight(150);
-            summary.setMaxWidth(300);
+            summary.setMaxHeight(maxHeight);
+            summary.setMaxWidth(maxWidth);
             summary.getStyleClass().add("pane2");
 
             if (playerOne.getPoints() > playerTwo.getPoints()) {
@@ -463,7 +753,7 @@ public class View {
             }
 
             VBox vbox = new VBox();
-            vbox.setSpacing(40);
+            vbox.setSpacing(spacing);
             vbox.setAlignment(Pos.CENTER);
             vbox.getChildren().addAll(text);
             summary.getChildren().addAll(vbox);
@@ -471,37 +761,61 @@ public class View {
             return summary;
         }
 
-        private StackPane addDropShadow(StackPane summary) {
+        /** Adds drop shadow effect to summary box.
+         *
+         * @param gameSummary stack pane with summery elements.
+         * @return summery object with drop shadow effect.
+         */
+        private StackPane addDropShadow(final StackPane gameSummary) {
             DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(1);
-            dropShadow.setOffsetX(4);
-            dropShadow.setOffsetY(4);
-            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
-            summary.setEffect(dropShadow);
-            return summary;
+            final int r = 1;
+            final int x = 4;
+            final int y = 4;
+            dropShadow.setRadius(r);
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
+            dropShadow.setColor(Color.web("#333333", shadowOpacity));
+            gameSummary.setEffect(dropShadow);
+            return gameSummary;
         }
 
+        /** Gets summary object.
+         *
+         * @return stack pane with summery elements.
+         */
         public StackPane getSummary() {
             return summary;
         }
 
-        public void setSummary(StackPane summary) {
-            this.summary = summary;
+        /** Sets summery object.
+         *
+         * @param gameSummary stack pane object.
+         */
+        public void setSummary(final StackPane gameSummary) {
+            this.summary = gameSummary;
         }
 
     }
 
+    /** DebugMarker class.
+     *  Contains view for debug markers.
+     */
     public class DebugMarkers {
 
+        /**DebugMarker container. */
         public DebugMarkers() {
 
         }
 
+        /** Creates debug marker for flipped discs.
+         *
+         * @return Circle object.
+         */
         public Circle flipDebugMarker() {
             Circle circle = new Circle();
-            circle.setCenterX(WIDTH);
-            circle.setCenterY(HEIGHT);
-            circle.setRadius(MARKER_RADIUS);
+            circle.setCenterX(width);
+            circle.setCenterY(height);
+            circle.setRadius(markerRadius);
             circle.setFill(Color.RED);
             return circle;
         }
