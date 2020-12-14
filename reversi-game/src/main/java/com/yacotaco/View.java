@@ -41,8 +41,6 @@ public class View {
     private final double mainWidth = 700;
     /** Main window size parameter.*/
     private final double mainHeight = 800;
-    /** */
-    private final int strokeWidth = 2;
     /** Radius of indicator circle. */
     private final int indicatorRadius = 32;
     /** Frame border stroke. */
@@ -411,6 +409,7 @@ public class View {
         public Rectangle validMoveMarker() {
             final double opacity = 0.30;
             final double borderOpacity = 1.0;
+            final int strokeWidth = 2;
             Rectangle rectangle = new Rectangle(markerWidth,
                 markerHeight, Color.web("#9DC8E4", opacity));
             rectangle.setStroke(Color.web("#9DC8E4", borderOpacity));
@@ -501,6 +500,7 @@ public class View {
             Circle indicator = new Circle();
             final double fillOpacity = 0.05;
             final double strokeOpacity = 1.0;
+            final int strokeWidth = 2;
             indicator.setCenterX(width);
             indicator.setCenterY(height);
             indicator.setRadius(indicatorRadius);
