@@ -346,9 +346,18 @@ public class View {
         }
     }
 
+    /** DiscView class.
+     *  Contains all view generating functions and
+     *  effects realated to disc object.
+     */
     public class DiscView {
 
-        public Circle makeDisc(Integer discState) {
+        /** Makes disc filled with color defined by state.
+         *
+         * @param discState disc state (0 - white, 1 - black).
+         * @return Circle object.
+         */
+        public Circle makeDisc(final Integer discState) {
             Circle circle = new Circle();
             if (discState == 0) {
                 // white disc
@@ -364,7 +373,7 @@ public class View {
                 circle.setFill(Color.BLACK);
             }
 
-            // add spot effect
+            // add spotlight effect
             circle = addSpotEffect(circle, discState);
             return circle;
         }
