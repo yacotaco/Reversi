@@ -1138,7 +1138,7 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null) {
+                        if (timeline != null && isTimerSwitched == true) {
                             timeline.play();
                         }
                     }
@@ -1167,6 +1167,8 @@ public class Controller {
                 isTimerSwitched = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
+                view.getTopBorderPane().getTimerViewWhite().switchOnTimer();
+                view.getTopBorderPane().getTimerViewBlack().switchOnTimer();
 
                 if (event.getClickCount() == 2 && timeline != null) {
                     isTimerSwitched = false;

@@ -443,6 +443,11 @@ public class View {
             this.timerValue.setFill(Color.web("#332211", 1.0));
         }
 
+        /** Shows timer. Changes colot of text field to black. */
+        public void switchOnTimer() {
+            this.timerValue.setFill(Color.BLACK);
+        }
+
     }
 
     /**
