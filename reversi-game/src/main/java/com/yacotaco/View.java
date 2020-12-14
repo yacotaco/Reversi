@@ -485,27 +485,38 @@ public class View {
         return topBorderPane;
     }
 
+    /**
+    * SummaryView class.
+    */
     public class SummaryView {
+        /** Main view container. */
         private StackPane summary;
+        /** White player object.*/
         private Player playerOne;
+        /** Black player object. */
         private Player playerTwo;
+        /** Text filed object. */
         private Text text;
 
-        /**
-         * @param playerOne Player class object
-         * @param playerTwo Player class object
+        /** SummaryView constructor.
+         * Creates summary box with information about winner.
+         *
+         * @param whitePlayer Player class object.
+         * @param blackPlayer Player class object.
          */
-
-        public SummaryView(Player playerOne, Player playerTwo) {
+        public SummaryView(final Player whitePlayer, final Player blackPlayer) {
             this.summary = new StackPane();
             this.text = new Text();
-            this.playerOne = playerOne;
-            this.playerTwo = playerTwo;
+            this.playerOne = whitePlayer;
+            this.playerTwo = blackPlayer;
             createSummaryView();
         }
 
+        /** Creates summary view.
+         *
+         * @return stack pane with summery elements.
+         */
         private StackPane createSummaryView() {
-
             summary = addDropShadow(summary);
             summary.setAlignment(Pos.CENTER);
             summary.setMaxHeight(150);
@@ -535,32 +546,53 @@ public class View {
             return summary;
         }
 
-        private StackPane addDropShadow(StackPane summary) {
+        /** Adds drop shadow effect to summary box.
+         *
+         * @param gameSummary stack pane with summery elements.
+         * @return summery object with drop shadow effect.
+         */
+        private StackPane addDropShadow(final StackPane gameSummary) {
             DropShadow dropShadow = new DropShadow();
             dropShadow.setRadius(1);
             dropShadow.setOffsetX(4);
             dropShadow.setOffsetY(4);
             dropShadow.setColor(Color.web("#333333", shadowOpacity));
-            summary.setEffect(dropShadow);
-            return summary;
+            gameSummary.setEffect(dropShadow);
+            return gameSummary;
         }
 
+        /** Gets summary object.
+         *
+         * @return stack pane with summery elements.
+         */
         public StackPane getSummary() {
             return summary;
         }
 
-        public void setSummary(StackPane summary) {
-            this.summary = summary;
+        /** Sets summery object.
+         *
+         * @param gameSummary stack pane object.
+         */
+        public void setSummary(final StackPane gameSummary) {
+            this.summary = gameSummary;
         }
 
     }
 
+    /** DebugMarker class.
+     *  Contains view for debug markers.
+     */
     public class DebugMarkers {
 
+        /**DebugMarker container. */
         public DebugMarkers() {
 
         }
 
+        /** Creates debug marker for flipped discs.
+         *
+         * @return Circle object.
+         */
         public Circle flipDebugMarker() {
             Circle circle = new Circle();
             circle.setCenterX(width);
