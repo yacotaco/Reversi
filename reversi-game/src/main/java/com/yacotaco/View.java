@@ -223,7 +223,7 @@ public class View {
             this.timerValue = new Text();
         }
 
-        public StackPane makeTimerView(Text timerValue) {
+        public StackPane makeTimerView(final Text value) {
             StackPane timerStack = new StackPane();
             timerStack.setAlignment(Pos.CENTER);
             Rectangle rectangle = new Rectangle(70, 30, Color.web("#332211"));
