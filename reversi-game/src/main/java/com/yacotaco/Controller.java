@@ -1167,6 +1167,8 @@ public class Controller {
                 isTimerSwitched = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
+                view.getTopBorderPane().getTimerViewWhite().switchOnTimer();
+                view.getTopBorderPane().getTimerViewBlack().switchOnTimer();
 
                 if (event.getClickCount() == 2 && timeline != null) {
                     isTimerSwitched = false;
