@@ -128,17 +128,17 @@ public class View {
      * Contains all view elements of top border pane container.
      */
     public class TopBorderPane {
-        private DiscView dv = new DiscView();
-        private TimerView timerViewWhite = new TimerView();
-        private TimerView timerViewBlack = new TimerView();
+        private DiscView dv;
+        private TimerView timerViewWhite;
+        private TimerView timerViewBlack;
         private Text timerValueWhite;
         private Text timerValueBlack;
-        private Button newGameButton = new Button("New Game");
-        private Button newTimedGameButton = new Button("Timer");
-        private Button aiPlayerButton = new Button("AI Player");
-        private Button loadButton = new Button("Load");
-        private Button saveButton = new Button("Save");
-        private Button exitButton = new Button("Exit");
+        private Button newGameButton;
+        private Button newTimedGameButton;
+        private Button aiPlayerButton;
+        private Button loadButton;
+        private Button saveButton;
+        private Button exitButton;
         private StackPane whiteCounter;
         private StackPane blackCounter;
         private HBox scoreHbox;
@@ -149,6 +149,15 @@ public class View {
          * Inits menu bar and score panel view.
         */
         public TopBorderPane() {
+            this.dv = new DiscView();
+            this.timerViewWhite = new TimerView();
+            this.timerViewBlack = new TimerView();
+            this.newGameButton = new Button("New Game");
+            this.newTimedGameButton = new Button("Timer");
+            this.aiPlayerButton = new Button("AI Player");
+            this.loadButton = new Button("Load");
+            this.saveButton = new Button("Save");
+            this.exitButton = new Button("Exit");
             this.scoreHbox = new HBox();
             this.menu = new HBox();
             this.vbox = new VBox();
