@@ -138,9 +138,9 @@ public class View {
         private Text timerValueWhite;
         /** Timer clock value to display.*/
         private Text timerValueBlack;
-        /** New game button object. */
+        /** New game button. */
         private Button newGameButton;
-        /** Timed game button object. */
+        /** Timed game button. */
         private Button newTimedGameButton;
         /** AI Player button. */
         private Button aiPlayerButton;
