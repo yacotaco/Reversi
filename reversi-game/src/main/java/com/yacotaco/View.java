@@ -73,7 +73,8 @@ public class View {
         new BoardGrid();
         new BottomBorderPane();
         Scene scene = new Scene(borderPane, mainWidth, mainHeight);
-        scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass()
+            .getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
     }
@@ -136,8 +137,11 @@ public class View {
             timerValueWhite = timerViewWhite.getTimerValue();
             timerValueBlack = timerViewBlack.getTimerValue();
 
-            scoreHbox.getChildren().addAll(timerViewWhite.makeTimerView(timerValueWhite), whiteCounter, blackCounter,
-                    timerViewBlack.makeTimerView(timerValueBlack));
+            scoreHbox.getChildren().addAll(
+                timerViewWhite.makeTimerView(timerValueWhite),
+                whiteCounter,
+                blackCounter,
+                timerViewBlack.makeTimerView(timerValueBlack));
 
             return scoreHbox;
         }
@@ -151,8 +155,12 @@ public class View {
             exitButton.setPrefSize(100, 10);
             menu.setSpacing(25);
             menu.getStyleClass().add("hbox2");
-            menu.getChildren().addAll(newGameButton, newTimedGameButton, aiPlayerButton, loadButton, saveButton,
-                    exitButton);
+            menu.getChildren().addAll(newGameButton,
+                newTimedGameButton,
+                aiPlayerButton,
+                loadButton,
+                saveButton,
+                exitButton);
 
             return menu;
         }
