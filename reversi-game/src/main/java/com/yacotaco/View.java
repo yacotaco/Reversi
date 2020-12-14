@@ -263,19 +263,25 @@ public class View {
             return timerValue;
         }
 
+        /** Sets timer value.
+         *
+         * @param value value of timer.
+         */
         public void setTimerValue(final String value) {
-            int min = Integer.valueOf(value) / 60;
-            int sec = Integer.valueOf(value) % 60;
-            if (min >= 10 && sec >= 10) {
+            final int oneMinInSeconds = 60;
+            final int tenSec = 10;
+            int min = Integer.valueOf(value) / oneMinInSeconds;
+            int sec = Integer.valueOf(value) % oneMinInSeconds;
+            if (min >= tenSec && sec >= tenSec) {
                 String time = String.format("%d:%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min < 10 && sec < 10) {
+            } else if (min < tenSec && sec < tenSec) {
                 String time = String.format("0%d:0%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min < 10 && sec >= 10) {
+            } else if (min < tenSec && sec >= tenSec) {
                 String time = String.format("0%d:%d", min, sec);
                 this.timerValue.setText(time);
-            } else if (min >= 10 && sec < 10) {
+            } else if (min >= tenSec && sec < tenSec) {
                 String time = String.format("%d:0%d", min, sec);
                 this.timerValue.setText(time);
             }
