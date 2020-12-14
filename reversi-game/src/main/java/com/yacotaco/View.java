@@ -151,9 +151,15 @@ public class View {
         }
 
         public HBox addScoreHBox() {
-            scoreHbox.setPadding(new Insets(5, 0, 5, 0));
-            scoreHbox.setSpacing(25);
-            scoreHbox.setPrefHeight(80);
+            final double top = 5;
+            final double right = 0;
+            final double bottom = 5;
+            final double left = 0;
+            final int spacing = 25;
+            final int prefHeight = 80;
+            scoreHbox.setPadding(new Insets(top, right, bottom, left));
+            scoreHbox.setSpacing(spacing);
+            scoreHbox.setPrefHeight(prefHeight);
             scoreHbox.getStyleClass().add("hbox");
             scoreHbox.setAlignment(Pos.CENTER);
             whiteCounter = dv.makePointsCounterView(0);
@@ -171,13 +177,16 @@ public class View {
         }
 
         public HBox addMenu() {
-            newGameButton.setPrefSize(100, 10);
-            newTimedGameButton.setPrefSize(100, 10);
-            aiPlayerButton.setPrefSize(100, 10);
-            loadButton.setPrefSize(100, 10);
-            saveButton.setPrefSize(100, 10);
-            exitButton.setPrefSize(100, 10);
-            menu.setSpacing(25);
+            final int prefWidth = 100;
+            final int prefHeight = 10;
+            final int spacing = 25;
+            newGameButton.setPrefSize(prefWidth, prefHeight);
+            newTimedGameButton.setPrefSize(prefWidth, prefHeight);
+            aiPlayerButton.setPrefSize(prefWidth, prefHeight);
+            loadButton.setPrefSize(prefWidth, prefHeight);
+            saveButton.setPrefSize(prefWidth, prefHeight);
+            exitButton.setPrefSize(prefWidth, prefHeight);
+            menu.setSpacing(spacing);
             menu.getStyleClass().add("hbox2");
             menu.getChildren().addAll(newGameButton,
                 newTimedGameButton,
