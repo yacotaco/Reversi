@@ -27,24 +27,42 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class View {
+    /** */
     private BorderPane borderPane;
+    /** */
     private TopBorderPane topBorderPane;
-    private final double WIDTH = 65.0;
-    private final double HEIGHT = 65.0;
-    private final double RADIUS = 28.0;
-    private final double MAIN_WIDTH = 700;
-    private final double MAIN_HEIGHT = 800;
-    private final int STROKE_WIDTH = 2;
-    private final int INDICATOR_RADIUS = 32;
-    private final int FRAME_STROKE_WIDTH = 2;
-    private final double FRAME_IN_WIDTH = 600;
-    private final double FRAME_IN_HEIGHT = 600;
-    private final double FRAME_OUT_WIDTH = 620;
-    private final double FRAME_OUT_HEIGHT = 620;
-    private final double MARKER_WIDTH = WIDTH - 2;
-    private final double MARKER_HEIGHT = HEIGHT - 2;
-    private final double SHADOW_OPACITY = 0.35;
-    private final double MARKER_RADIUS = 5.0;
+    /** */
+    private final double width = 65.0;
+    /** */
+    private final double height = 65.0;
+    /** */
+    private final double radius = 28.0;
+    /** */
+    private final double mainWidth = 700;
+    /** */
+    private final double mainHeight = 800;
+    /** */
+    private final int strokeWidth = 2;
+    /** */
+    private final int indicatorRadius = 32;
+    /** */
+    private final int frameStrokeWidth = 2;
+    /** */
+    private final double frameInWidth = 600;
+    /** */
+    private final double frameInHeight = 600;
+    /** */
+    private final double frameOutWidth = 620;
+    /** */
+    private final double frameOutHeight = 620;
+    /** */
+    private final double markerWidth = width - 2;
+    /** */
+    private final double markerHeight = height - 2;
+    /** */
+    private final double shadowOpacity = 0.35;
+    /** */
+    private final double markerRadius = 5.0;
 
     /**
      * View class constructor.
@@ -56,7 +74,7 @@ public class View {
         this.topBorderPane = new TopBorderPane();
         new BoardGrid();
         new BottomBorderPane();
-        Scene scene = new Scene(borderPane, MAIN_WIDTH, MAIN_HEIGHT);
+        Scene scene = new Scene(borderPane, mainWidth, mainHeight);
         scene.getStylesheets().add(getClass().getResource("/style.css").toExternalForm());
         stage.setScene(scene);
         stage.show();
@@ -278,10 +296,10 @@ public class View {
                     square.getStyleClass().add("pane");
                     if ((row + col) % 2 == 0) {
                         Color lightGreen = Color.web("#9fa881", 1.0);
-                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, lightGreen));
+                        square.getChildren().addAll(new Rectangle(width, height, lightGreen));
                     } else {
                         Color darkGreen = Color.web("#6f7d42", 1.0);
-                        square.getChildren().addAll(new Rectangle(WIDTH, HEIGHT, darkGreen));
+                        square.getChildren().addAll(new Rectangle(width, height, darkGreen));
                     }
                     boardGridPane.add(square, col, row);
                 }
@@ -292,19 +310,19 @@ public class View {
         private StackPane addBoardToFrame(GridPane boardGridPane) {
             StackPane stack = new StackPane();
             DropShadow dropShadow = new DropShadow();
-            Rectangle rectangleOut = new Rectangle(FRAME_OUT_WIDTH, FRAME_OUT_HEIGHT, Color.web("#332211", 0.80));
-            Rectangle rectangleIn = new Rectangle(FRAME_IN_WIDTH, FRAME_IN_HEIGHT, Color.web("#332211", 0.80));
+            Rectangle rectangleOut = new Rectangle(frameOutWidth, frameOutHeight, Color.web("#332211", 0.80));
+            Rectangle rectangleIn = new Rectangle(frameInWidth, frameInHeight, Color.web("#332211", 0.80));
             rectangleOut.setStroke(Color.BLACK);
-            rectangleOut.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleOut.setStrokeWidth(frameStrokeWidth);
             rectangleIn.setStroke(Color.BLACK);
-            rectangleIn.setStrokeWidth(FRAME_STROKE_WIDTH);
+            rectangleIn.setStrokeWidth(frameStrokeWidth);
             rectangleOut.setStrokeType(StrokeType.OUTSIDE);
             rectangleIn.setStrokeType(StrokeType.OUTSIDE);
 
             // add shadow to board
             dropShadow.setOffsetX(10);
             dropShadow.setOffsetY(10);
-            dropShadow.setColor(Color.web("#000000", SHADOW_OPACITY));
+            dropShadow.setColor(Color.web("#000000", shadowOpacity));
             rectangleOut.setEffect(dropShadow);
 
             stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
@@ -320,9 +338,9 @@ public class View {
         }
 
         public Rectangle validMoveMarker() {
-            Rectangle rectangle = new Rectangle(MARKER_WIDTH, MARKER_HEIGHT, Color.web("#9DC8E4", 0.30));
+            Rectangle rectangle = new Rectangle(markerWidth, markerHeight, Color.web("#9DC8E4", 0.30));
             rectangle.setStroke(Color.web("#9DC8E4", 1.0));
-            rectangle.setStrokeWidth(STROKE_WIDTH);
+            rectangle.setStrokeWidth(strokeWidth);
             rectangle.setStrokeType(StrokeType.INSIDE);
             return rectangle;
         }
@@ -334,15 +352,15 @@ public class View {
             Circle circle = new Circle();
             if (discState == 0) {
                 // white disc
-                circle.setCenterX(WIDTH);
-                circle.setCenterY(HEIGHT);
-                circle.setRadius(RADIUS);
+                circle.setCenterX(width);
+                circle.setCenterY(height);
+                circle.setRadius(radius);
                 circle.setFill(Color.WHITE);
             } else if (discState == 1) {
                 // black disc
-                circle.setCenterX(WIDTH);
-                circle.setCenterY(HEIGHT);
-                circle.setRadius(RADIUS);
+                circle.setCenterX(width);
+                circle.setCenterY(height);
+                circle.setRadius(radius);
                 circle.setFill(Color.BLACK);
             }
 
@@ -356,7 +374,7 @@ public class View {
             dropShadow.setRadius(1);
             dropShadow.setOffsetX(3);
             dropShadow.setOffsetY(3);
-            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
+            dropShadow.setColor(Color.web("#333333", shadowOpacity));
             disc.setEffect(dropShadow);
             return disc;
         }
@@ -386,12 +404,12 @@ public class View {
 
         public Circle makePlayerIndicator() {
             Circle indicator = new Circle();
-            indicator.setCenterX(WIDTH);
-            indicator.setCenterY(HEIGHT);
-            indicator.setRadius(INDICATOR_RADIUS);
+            indicator.setCenterX(width);
+            indicator.setCenterY(height);
+            indicator.setRadius(indicatorRadius);
             indicator.setFill(Color.web("#9DC8E4", 0.05));
             indicator.setStroke(Color.web("#9DC8E4", 1.0));
-            indicator.setStrokeWidth(STROKE_WIDTH);
+            indicator.setStrokeWidth(strokeWidth);
             indicator.setStrokeType(StrokeType.INSIDE);
             return indicator;
         }
@@ -481,7 +499,7 @@ public class View {
             dropShadow.setRadius(1);
             dropShadow.setOffsetX(4);
             dropShadow.setOffsetY(4);
-            dropShadow.setColor(Color.web("#333333", SHADOW_OPACITY));
+            dropShadow.setColor(Color.web("#333333", shadowOpacity));
             summary.setEffect(dropShadow);
             return summary;
         }
@@ -504,9 +522,9 @@ public class View {
 
         public Circle flipDebugMarker() {
             Circle circle = new Circle();
-            circle.setCenterX(WIDTH);
-            circle.setCenterY(HEIGHT);
-            circle.setRadius(MARKER_RADIUS);
+            circle.setCenterX(width);
+            circle.setCenterY(height);
+            circle.setRadius(markerRadius);
             circle.setFill(Color.RED);
             return circle;
         }
