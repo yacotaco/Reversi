@@ -402,13 +402,20 @@ public class View {
             return disc;
         }
 
+        /** Makes highlight indicator to show player turn.
+         *  It is stacked with disc view and displayed on score panel.
+         *
+         * @return indicator circle.
+         */
         public Circle makePlayerIndicator() {
             Circle indicator = new Circle();
+            final double fillOpacity = 0.05;
+            final double strokeOpacity = 1.0;
             indicator.setCenterX(width);
             indicator.setCenterY(height);
             indicator.setRadius(indicatorRadius);
-            indicator.setFill(Color.web("#9DC8E4", 0.05));
-            indicator.setStroke(Color.web("#9DC8E4", 1.0));
+            indicator.setFill(Color.web("#9DC8E4", fillOpacity));
+            indicator.setStroke(Color.web("#9DC8E4", strokeOpacity));
             indicator.setStrokeWidth(strokeWidth);
             indicator.setStrokeType(StrokeType.INSIDE);
             return indicator;
