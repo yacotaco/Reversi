@@ -277,10 +277,18 @@ public class View {
 
     }
 
+    /**
+     * BoardGrid class.
+     */
     public class BoardGrid {
+        /** Grid pane container. */
         private GridPane boardGridPane;
+        /** Square elements of board. */
         private StackPane square;
 
+        /**
+         * BoardGrid constructor.
+         */
         public BoardGrid() {
             this.boardGridPane = new GridPane();
             initBoardView();
@@ -314,11 +322,21 @@ public class View {
             borderPane.setCenter(addBoardToFrame(boardGridPane));
         }
 
-        private StackPane addBoardToFrame(GridPane boardGridPane) {
+        /** Adds board to frame.
+         *
+         * @param boardGrid grid pane container with squares.
+         * @return stack pane with board and frame elements.
+         */
+        private StackPane addBoardToFrame(final GridPane boardGrid) {
+            final int x = 10;
+            final int y = 10;
+            final double opacity = 0.80;
             StackPane stack = new StackPane();
             DropShadow dropShadow = new DropShadow();
-            Rectangle rectangleOut = new Rectangle(frameOutWidth, frameOutHeight, Color.web("#332211", 0.80));
-            Rectangle rectangleIn = new Rectangle(frameInWidth, frameInHeight, Color.web("#332211", 0.80));
+            Rectangle rectangleOut = new Rectangle(frameOutWidth,
+                frameOutHeight, Color.web("#332211", opacity));
+            Rectangle rectangleIn = new Rectangle(frameInWidth,
+                frameInHeight, Color.web("#332211", opacity));
             rectangleOut.setStroke(Color.BLACK);
             rectangleOut.setStrokeWidth(frameStrokeWidth);
             rectangleIn.setStroke(Color.BLACK);
@@ -327,26 +345,43 @@ public class View {
             rectangleIn.setStrokeType(StrokeType.OUTSIDE);
 
             // add shadow to board
-            dropShadow.setOffsetX(10);
-            dropShadow.setOffsetY(10);
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
             dropShadow.setColor(Color.web("#000000", shadowOpacity));
             rectangleOut.setEffect(dropShadow);
 
-            stack.getChildren().addAll(rectangleOut, rectangleIn, boardGridPane);
+            stack.getChildren().addAll(rectangleOut,
+                rectangleIn, boardGridPane);
+
             return stack;
         }
 
+        /** Gets board grid pane.
+         *
+         * @return grid pane object.
+         */
         public GridPane getBoardGridPane() {
             return boardGridPane;
         }
 
-        public void setBoardGridPane(GridPane boardGridPane) {
-            this.boardGridPane = boardGridPane;
+        /** Sets grid pane.
+         *
+         * @param boardGrid grid pane object.
+         */
+        public void setBoardGridPane(final GridPane boardGrid) {
+            this.boardGridPane = boardGrid;
         }
 
+        /** Makes valid move marker.
+         * It is used to highlight square on board grid.
+         * @return rectangle object.
+         */
         public Rectangle validMoveMarker() {
-            Rectangle rectangle = new Rectangle(markerWidth, markerHeight, Color.web("#9DC8E4", 0.30));
-            rectangle.setStroke(Color.web("#9DC8E4", 1.0));
+            final double opacity = 0.30;
+            final double borderOpacity = 1.0;
+            Rectangle rectangle = new Rectangle(markerWidth,
+                markerHeight, Color.web("#9DC8E4", opacity));
+            rectangle.setStroke(Color.web("#9DC8E4", borderOpacity));
             rectangle.setStrokeWidth(strokeWidth);
             rectangle.setStrokeType(StrokeType.INSIDE);
             return rectangle;
