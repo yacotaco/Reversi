@@ -226,14 +226,14 @@ public class View {
         public StackPane makeTimerView(Text timerValue) {
             StackPane timerStack = new StackPane();
             timerStack.setAlignment(Pos.CENTER);
-            Rectangle r = new Rectangle(70, 30, Color.web("#332211"));
-            r.setArcHeight(30);
-            r.setArcWidth(30);
-            r.setStroke(Color.web("#000000"));
-            r.setStrokeWidth(1);
+            Rectangle rectangle = new Rectangle(70, 30, Color.web("#332211"));
+            rectangle.setArcHeight(30);
+            rectangle.setArcWidth(30);
+            rectangle.setStroke(Color.web("#000000"));
+            rectangle.setStrokeWidth(1);
             timerValue.setStrokeWidth(4);
             timerValue.setStyle("-fx-font-size: 15;");
-            timerStack.getChildren().addAll(r, timerValue);
+            timerStack.getChildren().addAll(rectangle, timerValue);
             return timerStack;
         }
 
