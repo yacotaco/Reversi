@@ -124,6 +124,9 @@ public class View {
         }
     }
 
+    /** TopBorderPane class.
+     * Contains all view elements of top border pane container.
+     */
     public class TopBorderPane {
         private DiscView dv = new DiscView();
         private TimerView timerViewWhite = new TimerView();
@@ -142,6 +145,9 @@ public class View {
         private HBox menu;
         private VBox vbox;
 
+        /** Class constructor.
+         * Inits menu bar and score panel view.
+        */
         public TopBorderPane() {
             this.scoreHbox = new HBox();
             this.menu = new HBox();
@@ -150,6 +156,10 @@ public class View {
             borderPane.setTop(vbox);
         }
 
+        /** Adds score panel view.
+         *
+         * @return hbox object with score panel elements.
+         */
         public HBox addScoreHBox() {
             final double top = 5;
             final double right = 0;
@@ -176,6 +186,10 @@ public class View {
             return scoreHbox;
         }
 
+        /** Adds menu bar.
+         *
+         * @return hbox object with menu elements.
+         */
         public HBox addMenu() {
             final int prefWidth = 100;
             final int prefHeight = 10;
