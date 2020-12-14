@@ -288,7 +288,7 @@ public class View {
 
         /**
          * Inits board view.
-         * Grid pane with squares.
+         * Fills grid pane container with squares.
          */
         private void initBoardView() {
             boardGridPane.setAlignment(Pos.CENTER);
