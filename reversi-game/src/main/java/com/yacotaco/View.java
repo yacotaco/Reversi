@@ -216,9 +216,16 @@ public class View {
         }
     }
 
+    /** TimerView class.
+     * Contains methods and effects related to timer clock.
+     */
     public class TimerView {
+        /** Value of timer to display in clock. */
         private Text timerValue;
 
+        /** TimerView constructor.
+         * Inits timer text field.
+         */
         public TimerView() {
             this.timerValue = new Text();
         }
@@ -249,11 +256,14 @@ public class View {
             return timerStack;
         }
 
+        /** Gets timer text object.
+         * @return text object.
+         */
         public Text getTimerValue() {
             return timerValue;
         }
 
-        public void setTimerValue(String timerValue) {
+        public void setTimerValue(final String timerValue) {
             int min = Integer.valueOf(timerValue) / 60;
             int sec = Integer.valueOf(timerValue) % 60;
             if (min >= 10 && sec >= 10) {
