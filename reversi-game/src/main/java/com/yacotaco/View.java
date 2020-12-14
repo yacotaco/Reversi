@@ -437,12 +437,18 @@ public class View {
             return indicator;
         }
 
-        public StackPane makePointsCounterView(Integer discState) {
+        /** Makes view for counter to display player points.
+         *
+         * @param discState disc state.
+         * @return stack object with circel object and text filed.
+         */
+        public StackPane makePointsCounterView(final Integer discState) {
+            final int stroke = 4;
             DiscView dv = new DiscView();
             Circle disc = dv.makeDisc(discState);
             StackPane stack = new StackPane();
             Text discText = new Text();
-            discText.setStrokeWidth(4);
+            discText.setStrokeWidth(stroke);
             discText.setStyle("-fx-font-size: 15;");
 
             if (discState == 1) {
@@ -455,14 +461,26 @@ public class View {
         }
     }
 
+    /** Gets border pane.
+     *
+     * @return border pane object.
+     */
     public BorderPane getBorderPane() {
         return borderPane;
     }
 
-    public void setBorderPane(BorderPane borderPane) {
-        this.borderPane = borderPane;
+    /** Sets border pane.
+     *
+     * @param bPane border pane object.
+     */
+    public void setBorderPane(final BorderPane bPane) {
+        this.borderPane = bPane;
     }
 
+    /** Gets top border pane.
+     *
+     * @return class object with content of top border pane.
+     */
     public TopBorderPane getTopBorderPane() {
         return topBorderPane;
     }
