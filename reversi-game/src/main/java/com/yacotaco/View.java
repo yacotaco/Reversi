@@ -79,12 +79,20 @@ public class View {
         stage.show();
     }
 
-    public void highLightPoints(Text textWhite, Text textBlack, Integer playerTurn) {
+    /** Adds highlight effect to points counter.
+     *
+     * @param textWhite timer text value of white player.
+     * @param textBlack timer text value of black player.
+     * @param playerTurn current player.
+     */
+    public void highLightPoints(final Text textWhite, final Text textBlack,
+        final Integer playerTurn) {
+        final double opacity = 1.0;
         if (playerTurn == 0) {
-            textWhite.setFill(Color.web("#9DC8E4", 1.0));
+            textWhite.setFill(Color.web("#9DC8E4", opacity));
             textBlack.setFill(Color.WHITE);
         } else if (playerTurn == 1) {
-            textBlack.setFill(Color.web("#9DC8E4", 1.0));
+            textBlack.setFill(Color.web("#9DC8E4", opacity));
             textWhite.setFill(Color.BLACK);
         }
     }
