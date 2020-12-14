@@ -369,11 +369,19 @@ public class View {
             return circle;
         }
 
-        public Circle addDropShadow(Circle disc) {
+        /** Adds drop shadow effect.
+         * @deprecated
+         * @param disc disc object.
+         * @return disc with drop shadow effect.
+         */
+        public Circle addDropShadow(final Circle disc) {
             DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(1);
-            dropShadow.setOffsetX(3);
-            dropShadow.setOffsetY(3);
+            final int r = 1;
+            final int x = 3;
+            final int y = 3;
+            dropShadow.setRadius(r);
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
             dropShadow.setColor(Color.web("#333333", shadowOpacity));
             disc.setEffect(dropShadow);
             return disc;
