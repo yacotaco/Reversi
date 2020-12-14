@@ -128,21 +128,39 @@ public class View {
      * Contains all view elements of top border pane container.
      */
     public class TopBorderPane {
+        /** DiscView class object. */
         private DiscView dv;
+        /** TimerView class object for white player. */
         private TimerView timerViewWhite;
+        /** TimerView class object for balck player. */
         private TimerView timerViewBlack;
+        /** Timer clock value to display. */
         private Text timerValueWhite;
+        /** Timer clock value to display.*/
         private Text timerValueBlack;
+        /** New game button object. */
         private Button newGameButton;
+        /** Timed game button object. */
         private Button newTimedGameButton;
+        /** AI Player button. */
         private Button aiPlayerButton;
+        /** Load game button. */
         private Button loadButton;
+        /** Save game button. */
         private Button saveButton;
+        /** Exit game button. */
         private Button exitButton;
+        /** Points counter view for white player.*/
         private StackPane whiteCounter;
+        /** Points counter view for black player.*/
         private StackPane blackCounter;
+        /** Score panel. */
         private HBox scoreHbox;
+        /** Menu bar.*/
         private HBox menu;
+        /** Vbox with menu and score panel elements
+         *  added to top border pane.
+         */
         private VBox vbox;
 
         /** Class constructor.
