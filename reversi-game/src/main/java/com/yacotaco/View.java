@@ -517,10 +517,13 @@ public class View {
          * @return stack pane with summery elements.
          */
         private StackPane createSummaryView() {
+            final int maxHeight = 150;
+            final int maxWidth = 300;
+            final int spacing = 40;
             summary = addDropShadow(summary);
             summary.setAlignment(Pos.CENTER);
-            summary.setMaxHeight(150);
-            summary.setMaxWidth(300);
+            summary.setMaxHeight(maxHeight);
+            summary.setMaxWidth(maxWidth);
             summary.getStyleClass().add("pane2");
 
             if (playerOne.getPoints() > playerTwo.getPoints()) {
@@ -538,7 +541,7 @@ public class View {
             }
 
             VBox vbox = new VBox();
-            vbox.setSpacing(40);
+            vbox.setSpacing(spacing);
             vbox.setAlignment(Pos.CENTER);
             vbox.getChildren().addAll(text);
             summary.getChildren().addAll(vbox);
@@ -553,9 +556,12 @@ public class View {
          */
         private StackPane addDropShadow(final StackPane gameSummary) {
             DropShadow dropShadow = new DropShadow();
-            dropShadow.setRadius(1);
-            dropShadow.setOffsetX(4);
-            dropShadow.setOffsetY(4);
+            final int r = 1;
+            final int x = 4;
+            final int y = 4;
+            dropShadow.setRadius(r);
+            dropShadow.setOffsetX(x);
+            dropShadow.setOffsetY(y);
             dropShadow.setColor(Color.web("#333333", shadowOpacity));
             gameSummary.setEffect(dropShadow);
             return gameSummary;
