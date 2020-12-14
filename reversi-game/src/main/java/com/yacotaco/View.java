@@ -31,37 +31,37 @@ public class View {
     private BorderPane borderPane;
     /** */
     private TopBorderPane topBorderPane;
-    /** */
+    /** Square size. Also sets center of disc.*/
     private final double width = 65.0;
-    /** */
+    /** Square size. Also sets center of disc.*/
     private final double height = 65.0;
-    /** */
+    /** Radius of disc.*/
     private final double radius = 28.0;
-    /** */
+    /** Main window size parameter. */
     private final double mainWidth = 700;
-    /** */
+    /** Main window size parameter.*/
     private final double mainHeight = 800;
     /** */
     private final int strokeWidth = 2;
-    /** */
+    /** Radius of indicator circle. */
     private final int indicatorRadius = 32;
-    /** */
+    /** Frame border stroke. */
     private final int frameStrokeWidth = 2;
-    /** */
+    /** Frame size parameter. */
     private final double frameInWidth = 600;
-    /** */
+    /** Frame size parameter. */
     private final double frameInHeight = 600;
-    /** */
+    /** Frame size parameter. */
     private final double frameOutWidth = 620;
-    /** */
+    /** Frame size parameter. */
     private final double frameOutHeight = 620;
-    /** */
+    /** Valid move marker width. */
     private final double markerWidth = width - 2;
-    /** */
+    /** Valid move marker height. */
     private final double markerHeight = height - 2;
-    /** */
+    /** Board shadow effect opacity. */
     private final double shadowOpacity = 0.35;
-    /** */
+    /** Flip marker radius. */
     private final double markerRadius = 5.0;
 
     /**
