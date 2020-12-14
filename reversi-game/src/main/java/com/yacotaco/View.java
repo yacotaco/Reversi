@@ -348,7 +348,7 @@ public class View {
 
     /** DiscView class.
      *  Contains all view generating functions and
-     *  effects realated to disc object.
+     *  effects related to disc object.
      */
     public class DiscView {
 
