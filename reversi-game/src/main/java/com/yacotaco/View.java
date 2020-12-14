@@ -239,60 +239,116 @@ public class View {
             return menu;
         }
 
+        /** Gets new game button.
+         *
+         * @return new game button object.
+         */
         public Button getNewGameButton() {
             return newGameButton;
         }
 
+        /** Gets load game button.
+         *
+         * @return load game button object.
+         */
         public Button getLoadButton() {
             return loadButton;
         }
 
+        /** Gets save game button.
+         *
+         * @return save game button object.
+         */
         public Button getSaveButton() {
             return saveButton;
         }
 
+        /** Gets exit game button.
+         *
+         * @return exit button object.
+         */
         public Button getExitButton() {
             return exitButton;
         }
 
+        /** Gets points counter view for white player.
+         *
+         * @return stack pane object.
+         */
         public StackPane getWhiteCounter() {
             return whiteCounter;
         }
 
+        /** Gets points counter view for black player.
+         *
+         * @return stack pane object.
+         */
         public StackPane getBlackCounter() {
             return blackCounter;
         }
 
+        /** Gets timer clock view.
+         *
+         * @return timer view object.
+         */
         public TimerView getTimerViewWhite() {
             return timerViewWhite;
         }
 
-        public void setTimerViewWhite(TimerView timerViewWhite) {
-            this.timerViewWhite = timerViewWhite;
+        /** Sets timer view for white player.
+         *
+         * @param timerView timer view object.
+         */
+        public void setTimerViewWhite(final TimerView timerView) {
+            this.timerViewWhite = timerView;
         }
 
+        /** Gets timer view.
+         *
+         * @return timer view object.
+         */
         public TimerView getTimerViewBlack() {
             return timerViewBlack;
         }
 
-        public void setTimerViewBlack(TimerView timerViewBlack) {
-            this.timerViewBlack = timerViewBlack;
+        /** Sets timer view for black player.
+         *
+         * @param timerView timer view object.
+         */
+        public void setTimerViewBlack(final TimerView timerView) {
+            this.timerViewBlack = timerView;
         }
 
+        /** Gets timed game button.
+         *
+         * @return timed game button object.
+         */
         public Button getNewTimedGameButton() {
             return newTimedGameButton;
         }
 
-        public void setNewTimedGameButton(Button newTimedGameButton) {
-            this.newTimedGameButton = newTimedGameButton;
+        /** Sets timed game button.
+         *
+         * @param newTimedGame timed game button object.
+         */
+        public void setNewTimedGameButton(final Button newTimedGame) {
+            this.newTimedGameButton = newTimedGame;
         }
 
+        /** Gets AI Player button.
+         *
+         * @return AI Player button object.
+         */
         public Button getAiPlayerButton() {
             return aiPlayerButton;
         }
 
-        public void setAiPlayerButton(Button aiPlayerButton) {
-            this.aiPlayerButton = aiPlayerButton;
+        /** Sets AI Player button.
+         *
+         * @param aiButton AI Player button.
+         */
+        public void setAiPlayerButton(final Button aiButton) {
+            this.aiPlayerButton = aiButton;
         }
     }
 
