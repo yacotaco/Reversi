@@ -27,9 +27,9 @@ import javafx.stage.Stage;
  * @version 1.0
  */
 public class View {
-    /** */
+    /** Main container which contains all view elemants. */
     private BorderPane borderPane;
-    /** */
+    /** Contains all elements placed in top part of border pane. */
     private TopBorderPane topBorderPane;
     /** Square size. Also sets center of disc.*/
     private final double width = 65.0;
