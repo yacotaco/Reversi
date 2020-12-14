@@ -287,18 +287,22 @@ public class View {
             }
         }
 
+        /** Adds highlight to timer value displayed in clock. */
         public void addHighlight() {
             this.timerValue.setFill(Color.web("#9DC8E4", 1.0));
         }
 
+        /** Removes highlight from timer value displayed in clock. */
         public void removeHighlight() {
             this.timerValue.setFill(Color.BLACK);
         }
 
+        /** Adds red highligt to timer on remaining 10s. */
         public void timeoutHighlight() {
             this.timerValue.setFill(Color.RED);
         }
 
+        /** Hides timer. Changes color of text to background color. */
         public void switchOffTimer() {
             this.timerValue.setFill(Color.web("#332211", 1.0));
         }
