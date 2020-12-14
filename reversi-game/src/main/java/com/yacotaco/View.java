@@ -223,15 +223,27 @@ public class View {
             this.timerValue = new Text();
         }
 
+        /** Makes view of timer clock.
+         *
+         * @param value timer value to display.
+         * @return stack pane with timer elements.
+         */
         public StackPane makeTimerView(final Text value) {
+            final int arcHeight = 30;
+            final int arcWidth = 30;
+            final int rectWidth = 70;
+            final int rectHeight = 30;
+            final int rectStroke = 1;
+            final int timerStroke = 4;
             StackPane timerStack = new StackPane();
             timerStack.setAlignment(Pos.CENTER);
-            Rectangle rectangle = new Rectangle(70, 30, Color.web("#332211"));
-            rectangle.setArcHeight(30);
-            rectangle.setArcWidth(30);
+            Rectangle rectangle = new Rectangle(rectWidth, rectHeight,
+                Color.web("#332211"));
+            rectangle.setArcHeight(arcHeight);
+            rectangle.setArcWidth(arcWidth);
             rectangle.setStroke(Color.web("#000000"));
-            rectangle.setStrokeWidth(1);
-            timerValue.setStrokeWidth(4);
+            rectangle.setStrokeWidth(rectStroke);
+            timerValue.setStrokeWidth(timerStroke);
             timerValue.setStyle("-fx-font-size: 15;");
             timerStack.getChildren().addAll(rectangle, timerValue);
             return timerStack;
