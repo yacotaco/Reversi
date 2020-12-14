@@ -97,14 +97,30 @@ public class View {
         }
     }
 
+    /** BottomBorderPane class.
+     * Contains elements of bottom view.
+     */
     public class BottomBorderPane {
+        /** Hbox container with bottom view. */
         private HBox bottomBox;
 
+        /** Class constructor.
+         * Inits bottom view.
+         */
         public BottomBorderPane() {
-            this.bottomBox = new HBox();
-            bottomBox.getStyleClass().add("hbox");
-            bottomBox.setPadding(new Insets(10, 12, 10, 12));
+            makeBottomView();
             borderPane.setBottom(bottomBox);
+        }
+
+        /** Makes bottom view. */
+        private void makeBottomView() {
+            this.bottomBox = new HBox();
+            this.bottomBox.getStyleClass().add("hbox");
+            final double top = 10;
+            final double right = 12;
+            final double bottom = 10;
+            final double left = 12;
+            this.bottomBox.setPadding(new Insets(top, right, bottom, left));
         }
     }
 
