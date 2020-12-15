@@ -29,7 +29,11 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * Controller
+ * Controller class.
+ *
+ * @author Kamil Kurach
+ * @author https://github.com/yacotaco
+ * @version 1.0
  */
 public class Controller {
     private Board board;
