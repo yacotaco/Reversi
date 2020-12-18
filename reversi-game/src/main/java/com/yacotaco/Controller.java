@@ -124,7 +124,7 @@ public class Controller {
         this.playerTurn = value;
     }
 
-    private void changePlayerTurn(Integer playerTurn) {
+    private void changePlayerTurn() {
         if (playerTurn == 0) {
             setPlayerTurn(1);
         } else if (playerTurn == 1) {
@@ -360,13 +360,13 @@ public class Controller {
             public void handle(ActionEvent event) {
                 if (playerTurn == 0) {
                     view.getTopBorderPane().getTimerViewWhite().removeHighlight();
-                    changePlayerTurn(playerTurn);
+                    changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
 
                 } else if (playerTurn == 1) {
                     view.getTopBorderPane().getTimerViewBlack().removeHighlight();
-                    changePlayerTurn(playerTurn);
+                    changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
                 }
@@ -708,7 +708,7 @@ public class Controller {
     private void switchOnNoValidMoves() {
         // switch player if there are no valid moves
         if (allValidMoves.isEmpty() == true) {
-            changePlayerTurn(playerTurn);
+            changePlayerTurn();
             updatePointsCounters();
             updatePlayerTurnIndicators();
             getValidMoves(playerTurn);
@@ -984,7 +984,7 @@ public class Controller {
             }
 
             // change player after update
-            changePlayerTurn(playerTurn);
+            changePlayerTurn();
 
             getValidMoves(playerTurn);
 
