@@ -1351,7 +1351,7 @@ public class Controller {
             .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 isTimerSwitched = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
