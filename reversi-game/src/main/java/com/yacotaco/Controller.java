@@ -1155,10 +1155,11 @@ public class Controller {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
-                if (ButtonType.OK.equals(option.get()) == true) {
+                Boolean buttonType = ButtonType.OK.equals(option.get());
+                if (buttonType.equals(true)) {
                     System.exit(0);
                 } else {
-                    if (timeline != null && isTimerSwitched == true) {
+                    if (timeline != null && isTimerSwitched.equals(true)) {
                         timeline.play();
                     }
                 }
