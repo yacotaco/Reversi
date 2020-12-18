@@ -1099,11 +1099,11 @@ public class Controller {
      */
     private void runOnClick(final Integer row, final Integer col) {
 
-        Boolean validMove = validatePlacedMove(row, col);
+        boolean validMove = validatePlacedMove(row, col);
 
         // player can place disc only on empty square
         if (board.getDiscFromBoard(row, col).getState() == -1
-            && validMove.equals(true)) {
+            && validMove == true) {
 
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
@@ -1155,8 +1155,8 @@ public class Controller {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
-                Boolean buttonType = ButtonType.OK.equals(option.get());
-                if (buttonType.equals(true)) {
+                boolean buttonType = ButtonType.OK.equals(option.get());
+                if (buttonType == true) {
                     System.exit(0);
                 } else {
                     if (timeline != null && isTimerSwitched.equals(true)) {
@@ -1245,8 +1245,8 @@ public class Controller {
                         alert.setContentText("File saved!");
 
                         Optional<ButtonType> option = alert.showAndWait();
-                        Boolean buttonType = ButtonType.OK.equals(option.get());
-                        if (buttonType.equals(true)) {
+                        boolean buttonType = ButtonType.OK.equals(option.get());
+                        if (buttonType == true) {
                             if (timeline != null && isTimerSwitched.equals(true)) {
                                 timeline.play();
                             }
