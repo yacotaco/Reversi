@@ -1201,11 +1201,14 @@ public class Controller {
 
     /** Save button click handler. */
     private void onSaveButtonClick() {
-        view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getSaveButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
+                
             @Override
             public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
+                fileChooser.setInitialFileName("REVERSI_GAME_SAVE_"
+                     + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
 
                 if (timeline != null) {
