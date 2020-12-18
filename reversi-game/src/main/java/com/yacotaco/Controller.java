@@ -831,7 +831,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -854,7 +855,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
