@@ -295,6 +295,7 @@ public class Controller {
 
     /** Updates indicator for current player. */
     private void updatePlayerTurnIndicators() {
+        final int maxElements = 3;
         int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter()
             .getChildren().size();
         int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter()
@@ -308,9 +309,9 @@ public class Controller {
                 .add(2, dv.makePlayerIndicator());
         }
 
-        if (elementsInWhiteCounter == 3) {
+        if (elementsInWhiteCounter == maxElements) {
             view.getTopBorderPane().getWhiteCounter().getChildren().remove(2);
-        } else if (elementsInBlackCounter == 3) {
+        } else if (elementsInBlackCounter == maxElements) {
             view.getTopBorderPane().getBlackCounter().getChildren().remove(2);
         }
     }
