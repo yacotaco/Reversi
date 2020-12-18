@@ -174,10 +174,12 @@ public class Controller {
 
     //** Removes summary from main window. */
     private void removeSummary() {
+        final int maxElements = 4;
+        final int summaryElementIndex = 3;
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
-        if (sp.getChildren().size() == 4) {
-            sp.getChildren().remove(3);
+        if (sp.getChildren().size() == maxElements) {
+            sp.getChildren().remove(summaryElementIndex);
         }
     }
 
