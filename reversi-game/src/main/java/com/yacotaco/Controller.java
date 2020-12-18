@@ -211,7 +211,9 @@ public class Controller {
                     if (discRow == row && discCol == col) {
                         StackPane spWithMarker = new StackPane();
                         sp.getChildren().remove(1);
-                        spWithMarker.getChildren().addAll(dv.makeDisc(discState), dm.flipDebugMarker());
+                        spWithMarker.getChildren().addAll(
+                            dv.makeDisc(discState),
+                            dm.flipDebugMarker());
                         sp.getChildren().add(spWithMarker);
                     }
                 }
