@@ -1123,6 +1123,7 @@ public class Controller {
         }
     }
 
+    /** Click handler for placed move. */
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
             square.setOnMouseClicked(new EventHandler<MouseEvent>() {
