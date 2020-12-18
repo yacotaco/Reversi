@@ -939,11 +939,12 @@ public class Controller {
      *
      * @param row row coordinates.
      * @param col column coordinates.
-     * @param playerTurn current player turn (0 - white, 1 - black).
+     * @param currentPlayer current player turn (0 - white, 1 - black).
      */
-    private void flipDiagonalDiscs(Integer row, Integer col, Integer playerTurn) {
+    private void flipDiagonalDiscs(final Integer row, final Integer col,
+        final Integer currentPlayer) {
         int nextDiscState = -1;
-        int primaryDiscState = playerTurn;
+        int primaryDiscState = currentPlayer;
         int tmpRow = row;
         int tmpCol = col;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
