@@ -755,7 +755,7 @@ public class Controller {
     /** Switches player if there is no valid move. */
     private void switchOnNoValidMoves() {
         // switch player if there are no valid moves
-        if (allValidMoves.isEmpty() == true) {
+        if (allValidMoves.isEmpty()) {
             changePlayerTurn();
             updatePointsCounters();
             updatePlayerTurnIndicators();
