@@ -411,7 +411,7 @@ public class Controller {
      * @param disc Disc object.
      * @return list of arrays with moves coordinates.
      */
-    private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
+    private ArrayList<Integer[]> getHorizontalMoves(final Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         int colRight = discCol + 1;
