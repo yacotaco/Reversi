@@ -348,7 +348,7 @@ public class Controller {
             }
 
             @Override
-            public void setValue(Integer value) {
+            public void setValue(final Integer value) {
                 if (playerTurn == 0) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
@@ -398,7 +398,7 @@ public class Controller {
         timeline.setOnFinished(new EventHandler<ActionEvent>() {
 
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(final ActionEvent event) {
                 if (playerTurn == 0) {
                     view.getTopBorderPane().getTimerViewWhite()
                         .removeHighlight();
