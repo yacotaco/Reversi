@@ -1174,7 +1174,7 @@ public class Controller {
             .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
 
                 if (isTimerSwitched == true) {
                     if (timeline != null) {
