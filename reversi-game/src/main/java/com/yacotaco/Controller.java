@@ -97,6 +97,7 @@ public class Controller {
 
     // ************** INITS **************
 
+    /** Inits all handlers. */
     private void initController() {
         onGridClick();
         onExitButtonClick();
@@ -107,6 +108,7 @@ public class Controller {
         onAiPlayerButtonClick();
     }
 
+    /** Inits both players names and states (disc color).*/
     private void initPlayer() {
         playerOne.setDiscState(0);
         playerOne.setName("A");
