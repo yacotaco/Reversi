@@ -55,16 +55,18 @@ public class Controller {
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
     private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
-    /**
-     * @param board Board class
-     * @param view  View class
-     * @param stage JavaFX container
+    /** Controller constructor.
+     *
+     * @param boardClass Board class
+     * @param viewClass  View class
+     * @param stageClass JavaFX container
      */
 
-    public Controller(Board board, View view, Stage stage) {
-        this.board = board;
-        this.view = view;
-        this.stage = stage;
+    public Controller(final Board boardClass, final View viewClass,
+            final Stage stageClass) {
+        this.board = boardClass;
+        this.view = viewClass;
+        this.stage = stageClass;
         this.bg = view.new BoardGrid();
         this.dv = view.new DiscView();
         this.playerOne = new Player();
