@@ -36,23 +36,38 @@ import javafx.util.Duration;
  * @version 1.0
  */
 public class Controller {
+    /**Board class object. */
     private Board board;
+    /** View class object. */
     private View view;
+    /**Stage class object. */
     private Stage stage;
+    /** BoardGrid class object. Part of View class. */
     private View.BoardGrid bg;
+    /** DiscView class object. Part of View class. */
     private View.DiscView dv;
+    /** SummaryView class object. Part of View class. */
     private View.SummaryView sv;
+    /** Player class object. */
     private Player playerOne;
+    /** Player class object. */
     private Player playerTwo;
+    /** 0 -white player 1 - black player. */
     private Integer playerTurn;
+    /** Timeline class object for game timer. */
     private Timeline timeline;
+    /** Flag for game timer. */
     private Boolean isTimerSwitched;
     private final Double TURN_TIME = 30000.0;
     private final Integer initPlayerTurn = 0;
     private final Boolean DEBUG_MARKER = true;
     private final Boolean MOVE_MARKER = true;
+    /** Flag for AI Player. */
     private Boolean aiPlayer;
+    /**List of all valid moves for current player.
+     * List of arrays with coordinates [row, col]. */
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
+    /** List of all opponent discs captured by player.*/
     private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
     /** Controller constructor.
