@@ -133,11 +133,19 @@ public class Controller {
         }
     }
 
-    private void countPlayerPoints(Player player) {
+    /** Counts points for given player.
+     *
+     * @param player Player class object.
+     */
+    private void countPlayerPoints(final Player player) {
         Integer discState = player.getDiscState();
         player.setPoints(board.getAllPlayerDiscs(discState).size());
     }
 
+    /** Gets date and time.
+     *
+     * @return string with date and time.
+     */
     private String getDateTime() {
         String format = "yyyy-MM-dd_HH:mm:ss";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
@@ -146,6 +154,11 @@ public class Controller {
         return formatDateTime;
     }
 
+    /** Adds summary to main window.
+     *
+     * @param playerOne Player class object.
+     * @param playerTwo Player class object.
+     */
     private void addSummary(Player playerOne, Player playerTwo) {
         if (timeline != null) {
             timeline.pause();
@@ -157,6 +170,7 @@ public class Controller {
         sp.getChildren().add(3, summary);
     }
 
+    //** Removes summary from main window. */
     private void removeSummary() {
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
@@ -165,6 +179,7 @@ public class Controller {
         }
     }
 
+    /** Removes duplicated valid moves. */
     private void removeDuplicatedValidMoves() {
         for (int i = 0; i < allValidMoves.size(); i++) {
             Integer[] iMove = allValidMoves.get(i);
