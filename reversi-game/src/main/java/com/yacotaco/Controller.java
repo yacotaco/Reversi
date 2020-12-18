@@ -1203,7 +1203,7 @@ public class Controller {
     private void onSaveButtonClick() {
         view.getTopBorderPane().getSaveButton()
             .setOnMouseClicked(new EventHandler<MouseEvent>() {
-                
+
             @Override
             public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
