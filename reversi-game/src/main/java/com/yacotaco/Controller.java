@@ -1224,12 +1224,15 @@ public class Controller {
                         for (int row = 0; row < boardGrid.length; row++) {
                             for (int col = 0; col < boardGrid[row].length; col++) {
                                 Disc disc = board.getDiscFromBoard(row, col);
-                                String s = row + "," + col + "," + disc.getState() + "\n";
+                                String s = row + "," + col + ","
+                                    + disc.getState() + "\n";
                                 try {
                                     bw.write(s);
                                 } catch (IOException e) {
-                                    Alert alert = new Alert(AlertType.INFORMATION);
-                                    alert.setContentText("Can't write to file!");
+                                    Alert alert = new Alert(
+                                        AlertType.INFORMATION);
+                                    alert.setContentText(
+                                        "Can't write to file!");
                                     alert.show();
                                 }
                             }
