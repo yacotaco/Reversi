@@ -549,7 +549,7 @@ public class Controller {
      * @param disc Disc object.
      * @return list of arrays with moves coordinates.
      */
-    private ArrayList<Integer[]> getDiagonalMoves(Disc disc) {
+    private ArrayList<Integer[]> getDiagonalMoves(final Disc disc) {
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer row = disc.getRow();
         Integer col = disc.getCol();
