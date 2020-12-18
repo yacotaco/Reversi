@@ -156,14 +156,15 @@ public class Controller {
 
     /** Adds summary to main window.
      *
-     * @param playerOne Player class object.
-     * @param playerTwo Player class object.
+     * @param whitePlayer Player class object.
+     * @param blackPlayer Player class object.
      */
-    private void addSummary(Player playerOne, Player playerTwo) {
+    private void addSummary(final Player whitePlayer,
+        final Player blackPlayer) {
         if (timeline != null) {
             timeline.pause();
         }
-        sv = view.new SummaryView(playerOne, playerTwo);
+        sv = view.new SummaryView(whitePlayer, blackPlayer);
         StackPane summary = sv.getSummary();
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
