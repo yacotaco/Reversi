@@ -339,7 +339,8 @@ public class Controller {
     private void setGameTimer() {
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(turnTime), new KeyValue(new WritableValue<Integer>() {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(turnTime),
+            new KeyValue(new WritableValue<Integer>() {
 
             @Override
             public Integer getValue() {
@@ -351,31 +352,43 @@ public class Controller {
                 if (playerTurn == 0) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
+                    int seconds = (int) (totoalTurnTime.toSeconds()
+                        - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds));
-                    view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
-                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .setTimerValue(Integer.toString(seconds));
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .removeHighlight();
 
                     if (seconds > 10) {
-                        view.getTopBorderPane().getTimerViewWhite().addHighlight();
+                        view.getTopBorderPane().getTimerViewWhite()
+                            .addHighlight();
                     } else {
-                        view.getTopBorderPane().getTimerViewWhite().timeoutHighlight();
+                        view.getTopBorderPane().getTimerViewWhite()
+                            .timeoutHighlight();
                     }
 
                 } else if (playerTurn == 1) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
+                    int seconds = (int) (totoalTurnTime.toSeconds()
+                         - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds));
-                    view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
-                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .setTimerValue(Integer.toString(seconds));
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .removeHighlight();
 
                     if (seconds > 10) {
-                        view.getTopBorderPane().getTimerViewBlack().addHighlight();
+                        view.getTopBorderPane().getTimerViewBlack()
+                            .addHighlight();
                     } else {
-                        view.getTopBorderPane().getTimerViewBlack().timeoutHighlight();
+                        view.getTopBorderPane().getTimerViewBlack()
+                            .timeoutHighlight();
                     }
                 }
             }
@@ -387,13 +400,15 @@ public class Controller {
             @Override
             public void handle(ActionEvent event) {
                 if (playerTurn == 0) {
-                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .removeHighlight();
                     changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
 
                 } else if (playerTurn == 1) {
-                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .removeHighlight();
                     changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
