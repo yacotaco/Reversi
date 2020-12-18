@@ -124,6 +124,7 @@ public class Controller {
         this.playerTurn = value;
     }
 
+    /** Changes player turn. */
     private void changePlayerTurn() {
         if (playerTurn == 0) {
             setPlayerTurn(1);
