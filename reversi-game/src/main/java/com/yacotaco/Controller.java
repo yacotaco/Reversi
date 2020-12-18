@@ -1143,7 +1143,8 @@ public class Controller {
 
     /** Exit button click handler. */
     private void onExitButtonClick() {
-        view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getExitButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent event) {
 
