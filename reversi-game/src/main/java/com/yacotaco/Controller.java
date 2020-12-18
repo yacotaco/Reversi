@@ -1092,7 +1092,7 @@ public class Controller {
 
     // ************** CLICK HANDLERS **************
 
-    private void runOnClick(Integer row, Integer col) {
+    private void runOnClick(final Integer row, final Integer col) {
 
         Boolean validMove = validatePlacedMove(row, col);
 
