@@ -116,8 +116,12 @@ public class Controller {
 
     // ************** HELPER FUNCTIONS **************
 
-    private void setPlayerTurn(Integer state) {
-        this.playerTurn = state;
+    /** Sets player turn.
+     *
+     * @param value 0 - white, 1 - black
+     */
+    private void setPlayerTurn(final Integer value) {
+        this.playerTurn = value;
     }
 
     private void changePlayerTurn(Integer playerTurn) {
