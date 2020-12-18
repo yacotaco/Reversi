@@ -1092,6 +1092,11 @@ public class Controller {
 
     // ************** CLICK HANDLERS **************
 
+    /** Runs game updates after placed move.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     */
     private void runOnClick(final Integer row, final Integer col) {
 
         Boolean validMove = validatePlacedMove(row, col);
@@ -1129,7 +1134,7 @@ public class Controller {
 
                     runOnClick(row, col);
                     randomMoveGenerator();
-                    
+
                 }
             });
         });
