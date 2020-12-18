@@ -58,9 +58,13 @@ public class Controller {
     private Timeline timeline;
     /** Flag for game timer. */
     private Boolean isTimerSwitched;
+    /** Timer time value in ms. */
     private final Double turnTime = 30000.0;
+    /** Player turn on new game init. */
     private final Integer initPlayerTurn = 0;
+    /** Debug marker for flipped discs. */
     private final Boolean debugMarker = true;
+    /** Debug marker for valid moves. */
     private final Boolean moveMarker = true;
     /** Flag for AI Player. */
     private Boolean aiPlayer;
