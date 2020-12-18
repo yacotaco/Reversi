@@ -813,6 +813,12 @@ public class Controller {
 
     // ************** FLIP OPPONENT DISCS **************
 
+    /** Changes state of opponent disc captured by player.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     * @param newPlayerTurn current player.
+     */
     private void flipHorizontalDiscs(final Integer row, final Integer col,
         final Integer newPlayerTurn) {
         int nextDiscState = -1;
