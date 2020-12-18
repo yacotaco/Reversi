@@ -1170,7 +1170,9 @@ public class Controller {
 
     /** New game button click handler. */
     private void onNewGameButtonClick() {
-        view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getNewGameButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
             public void handle(MouseEvent event) {
 
