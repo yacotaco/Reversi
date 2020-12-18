@@ -942,7 +942,9 @@ public class Controller {
         int tmpCol = col;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
-        // add loop to check if placed move "close" opponent discs (diagonal up right)
+        /** add loop to check if placed move "close"
+         *  opponent discs  (diagonal up right)
+         */
         for (int i = row - 1; i >= 0; i--) {
             col++;
 
@@ -974,7 +976,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal down left)
+        /** add loop to check if placed move "close"
+         * opponent discs (diagonal down left)
+         */
         for (int i = row + 1; i < board.getBoardGrid().length; i++) {
             col--;
 
@@ -1006,7 +1010,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal up left)
+        /** add loop to check if placed move "close"
+         *  opponent discs (diagonal up left)
+         */
         for (int i = row - 1; i >= 0; i--) {
             col--;
 
@@ -1038,7 +1044,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal down right)
+        /** add loop to check if placed move "close"
+         * opponent discs (diagonal down right)
+         */
         for (int i = row + 1; i < board.getBoardGrid().length; i++) {
             col++;
 
