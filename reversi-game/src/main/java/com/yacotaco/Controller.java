@@ -727,12 +727,12 @@ public class Controller {
 
     /** Collects all valid moves for current player.
      *
-     * @param playerTurn current player.
+     * @param newPlayerTurn current player.
      */
-    private void getValidMoves(Integer playerTurn) {
+    private void getValidMoves(final Integer newPlayerTurn) {
         allValidMoves.clear();
         // generate posible moves for player
-        ArrayList<Disc> list = board.getAllPlayerDiscs(playerTurn);
+        ArrayList<Disc> list = board.getAllPlayerDiscs(newPlayerTurn);
         for (Disc disc : list) {
             ArrayList<Integer[]> hMoves = getHorizontalMoves(disc);
             for (Integer[] move : hMoves) {
