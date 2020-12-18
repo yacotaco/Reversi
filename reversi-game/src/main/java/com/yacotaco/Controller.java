@@ -874,6 +874,12 @@ public class Controller {
         }
     }
 
+    /** Changes state of opponent disc captured by player.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     * @param currentPlayer current player turn (0 - white, 1 - black).
+     */
     private void flipVerticalDiscs(final Integer row, final Integer col,
         final Integer currentPlayer) {
         int nextDiscState = -1;
