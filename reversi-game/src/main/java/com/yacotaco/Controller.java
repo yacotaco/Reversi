@@ -281,6 +281,7 @@ public class Controller {
         flipedDiscsToMark.clear();
     }
 
+    /** Resets game timer view. */
     private void resetTimerViewOnTimelineStop() {
         // reset timer view
         if (playerTurn == 0) {
@@ -292,6 +293,7 @@ public class Controller {
         }
     }
 
+    /** Updates indicator for current player. */
     private void updatePlayerTurnIndicators() {
         int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
         int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
@@ -309,6 +311,7 @@ public class Controller {
         }
     }
 
+    /** Updates counter for current player. */
     private void updatePointsCounters() {
         countPlayerPoints(playerOne);
         countPlayerPoints(playerTwo);
@@ -326,11 +329,13 @@ public class Controller {
 
     // ************** TIMER **************
 
+    /** Resets game timer. */
     private void resetTimer() {
         timeline.stop();
         resetTimerViewOnTimelineStop();
     }
 
+    /** Organizes all game actions around timeline. */
     private void setGameTimer() {
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
@@ -401,6 +406,11 @@ public class Controller {
 
     // ************** SEARCH AND VALIDATE MOVES **************
 
+    /** Gets all horizontal moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
     private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
@@ -466,6 +476,11 @@ public class Controller {
         return result;
     }
 
+    /** Gets all vertical moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
     private ArrayList<Integer[]> getVerticalMoves(Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
@@ -529,6 +544,11 @@ public class Controller {
         return result;
     }
 
+    /** Gets all diagonal moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
     private ArrayList<Integer[]> getDiagonalMoves(Disc disc) {
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer row = disc.getRow();
@@ -705,6 +725,10 @@ public class Controller {
         return result;
     }
 
+    /** Collects all valid moves for current player.
+     *
+     * @param playerTurn current player.
+     */
     private void getValidMoves(Integer playerTurn) {
         allValidMoves.clear();
         // generate posible moves for player
@@ -728,6 +752,7 @@ public class Controller {
         removeDuplicatedValidMoves();
     }
 
+    /** Switches player if there is no valid move. */
     private void switchOnNoValidMoves() {
         // switch player if there are no valid moves
         if (allValidMoves.isEmpty() == true) {
@@ -738,6 +763,12 @@ public class Controller {
         }
     }
 
+    /**  Checks if placed move is on list.
+     *
+     * @param row row coordinate.
+     * @param col column coordiante.
+     * @return boolean value.
+     */
     private boolean validatePlacedMove(Integer row, Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
