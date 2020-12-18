@@ -1146,7 +1146,7 @@ public class Controller {
         view.getTopBorderPane().getExitButton()
             .setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
 
                 if (timeline != null) {
                     timeline.pause();
