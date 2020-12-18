@@ -1097,7 +1097,8 @@ public class Controller {
         boolean validMove = validatePlacedMove(row, col);
 
         // player can place disc only on empty square
-        if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
+        if (board.getDiscFromBoard(row, col).getState() == -1
+            && validMove == true) {
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
             flipVerticalDiscs(row, col, playerTurn);
