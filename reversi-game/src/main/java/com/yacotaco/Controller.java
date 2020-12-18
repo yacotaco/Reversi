@@ -1141,6 +1141,7 @@ public class Controller {
         });
     }
 
+    /** Exit button click handler. */
     private void onExitButtonClick() {
         view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -1165,6 +1166,7 @@ public class Controller {
         });
     }
 
+    /** New game button click handler. */
     private void onNewGameButtonClick() {
         view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -1193,6 +1195,7 @@ public class Controller {
         });
     }
 
+    /** Save button click handler. */
     private void onSaveButtonClick() {
         view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -1257,6 +1260,7 @@ public class Controller {
         });
     }
 
+    /** Load button click handler. */
     private void onLoadButtonClick() {
         view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
@@ -1326,6 +1330,7 @@ public class Controller {
         });
     }
 
+    /** Timed game button click handler. */
     private void onTimerButtonClick() {
         view.getTopBorderPane().getNewTimedGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
@@ -1352,6 +1357,7 @@ public class Controller {
         });
     }
 
+    /** AI Player button click handler. */
     private void onAiPlayerButtonClick() {
         view.getTopBorderPane().getAiPlayerButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
 
