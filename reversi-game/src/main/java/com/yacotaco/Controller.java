@@ -1176,14 +1176,14 @@ public class Controller {
             @Override
             public void handle(final MouseEvent event) {
 
-                if (isTimerSwitched == true) {
+                if (isTimerSwitched.equals(true)) {
                     if (timeline != null) {
                         timeline.stop();
                         timeline = new Timeline();
                     } else {
                         timeline = new Timeline();
                     }
-                } else if (isTimerSwitched == false) {
+                } else if (isTimerSwitched.equals(false)) {
                     timeline = new Timeline();
                     timeline.pause();
                 }
