@@ -1347,7 +1347,8 @@ public class Controller {
 
     /** Timed game button click handler. */
     private void onTimerButtonClick() {
-        view.getTopBorderPane().getNewTimedGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getNewTimedGameButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
@@ -1360,12 +1361,16 @@ public class Controller {
                 if (event.getClickCount() == 2 && timeline != null) {
                     isTimerSwitched = false;
                     timeline.stop();
-                    view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                    view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .switchOffTimer();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .switchOffTimer();
                 } else if (event.getClickCount() == 2) {
                     isTimerSwitched = false;
-                    view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                    view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .switchOffTimer();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .switchOffTimer();
                 }
             }
 
@@ -1374,7 +1379,8 @@ public class Controller {
 
     /** AI Player button click handler. */
     private void onAiPlayerButtonClick() {
-        view.getTopBorderPane().getAiPlayerButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getAiPlayerButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
             public void handle(MouseEvent event) {
