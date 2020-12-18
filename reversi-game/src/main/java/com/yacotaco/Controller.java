@@ -1307,7 +1307,7 @@ public class Controller {
 
                         if (timeline != null) {
                             resetTimer();
-                            if (isTimerSwitched == false) {
+                            if (isTimerSwitched.equals(false)) {
                                 view.getTopBorderPane().getTimerViewWhite()
                                     .switchOffTimer();
                                 view.getTopBorderPane().getTimerViewBlack()
@@ -1322,7 +1322,7 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched == true) {
+                        if (timeline != null && isTimerSwitched.equals(true)) {
                             timeline.play();
                         }
                     }
