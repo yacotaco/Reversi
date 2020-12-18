@@ -1270,7 +1270,9 @@ public class Controller {
 
     /** Load button click handler. */
     private void onLoadButtonClick() {
-        view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getLoadButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
             public void handle(MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
@@ -1294,7 +1296,8 @@ public class Controller {
                                 int row = Integer.valueOf(splitLine[0]);
                                 int col = Integer.valueOf(splitLine[1]);
                                 int discState = Integer.valueOf(splitLine[2]);
-                                board.getDiscFromBoard(row, col).setState(discState);
+                                board.getDiscFromBoard(row, col)
+                                    .setState(discState);
                             } else {
                                 int playerState = Integer.valueOf(line);
                                 setPlayerTurn(playerState);
@@ -1305,8 +1308,10 @@ public class Controller {
                         if (timeline != null) {
                             resetTimer();
                             if (isTimerSwitched == false) {
-                                view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                                view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                                view.getTopBorderPane().getTimerViewWhite()
+                                    .switchOffTimer();
+                                view.getTopBorderPane().getTimerViewBlack()
+                                    .switchOffTimer();
                             }
                             getValidMoves(playerTurn);
                             updateBoardView();
@@ -1321,7 +1326,9 @@ public class Controller {
                             timeline.play();
                         }
                     }
-                } catch (NumberFormatException | IOException | NullPointerException e) {
+                } catch (NumberFormatException | IOException
+                    | NullPointerException e) {
+
                     if (e.getMessage() == null) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setAlertType(AlertType.ERROR);
