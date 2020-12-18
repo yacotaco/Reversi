@@ -817,12 +817,12 @@ public class Controller {
      *
      * @param row row coordinates.
      * @param col column coordinates.
-     * @param newPlayerTurn current player.
+     * @param currentPlayer current player turn (0 - white, 1 - black).
      */
     private void flipHorizontalDiscs(final Integer row, final Integer col,
-        final Integer newPlayerTurn) {
+        final Integer currentPlayer) {
         int nextDiscState = -1;
-        int primaryDiscState = newPlayerTurn;
+        int primaryDiscState = currentPlayer;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs on right
