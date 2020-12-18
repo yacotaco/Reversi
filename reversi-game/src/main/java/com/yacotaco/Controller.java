@@ -337,6 +337,8 @@ public class Controller {
 
     /** Organizes all game actions around timeline. */
     private void setGameTimer() {
+        /** Time in seconds before timer changes color to red. */
+        final int timeoutSec = 10;
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
         timeline.getKeyFrames().add(new KeyFrame(Duration.millis(turnTime),
@@ -362,7 +364,7 @@ public class Controller {
                     view.getTopBorderPane().getTimerViewBlack()
                         .removeHighlight();
 
-                    if (seconds > 10) {
+                    if (seconds > timeoutSec) {
                         view.getTopBorderPane().getTimerViewWhite()
                             .addHighlight();
                     } else {
@@ -383,7 +385,7 @@ public class Controller {
                     view.getTopBorderPane().getTimerViewWhite()
                         .removeHighlight();
 
-                    if (seconds > 10) {
+                    if (seconds > timeoutSec) {
                         view.getTopBorderPane().getTimerViewBlack()
                             .addHighlight();
                     } else {
