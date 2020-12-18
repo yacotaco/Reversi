@@ -178,7 +178,7 @@ public class Controller {
     }
 
     private void randomMoveGenerator() {
-        if (aiPlayer == true && playerTurn == 1) {
+        if (aiPlayer.equals(true) && playerTurn.equals(1)) {
             int max = allValidMoves.size();
             int random = (int) (Math.random() * max);
             Integer[] move = allValidMoves.get(random);
