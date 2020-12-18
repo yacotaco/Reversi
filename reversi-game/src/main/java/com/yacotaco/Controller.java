@@ -29,38 +29,63 @@ import javafx.stage.Stage;
 import javafx.util.Duration;
 
 /**
- * Controller
+ * Controller class.
+ *
+ * @author Kamil Kurach
+ * @author https://github.com/yacotaco
+ * @version 1.0
  */
 public class Controller {
+    /**Board class object. */
     private Board board;
+    /** View class object. */
     private View view;
+    /**Stage class object. */
     private Stage stage;
+    /** BoardGrid class object. Part of View class. */
     private View.BoardGrid bg;
+    /** DiscView class object. Part of View class. */
     private View.DiscView dv;
+    /** SummaryView class object. Part of View class. */
     private View.SummaryView sv;
+    /** Player class object. */
     private Player playerOne;
+    /** Player class object. */
     private Player playerTwo;
+    /** 0 -white player 1 - black player. */
     private Integer playerTurn;
+    /** Timeline class object for game timer. */
     private Timeline timeline;
+    /** Flag for game timer. */
     private Boolean isTimerSwitched;
-    private final Double TURN_TIME = 30000.0;
+    /** Timer time value in ms. */
+    private final Double turnTime = 30000.0;
+    /** Player turn on new game init. */
     private final Integer initPlayerTurn = 0;
-    private final Boolean DEBUG_MARKER = true;
-    private final Boolean MOVE_MARKER = true;
+    /** Debug marker for flipped discs. */
+    private final Boolean debugMarker = true;
+    /** Debug marker for valid moves. */
+    private final Boolean moveMarker = true;
+    /** Flag for AI Player. */
     private Boolean aiPlayer;
+    /**List of all valid moves for current player.
+     * List of arrays with coordinates [row, col]. */
     private ArrayList<Integer[]> allValidMoves = new ArrayList<Integer[]>();
+    /** List of all opponent discs captured by player.*/
     private ArrayList<Disc> flipedDiscsToMark = new ArrayList<Disc>();
 
-    /**
-     * @param board Board class
-     * @param view  View class
-     * @param stage JavaFX container
+    /** Controller constructor.
+     *
+     * @param boardClass Board class
+     * @param viewClass  View class
+     * @param stageClass JavaFX container
      */
 
-    public Controller(Board board, View view, Stage stage) {
-        this.board = board;
-        this.view = view;
-        this.stage = stage;
+    public Controller(final Board boardClass, final View viewClass,
+            final Stage stageClass) {
+        this.board = boardClass;
+        this.view = viewClass;
+        this.stage = stageClass;
         this.bg = view.new BoardGrid();
         this.dv = view.new DiscView();
         this.playerOne = new Player();
@@ -72,6 +97,7 @@ public class Controller {
 
     // ************** INITS **************
 
+    /** Inits all handlers. */
     private void initController() {
         onGridClick();
         onExitButtonClick();
@@ -82,6 +108,7 @@ public class Controller {
         onAiPlayerButtonClick();
     }
 
+    /** Inits both players names and states (disc color).*/
     private void initPlayer() {
         playerOne.setDiscState(0);
         playerOne.setName("A");
@@ -91,11 +118,16 @@ public class Controller {
 
     // ************** HELPER FUNCTIONS **************
 
-    private void setPlayerTurn(Integer state) {
-        this.playerTurn = state;
+    /** Sets player turn.
+     *
+     * @param value 0 - white, 1 - black
+     */
+    private void setPlayerTurn(final Integer value) {
+        this.playerTurn = value;
     }
 
-    private void changePlayerTurn(Integer playerTurn) {
+    /** Changes player turn. */
+    private void changePlayerTurn() {
         if (playerTurn == 0) {
             setPlayerTurn(1);
         } else if (playerTurn == 1) {
@@ -103,11 +135,19 @@ public class Controller {
         }
     }
 
-    private void countPlayerPoints(Player player) {
+    /** Counts points for given player.
+     *
+     * @param player Player class object.
+     */
+    private void countPlayerPoints(final Player player) {
         Integer discState = player.getDiscState();
         player.setPoints(board.getAllPlayerDiscs(discState).size());
     }
 
+    /** Gets date and time.
+     *
+     * @return string with date and time.
+     */
     private String getDateTime() {
         String format = "yyyy-MM-dd_HH:mm:ss";
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern(format);
@@ -116,25 +156,36 @@ public class Controller {
         return formatDateTime;
     }
 
-    private void addSummary(Player playerOne, Player playerTwo) {
+    /** Adds summary to main window.
+     *
+     * @param whitePlayer Player class object.
+     * @param blackPlayer Player class object.
+     */
+    private void addSummary(final Player whitePlayer,
+        final Player blackPlayer) {
+        final int index = 3;
         if (timeline != null) {
             timeline.pause();
         }
-        sv = view.new SummaryView(playerOne, playerTwo);
+        sv = view.new SummaryView(whitePlayer, blackPlayer);
         StackPane summary = sv.getSummary();
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
-        sp.getChildren().add(3, summary);
+        sp.getChildren().add(index, summary);
     }
 
+    /** Removes summary from main window. */
     private void removeSummary() {
+        final int maxElements = 4;
+        final int summaryElementIndex = 3;
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
-        if (sp.getChildren().size() == 4) {
-            sp.getChildren().remove(3);
+        if (sp.getChildren().size() == maxElements) {
+            sp.getChildren().remove(summaryElementIndex);
         }
     }
 
+    /** Removes duplicated valid moves. */
     private void removeDuplicatedValidMoves() {
         for (int i = 0; i < allValidMoves.size(); i++) {
             Integer[] iMove = allValidMoves.get(i);
@@ -146,14 +197,16 @@ public class Controller {
                 int jCol = jMove[1];
                 if (i != j) {
                     if (iRow == jRow && iCol == jCol) {
+                        allValidMoves.remove(j);
                     }
                 }
             }
         }
     }
 
+    /** Generates random move for opponent. */
     private void randomMoveGenerator() {
-        if (aiPlayer == true && playerTurn == 1) {
+        if (aiPlayer.equals(true) && playerTurn.equals(1)) {
             int max = allValidMoves.size();
             int random = (int) (Math.random() * max);
             Integer[] move = allValidMoves.get(random);
@@ -163,6 +216,9 @@ public class Controller {
 
     // ************** VIEW UPDATE **************
 
+    /** Updates view of all elements in main window.
+     *
+     */
     private void updateBoardView() {
 
         switchOnNoValidMoves();
@@ -177,7 +233,7 @@ public class Controller {
                 sp.getChildren().remove(1);
             }
 
-            if (DEBUG_MARKER == true) {
+            if (debugMarker.equals(true)) {
                 View.DebugMarkers dm = view.new DebugMarkers();
                 sp.getChildren().add(dv.makeDisc(discState));
                 for (Disc disc : flipedDiscsToMark) {
@@ -186,15 +242,17 @@ public class Controller {
                     if (discRow == row && discCol == col) {
                         StackPane spWithMarker = new StackPane();
                         sp.getChildren().remove(1);
-                        spWithMarker.getChildren().addAll(dv.makeDisc(discState), dm.flipDebugMarker());
+                        spWithMarker.getChildren().addAll(
+                            dv.makeDisc(discState),
+                            dm.flipDebugMarker());
                         sp.getChildren().add(spWithMarker);
                     }
                 }
-            } else if (DEBUG_MARKER == false) {
+            } else if (debugMarker.equals(false)) {
                 sp.getChildren().add(dv.makeDisc(discState));
             }
 
-            if (MOVE_MARKER == true) {
+            if (moveMarker.equals(true)) {
                 for (Integer[] move : allValidMoves) {
                     int validMoveRow = move[0];
                     int validMoveCol = move[1];
@@ -212,17 +270,18 @@ public class Controller {
 
         updatePlayerTurnIndicators();
 
-        if (isTimerSwitched == true) {
+        if (isTimerSwitched.equals(true)) {
             setGameTimer();
         }
 
-        if (allValidMoves.isEmpty() == true) {
+        if (allValidMoves.isEmpty()) {
             addSummary(playerOne, playerTwo);
         }
 
         flipedDiscsToMark.clear();
     }
 
+    /** Resets game timer view. */
     private void resetTimerViewOnTimelineStop() {
         // reset timer view
         if (playerTurn == 0) {
@@ -234,33 +293,42 @@ public class Controller {
         }
     }
 
+    /** Updates indicator for current player. */
     private void updatePlayerTurnIndicators() {
-        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
-        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
+        final int maxElements = 3;
+        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter()
+            .getChildren().size();
+        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter()
+            .getChildren().size();
 
         if (playerTurn == 0) {
-            view.getTopBorderPane().getWhiteCounter().getChildren().add(2, dv.makePlayerIndicator());
+            view.getTopBorderPane().getWhiteCounter().getChildren()
+                .add(2, dv.makePlayerIndicator());
         } else if (playerTurn == 1) {
-            view.getTopBorderPane().getBlackCounter().getChildren().add(2, dv.makePlayerIndicator());
+            view.getTopBorderPane().getBlackCounter().getChildren()
+                .add(2, dv.makePlayerIndicator());
         }
 
-        if (elementsInWhiteCounter == 3) {
+        if (elementsInWhiteCounter == maxElements) {
             view.getTopBorderPane().getWhiteCounter().getChildren().remove(2);
-        } else if (elementsInBlackCounter == 3) {
+        } else if (elementsInBlackCounter == maxElements) {
             view.getTopBorderPane().getBlackCounter().getChildren().remove(2);
         }
     }
 
+    /** Updates counter for current player. */
     private void updatePointsCounters() {
         countPlayerPoints(playerOne);
         countPlayerPoints(playerTwo);
         // update white disc
-        Node nodeWhite = view.getTopBorderPane().getWhiteCounter().getChildren().get(1);
+        Node nodeWhite = view.getTopBorderPane().getWhiteCounter()
+            .getChildren().get(1);
         Text textWhite = (Text) nodeWhite;
         textWhite.setText(Integer.toString(playerOne.getPoints()));
 
         // update black disc
-        Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
+        Node nodeBlack = view.getTopBorderPane().getBlackCounter()
+            .getChildren().get(1);
         Text textBlack = (Text) nodeBlack;
         textBlack.setText(Integer.toString(playerTwo.getPoints()));
         view.highLightPoints(textWhite, textBlack, playerTurn);
@@ -268,15 +336,20 @@ public class Controller {
 
     // ************** TIMER **************
 
+    /** Resets game timer. */
     private void resetTimer() {
         timeline.stop();
         resetTimerViewOnTimelineStop();
     }
 
+    /** Organizes all game actions around timeline. */
     private void setGameTimer() {
+        /** Time in seconds before timer changes color to red. */
+        final int timeoutSec = 10;
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(TURN_TIME), new KeyValue(new WritableValue<Integer>() {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(turnTime),
+            new KeyValue(new WritableValue<Integer>() {
 
             @Override
             public Integer getValue() {
@@ -284,35 +357,47 @@ public class Controller {
             }
 
             @Override
-            public void setValue(Integer value) {
+            public void setValue(final Integer value) {
                 if (playerTurn == 0) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
+                    int seconds = (int) (totoalTurnTime.toSeconds()
+                        - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewWhite().setTimerValue(Integer.toString(seconds));
-                    view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
-                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .setTimerValue(Integer.toString(seconds));
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .removeHighlight();
 
-                    if (seconds > 10) {
-                        view.getTopBorderPane().getTimerViewWhite().addHighlight();
+                    if (seconds > timeoutSec) {
+                        view.getTopBorderPane().getTimerViewWhite()
+                            .addHighlight();
                     } else {
-                        view.getTopBorderPane().getTimerViewWhite().timeoutHighlight();
+                        view.getTopBorderPane().getTimerViewWhite()
+                            .timeoutHighlight();
                     }
 
                 } else if (playerTurn == 1) {
                     Duration currentTime = timeline.getCurrentTime();
                     Duration totoalTurnTime = timeline.getTotalDuration();
-                    int seconds = (int) (totoalTurnTime.toSeconds() - currentTime.toSeconds());
+                    int seconds = (int) (totoalTurnTime.toSeconds()
+                         - currentTime.toSeconds());
 
-                    view.getTopBorderPane().getTimerViewBlack().setTimerValue(Integer.toString(seconds));
-                    view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
-                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .setTimerValue(Integer.toString(seconds));
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .setTimerValue("0");
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .removeHighlight();
 
-                    if (seconds > 10) {
-                        view.getTopBorderPane().getTimerViewBlack().addHighlight();
+                    if (seconds > timeoutSec) {
+                        view.getTopBorderPane().getTimerViewBlack()
+                            .addHighlight();
                     } else {
-                        view.getTopBorderPane().getTimerViewBlack().timeoutHighlight();
+                        view.getTopBorderPane().getTimerViewBlack()
+                            .timeoutHighlight();
                     }
                 }
             }
@@ -322,16 +407,18 @@ public class Controller {
         timeline.setOnFinished(new EventHandler<ActionEvent>() {
 
             @Override
-            public void handle(ActionEvent event) {
+            public void handle(final ActionEvent event) {
                 if (playerTurn == 0) {
-                    view.getTopBorderPane().getTimerViewWhite().removeHighlight();
-                    changePlayerTurn(playerTurn);
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .removeHighlight();
+                    changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
 
                 } else if (playerTurn == 1) {
-                    view.getTopBorderPane().getTimerViewBlack().removeHighlight();
-                    changePlayerTurn(playerTurn);
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .removeHighlight();
+                    changePlayerTurn();
                     getValidMoves(playerTurn);
                     updateBoardView();
                 }
@@ -343,7 +430,12 @@ public class Controller {
 
     // ************** SEARCH AND VALIDATE MOVES **************
 
-    private ArrayList<Integer[]> getHorizontalMoves(Disc disc) {
+    /** Gets all horizontal moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
+    private ArrayList<Integer[]> getHorizontalMoves(final Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         int colRight = discCol + 1;
@@ -359,7 +451,8 @@ public class Controller {
 
         // search right
         if (colRight <= board.getBoardGrid().length - 1) {
-            nextDiscState = board.getDiscFromBoard(discRow, colRight).getState();
+            nextDiscState = board.getDiscFromBoard(discRow, colRight)
+                .getState();
         }
 
         while (nextDiscState == opponentDiscState) {
@@ -369,7 +462,8 @@ public class Controller {
                 break;
             }
 
-            nextDiscState = board.getDiscFromBoard(discRow, colRight).getState();
+            nextDiscState = board.getDiscFromBoard(discRow, colRight)
+                .getState();
 
             if (nextDiscState == -1) {
                 Integer[] move = new Integer[2];
@@ -385,7 +479,8 @@ public class Controller {
         int nextDiscStateLeft = -1;
 
         if (colLeft >= 0) {
-            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft)
+                .getState();
         }
 
         while (nextDiscStateLeft == opponentDiscState) {
@@ -395,7 +490,8 @@ public class Controller {
                 break;
             }
 
-            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft).getState();
+            nextDiscStateLeft = board.getDiscFromBoard(discRow, colLeft)
+                .getState();
 
             if (nextDiscStateLeft == -1) {
                 Integer[] move = new Integer[2];
@@ -408,7 +504,12 @@ public class Controller {
         return result;
     }
 
-    private ArrayList<Integer[]> getVerticalMoves(Disc disc) {
+    /** Gets all vertical moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
+    private ArrayList<Integer[]> getVerticalMoves(final Disc disc) {
         Integer discRow = disc.getRow();
         Integer discCol = disc.getCol();
         int rowUp = discRow - 1;
@@ -449,7 +550,8 @@ public class Controller {
 
         // search down
         if (rowDown <= board.getBoardGrid().length - 1) {
-            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol)
+                .getState();
         }
 
         while (nextDiscStateDown == opponentDiscState) {
@@ -458,7 +560,8 @@ public class Controller {
                 break;
             }
 
-            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol)
+                .getState();
 
             if (nextDiscStateDown == -1) {
                 Integer[] move = new Integer[2];
@@ -471,7 +574,12 @@ public class Controller {
         return result;
     }
 
-    private ArrayList<Integer[]> getDiagonalMoves(Disc disc) {
+    /** Gets all diagonal moves.
+     *
+     * @param disc Disc object.
+     * @return list of arrays with moves coordinates.
+     */
+    private ArrayList<Integer[]> getDiagonalMoves(final Disc disc) {
         ArrayList<Integer[]> result = new ArrayList<Integer[]>();
         Integer row = disc.getRow();
         Integer col = disc.getCol();
@@ -647,10 +755,14 @@ public class Controller {
         return result;
     }
 
-    private void getValidMoves(Integer playerTurn) {
+    /** Collects all valid moves for current player.
+     *
+     * @param newPlayerTurn current player.
+     */
+    private void getValidMoves(final Integer newPlayerTurn) {
         allValidMoves.clear();
         // generate posible moves for player
-        ArrayList<Disc> list = board.getAllPlayerDiscs(playerTurn);
+        ArrayList<Disc> list = board.getAllPlayerDiscs(newPlayerTurn);
         for (Disc disc : list) {
             ArrayList<Integer[]> hMoves = getHorizontalMoves(disc);
             for (Integer[] move : hMoves) {
@@ -670,17 +782,24 @@ public class Controller {
         removeDuplicatedValidMoves();
     }
 
+    /** Switches player if there is no valid move. */
     private void switchOnNoValidMoves() {
         // switch player if there are no valid moves
-        if (allValidMoves.isEmpty() == true) {
-            changePlayerTurn(playerTurn);
+        if (allValidMoves.isEmpty()) {
+            changePlayerTurn();
             updatePointsCounters();
             updatePlayerTurnIndicators();
             getValidMoves(playerTurn);
         }
     }
 
-    private boolean validatePlacedMove(Integer row, Integer col) {
+    /**  Checks if placed move is on list.
+     *
+     * @param row row coordinate.
+     * @param col column coordiante.
+     * @return boolean value.
+     */
+    private boolean validatePlacedMove(final Integer row, final Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
             int validMoveRow = move[0];
@@ -694,9 +813,16 @@ public class Controller {
 
     // ************** FLIP OPPONENT DISCS **************
 
-    private void flipHorizontalDiscs(Integer row, Integer col, Integer playerTurn) {
+    /** Changes state of opponent disc captured by player.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     * @param currentPlayer current player turn (0 - white, 1 - black).
+     */
+    private void flipHorizontalDiscs(final Integer row, final Integer col,
+        final Integer currentPlayer) {
         int nextDiscState = -1;
-        int primaryDiscState = playerTurn;
+        int primaryDiscState = currentPlayer;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs on right
@@ -712,7 +838,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -735,7 +862,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -746,9 +874,16 @@ public class Controller {
         }
     }
 
-    private void flipVerticalDiscs(Integer row, Integer col, Integer playerTurn) {
+    /** Changes state of opponent disc captured by player.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     * @param currentPlayer current player turn (0 - white, 1 - black).
+     */
+    private void flipVerticalDiscs(final Integer row, final Integer col,
+        final Integer currentPlayer) {
         int nextDiscState = -1;
-        int primaryDiscState = playerTurn;
+        int primaryDiscState = currentPlayer;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs up
@@ -764,7 +899,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -787,7 +923,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -798,14 +935,25 @@ public class Controller {
         }
     }
 
-    private void flipDiagonalDiscs(Integer row, Integer col, Integer playerTurn) {
+    /** Changes state of opponent disc captured by player.
+     *
+     * @param rowValue row coordinates.
+     * @param colValue column coordinates.
+     * @param currentPlayer current player turn (0 - white, 1 - black).
+     */
+    private void flipDiagonalDiscs(final Integer rowValue,
+        final Integer colValue, final Integer currentPlayer) {
+        int row = rowValue;
+        int col = colValue;
         int nextDiscState = -1;
-        int primaryDiscState = playerTurn;
+        int primaryDiscState = currentPlayer;
         int tmpRow = row;
         int tmpCol = col;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
-        // add loop to check if placed move "close" opponent discs (diagonal up right)
+        /** add loop to check if placed move "close"
+         *  opponent discs  (diagonal up right)
+         */
         for (int i = row - 1; i >= 0; i--) {
             col++;
 
@@ -824,7 +972,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -837,7 +986,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal down left)
+        /** add loop to check if placed move "close"
+         * opponent discs (diagonal down left)
+         */
         for (int i = row + 1; i < board.getBoardGrid().length; i++) {
             col--;
 
@@ -856,7 +1007,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -869,7 +1021,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal up left)
+        /** add loop to check if placed move "close"
+         *  opponent discs (diagonal up left)
+         */
         for (int i = row - 1; i >= 0; i--) {
             col--;
 
@@ -888,7 +1042,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -901,7 +1056,9 @@ public class Controller {
         row = tmpRow;
         col = tmpCol;
 
-        // add loop to check if placed move "close" opponent discs (diagonal down right)
+        /** add loop to check if placed move "close"
+         * opponent discs (diagonal down right)
+         */
         for (int i = row + 1; i < board.getBoardGrid().length; i++) {
             col++;
 
@@ -920,11 +1077,13 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
-            } else if (i + 1 > board.getBoardGrid().length - 1 || col + 1 > board.getBoardGrid().length - 1) {
+            } else if (i + 1 > board.getBoardGrid().length - 1
+                 || col + 1 > board.getBoardGrid().length - 1) {
                 discsToFlip.clear();
                 break;
             }
@@ -933,23 +1092,30 @@ public class Controller {
 
     // ************** CLICK HANDLERS **************
 
-    private void runOnClick(Integer row, Integer col) {
+    /** Runs game updates after placed move.
+     *
+     * @param row row coordinates.
+     * @param col column coordinates.
+     */
+    private void runOnClick(final Integer row, final Integer col) {
 
         boolean validMove = validatePlacedMove(row, col);
 
         // player can place disc only on empty square
-        if (board.getDiscFromBoard(row, col).getState() == -1 && validMove == true) {
+        if (board.getDiscFromBoard(row, col).getState() == -1
+            && validMove == true) {
+
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
             flipVerticalDiscs(row, col, playerTurn);
             flipDiagonalDiscs(row, col, playerTurn);
 
-            if (isTimerSwitched == true) {
+            if (isTimerSwitched.equals(true)) {
                 resetTimer();
             }
 
             // change player after update
-            changePlayerTurn(playerTurn);
+            changePlayerTurn();
 
             getValidMoves(playerTurn);
 
@@ -957,27 +1123,30 @@ public class Controller {
         }
     }
 
+    /** Click handler for placed move. */
     private void onGridClick() {
         bg.getBoardGridPane().getChildren().forEach(square -> {
             square.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(MouseEvent event) {
+                public void handle(final MouseEvent event) {
                     Node node = (Node) event.getSource();
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
 
                     runOnClick(row, col);
                     randomMoveGenerator();
-                    
+
                 }
             });
         });
     }
 
+    /** Exit button click handler. */
     private void onExitButtonClick() {
-        view.getTopBorderPane().getExitButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getExitButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
 
                 if (timeline != null) {
                     timeline.pause();
@@ -986,10 +1155,11 @@ public class Controller {
                 Alert alert = new Alert(AlertType.CONFIRMATION);
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
-                if (ButtonType.OK.equals(option.get()) == true) {
+                boolean buttonType = ButtonType.OK.equals(option.get());
+                if (buttonType == true) {
                     System.exit(0);
                 } else {
-                    if (timeline != null && isTimerSwitched == true) {
+                    if (timeline != null && isTimerSwitched.equals(true)) {
                         timeline.play();
                     }
                 }
@@ -998,19 +1168,22 @@ public class Controller {
         });
     }
 
+    /** New game button click handler. */
     private void onNewGameButtonClick() {
-        view.getTopBorderPane().getNewGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
-            @Override
-            public void handle(MouseEvent event) {
+        view.getTopBorderPane().getNewGameButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
-                if (isTimerSwitched == true) {
+            @Override
+            public void handle(final MouseEvent event) {
+
+                if (isTimerSwitched.equals(true)) {
                     if (timeline != null) {
                         timeline.stop();
                         timeline = new Timeline();
                     } else {
                         timeline = new Timeline();
                     }
-                } else if (isTimerSwitched == false) {
+                } else if (isTimerSwitched.equals(false)) {
                     timeline = new Timeline();
                     timeline.pause();
                 }
@@ -1026,12 +1199,16 @@ public class Controller {
         });
     }
 
+    /** Save button click handler. */
     private void onSaveButtonClick() {
-        view.getTopBorderPane().getSaveButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getSaveButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
-                fileChooser.setInitialFileName("REVERSI_GAME_SAVE_" + getDateTime());
+                fileChooser.setInitialFileName("REVERSI_GAME_SAVE_"
+                     + getDateTime());
                 Disc[][] boardGrid = board.getBoardGrid();
 
                 if (timeline != null) {
@@ -1047,12 +1224,15 @@ public class Controller {
                         for (int row = 0; row < boardGrid.length; row++) {
                             for (int col = 0; col < boardGrid[row].length; col++) {
                                 Disc disc = board.getDiscFromBoard(row, col);
-                                String s = row + "," + col + "," + disc.getState() + "\n";
+                                String s = row + "," + col + ","
+                                    + disc.getState() + "\n";
                                 try {
                                     bw.write(s);
                                 } catch (IOException e) {
-                                    Alert alert = new Alert(AlertType.INFORMATION);
-                                    alert.setContentText("Can't write to file!");
+                                    Alert alert = new Alert(
+                                        AlertType.INFORMATION);
+                                    alert.setContentText(
+                                        "Can't write to file!");
                                     alert.show();
                                 }
                             }
@@ -1065,13 +1245,14 @@ public class Controller {
                         alert.setContentText("File saved!");
 
                         Optional<ButtonType> option = alert.showAndWait();
-                        if (ButtonType.OK.equals(option.get()) == true) {
-                            if (timeline != null && isTimerSwitched == true) {
+                        boolean buttonType = ButtonType.OK.equals(option.get());
+                        if (buttonType == true) {
+                            if (timeline != null && isTimerSwitched.equals(true)) {
                                 timeline.play();
                             }
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched == true) {
+                        if (timeline != null && isTimerSwitched.equals(true)) {
                             timeline.play();
                         }
                     }
@@ -1090,10 +1271,13 @@ public class Controller {
         });
     }
 
+    /** Load button click handler. */
     private void onLoadButtonClick() {
-        view.getTopBorderPane().getLoadButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getLoadButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
+
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Open Game File");
 
@@ -1115,7 +1299,8 @@ public class Controller {
                                 int row = Integer.valueOf(splitLine[0]);
                                 int col = Integer.valueOf(splitLine[1]);
                                 int discState = Integer.valueOf(splitLine[2]);
-                                board.getDiscFromBoard(row, col).setState(discState);
+                                board.getDiscFromBoard(row, col)
+                                    .setState(discState);
                             } else {
                                 int playerState = Integer.valueOf(line);
                                 setPlayerTurn(playerState);
@@ -1125,9 +1310,11 @@ public class Controller {
 
                         if (timeline != null) {
                             resetTimer();
-                            if (isTimerSwitched == false) {
-                                view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                                view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                            if (isTimerSwitched.equals(false)) {
+                                view.getTopBorderPane().getTimerViewWhite()
+                                    .switchOffTimer();
+                                view.getTopBorderPane().getTimerViewBlack()
+                                    .switchOffTimer();
                             }
                             getValidMoves(playerTurn);
                             updateBoardView();
@@ -1138,11 +1325,13 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched == true) {
+                        if (timeline != null && isTimerSwitched.equals(true)) {
                             timeline.play();
                         }
                     }
-                } catch (NumberFormatException | IOException | NullPointerException e) {
+                } catch (NumberFormatException | IOException
+                    | NullPointerException e) {
+
                     if (e.getMessage() == null) {
                         Alert alert = new Alert(AlertType.ERROR);
                         alert.setAlertType(AlertType.ERROR);
@@ -1159,11 +1348,13 @@ public class Controller {
         });
     }
 
+    /** Timed game button click handler. */
     private void onTimerButtonClick() {
-        view.getTopBorderPane().getNewTimedGameButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getNewTimedGameButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 isTimerSwitched = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
@@ -1173,23 +1364,29 @@ public class Controller {
                 if (event.getClickCount() == 2 && timeline != null) {
                     isTimerSwitched = false;
                     timeline.stop();
-                    view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                    view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .switchOffTimer();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .switchOffTimer();
                 } else if (event.getClickCount() == 2) {
                     isTimerSwitched = false;
-                    view.getTopBorderPane().getTimerViewWhite().switchOffTimer();
-                    view.getTopBorderPane().getTimerViewBlack().switchOffTimer();
+                    view.getTopBorderPane().getTimerViewWhite()
+                        .switchOffTimer();
+                    view.getTopBorderPane().getTimerViewBlack()
+                        .switchOffTimer();
                 }
             }
 
         });
     }
 
+    /** AI Player button click handler. */
     private void onAiPlayerButtonClick() {
-        view.getTopBorderPane().getAiPlayerButton().setOnMouseClicked(new EventHandler<MouseEvent>() {
+        view.getTopBorderPane().getAiPlayerButton()
+            .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 aiPlayer = true;
             }
 
