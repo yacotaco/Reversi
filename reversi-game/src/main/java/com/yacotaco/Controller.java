@@ -1242,13 +1242,14 @@ public class Controller {
                         alert.setContentText("File saved!");
 
                         Optional<ButtonType> option = alert.showAndWait();
-                        if (ButtonType.OK.equals(option.get()) == true) {
-                            if (timeline != null && isTimerSwitched == true) {
+                        Boolean buttonType = ButtonType.OK.equals(option.get());
+                        if (buttonType.equals(true)) {
+                            if (timeline != null && isTimerSwitched.equals(true)) {
                                 timeline.play();
                             }
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched == true) {
+                        if (timeline != null && isTimerSwitched.equals(true)) {
                             timeline.play();
                         }
                     }
