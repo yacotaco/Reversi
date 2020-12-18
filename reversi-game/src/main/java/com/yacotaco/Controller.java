@@ -188,6 +188,9 @@ public class Controller {
 
     // ************** VIEW UPDATE **************
 
+    /** Updates view of all elements in main window.
+     *
+     */
     private void updateBoardView() {
 
         switchOnNoValidMoves();
