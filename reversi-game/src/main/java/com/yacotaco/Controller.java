@@ -202,7 +202,7 @@ public class Controller {
                 sp.getChildren().remove(1);
             }
 
-            if (debugMarker == true) {
+            if (debugMarker.equals(true)) {
                 View.DebugMarkers dm = view.new DebugMarkers();
                 sp.getChildren().add(dv.makeDisc(discState));
                 for (Disc disc : flipedDiscsToMark) {
@@ -215,11 +215,11 @@ public class Controller {
                         sp.getChildren().add(spWithMarker);
                     }
                 }
-            } else if (debugMarker == false) {
+            } else if (debugMarker.equals(false)) {
                 sp.getChildren().add(dv.makeDisc(discState));
             }
 
-            if (moveMarker == true) {
+            if (moveMarker.equals(true)) {
                 for (Integer[] move : allValidMoves) {
                     int validMoveRow = move[0];
                     int validMoveCol = move[1];
@@ -237,11 +237,11 @@ public class Controller {
 
         updatePlayerTurnIndicators();
 
-        if (isTimerSwitched == true) {
+        if (isTimerSwitched.equals(true)) {
             setGameTimer();
         }
 
-        if (allValidMoves.isEmpty() == true) {
+        if (allValidMoves.isEmpty()) {
             addSummary(playerOne, playerTwo);
         }
 
