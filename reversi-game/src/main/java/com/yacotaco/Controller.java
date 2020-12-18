@@ -1094,17 +1094,18 @@ public class Controller {
 
     private void runOnClick(Integer row, Integer col) {
 
-        boolean validMove = validatePlacedMove(row, col);
+        Boolean validMove = validatePlacedMove(row, col);
 
         // player can place disc only on empty square
         if (board.getDiscFromBoard(row, col).getState() == -1
-            && validMove == true) {
+            && validMove.equals(true)) {
+
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
             flipVerticalDiscs(row, col, playerTurn);
             flipDiagonalDiscs(row, col, playerTurn);
 
-            if (isTimerSwitched == true) {
+            if (isTimerSwitched.equals(true)) {
                 resetTimer();
             }
 
