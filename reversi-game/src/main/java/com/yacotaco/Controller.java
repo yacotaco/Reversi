@@ -1205,7 +1205,7 @@ public class Controller {
             .setOnMouseClicked(new EventHandler<MouseEvent>() {
 
             @Override
-            public void handle(MouseEvent event) {
+            public void handle(final MouseEvent event) {
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setInitialFileName("REVERSI_GAME_SAVE_"
                      + getDateTime());
