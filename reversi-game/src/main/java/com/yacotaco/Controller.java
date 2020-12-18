@@ -874,9 +874,10 @@ public class Controller {
         }
     }
 
-    private void flipVerticalDiscs(Integer row, Integer col, Integer playerTurn) {
+    private void flipVerticalDiscs(final Integer row, final Integer col,
+        final Integer currentPlayer) {
         int nextDiscState = -1;
-        int primaryDiscState = playerTurn;
+        int primaryDiscState = currentPlayer;
         ArrayList<Disc> discsToFlip = new ArrayList<Disc>();
 
         // add loop to check if placed move "close" opponent discs up
