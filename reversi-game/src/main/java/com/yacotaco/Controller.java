@@ -970,7 +970,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -1004,7 +1005,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -1038,7 +1040,8 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
@@ -1072,11 +1075,13 @@ public class Controller {
                 break;
             } else if (nextDiscState == primaryDiscState) {
                 for (Disc disc : discsToFlip) {
-                    board.getDiscFromBoard(disc.getRow(), disc.getCol()).setState(primaryDiscState);
+                    board.getDiscFromBoard(disc.getRow(), disc.getCol())
+                        .setState(primaryDiscState);
                     flipedDiscsToMark.add(disc);
                 }
                 break;
-            } else if (i + 1 > board.getBoardGrid().length - 1 || col + 1 > board.getBoardGrid().length - 1) {
+            } else if (i + 1 > board.getBoardGrid().length - 1
+                 || col + 1 > board.getBoardGrid().length - 1) {
                 discsToFlip.clear();
                 break;
             }
