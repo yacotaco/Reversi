@@ -1127,7 +1127,7 @@ public class Controller {
         bg.getBoardGridPane().getChildren().forEach(square -> {
             square.setOnMouseClicked(new EventHandler<MouseEvent>() {
                 @Override
-                public void handle(MouseEvent event) {
+                public void handle(final MouseEvent event) {
                     Node node = (Node) event.getSource();
                     Integer col = bg.getBoardGridPane().getColumnIndex(node);
                     Integer row = bg.getBoardGridPane().getRowIndex(node);
