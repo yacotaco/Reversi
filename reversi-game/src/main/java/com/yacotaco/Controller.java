@@ -197,6 +197,7 @@ public class Controller {
                 int jCol = jMove[1];
                 if (i != j) {
                     if (iRow == jRow && iCol == jCol) {
+                        allValidMoves.remove(j);
                     }
                 }
             }
