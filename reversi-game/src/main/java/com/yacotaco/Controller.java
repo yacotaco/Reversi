@@ -161,6 +161,7 @@ public class Controller {
      */
     private void addSummary(final Player whitePlayer,
         final Player blackPlayer) {
+        final int index = 3;
         if (timeline != null) {
             timeline.pause();
         }
@@ -168,7 +169,7 @@ public class Controller {
         StackPane summary = sv.getSummary();
         Node node = view.getBorderPane().getCenter();
         StackPane sp = (StackPane) node;
-        sp.getChildren().add(3, summary);
+        sp.getChildren().add(index, summary);
     }
 
     //** Removes summary from main window. */
