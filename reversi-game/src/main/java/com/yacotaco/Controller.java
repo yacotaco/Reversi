@@ -522,7 +522,8 @@ public class Controller {
 
         // search down
         if (rowDown <= board.getBoardGrid().length - 1) {
-            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol)
+                .getState();
         }
 
         while (nextDiscStateDown == opponentDiscState) {
@@ -531,7 +532,8 @@ public class Controller {
                 break;
             }
 
-            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol).getState();
+            nextDiscStateDown = board.getDiscFromBoard(rowDown, discCol)
+                .getState();
 
             if (nextDiscStateDown == -1) {
                 Integer[] move = new Integer[2];
