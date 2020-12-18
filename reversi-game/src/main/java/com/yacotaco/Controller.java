@@ -172,7 +172,9 @@ public class Controller {
         sp.getChildren().add(index, summary);
     }
 
-    //** Removes summary from main window. */
+    /**
+     * Removes summary from main window.
+     */
     private void removeSummary() {
         final int maxElements = 4;
         final int summaryElementIndex = 3;
