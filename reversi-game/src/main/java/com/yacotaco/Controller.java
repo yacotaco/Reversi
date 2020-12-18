@@ -177,6 +177,7 @@ public class Controller {
         }
     }
 
+    /** Generates random move for opponent. */
     private void randomMoveGenerator() {
         if (aiPlayer.equals(true) && playerTurn.equals(1)) {
             int max = allValidMoves.size();
