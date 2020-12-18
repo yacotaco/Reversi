@@ -295,13 +295,17 @@ public class Controller {
 
     /** Updates indicator for current player. */
     private void updatePlayerTurnIndicators() {
-        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter().getChildren().size();
-        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter().getChildren().size();
+        int elementsInWhiteCounter = view.getTopBorderPane().getWhiteCounter()
+            .getChildren().size();
+        int elementsInBlackCounter = view.getTopBorderPane().getBlackCounter()
+            .getChildren().size();
 
         if (playerTurn == 0) {
-            view.getTopBorderPane().getWhiteCounter().getChildren().add(2, dv.makePlayerIndicator());
+            view.getTopBorderPane().getWhiteCounter().getChildren()
+                .add(2, dv.makePlayerIndicator());
         } else if (playerTurn == 1) {
-            view.getTopBorderPane().getBlackCounter().getChildren().add(2, dv.makePlayerIndicator());
+            view.getTopBorderPane().getBlackCounter().getChildren()
+                .add(2, dv.makePlayerIndicator());
         }
 
         if (elementsInWhiteCounter == 3) {
@@ -316,12 +320,14 @@ public class Controller {
         countPlayerPoints(playerOne);
         countPlayerPoints(playerTwo);
         // update white disc
-        Node nodeWhite = view.getTopBorderPane().getWhiteCounter().getChildren().get(1);
+        Node nodeWhite = view.getTopBorderPane().getWhiteCounter()
+            .getChildren().get(1);
         Text textWhite = (Text) nodeWhite;
         textWhite.setText(Integer.toString(playerOne.getPoints()));
 
         // update black disc
-        Node nodeBlack = view.getTopBorderPane().getBlackCounter().getChildren().get(1);
+        Node nodeBlack = view.getTopBorderPane().getBlackCounter()
+            .getChildren().get(1);
         Text textBlack = (Text) nodeBlack;
         textBlack.setText(Integer.toString(playerTwo.getPoints()));
         view.highLightPoints(textWhite, textBlack, playerTurn);
