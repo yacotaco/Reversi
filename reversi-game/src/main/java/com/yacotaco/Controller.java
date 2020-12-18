@@ -58,10 +58,10 @@ public class Controller {
     private Timeline timeline;
     /** Flag for game timer. */
     private Boolean isTimerSwitched;
-    private final Double TURN_TIME = 30000.0;
+    private final Double turnTime = 30000.0;
     private final Integer initPlayerTurn = 0;
-    private final Boolean DEBUG_MARKER = true;
-    private final Boolean MOVE_MARKER = true;
+    private final Boolean debugMarker = true;
+    private final Boolean moveMarker = true;
     /** Flag for AI Player. */
     private Boolean aiPlayer;
     /**List of all valid moves for current player.
@@ -198,7 +198,7 @@ public class Controller {
                 sp.getChildren().remove(1);
             }
 
-            if (DEBUG_MARKER == true) {
+            if (debugMarker == true) {
                 View.DebugMarkers dm = view.new DebugMarkers();
                 sp.getChildren().add(dv.makeDisc(discState));
                 for (Disc disc : flipedDiscsToMark) {
@@ -211,11 +211,11 @@ public class Controller {
                         sp.getChildren().add(spWithMarker);
                     }
                 }
-            } else if (DEBUG_MARKER == false) {
+            } else if (debugMarker == false) {
                 sp.getChildren().add(dv.makeDisc(discState));
             }
 
-            if (MOVE_MARKER == true) {
+            if (moveMarker == true) {
                 for (Integer[] move : allValidMoves) {
                     int validMoveRow = move[0];
                     int validMoveCol = move[1];
@@ -297,7 +297,7 @@ public class Controller {
     private void setGameTimer() {
         timeline.setCycleCount(1);
         timeline.setAutoReverse(true);
-        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(TURN_TIME), new KeyValue(new WritableValue<Integer>() {
+        timeline.getKeyFrames().add(new KeyFrame(Duration.millis(turnTime), new KeyValue(new WritableValue<Integer>() {
 
             @Override
             public Integer getValue() {
