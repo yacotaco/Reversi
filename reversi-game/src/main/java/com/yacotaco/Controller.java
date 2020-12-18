@@ -769,7 +769,7 @@ public class Controller {
      * @param col column coordiante.
      * @return boolean value.
      */
-    private boolean validatePlacedMove(Integer row, Integer col) {
+    private boolean validatePlacedMove(final Integer row, final Integer col) {
         boolean result = false;
         for (Integer[] move : allValidMoves) {
             int validMoveRow = move[0];
