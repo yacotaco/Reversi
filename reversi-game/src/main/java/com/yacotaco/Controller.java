@@ -1126,7 +1126,7 @@ public class Controller {
 
         // player can place disc only on empty square
         if (board.getDiscFromBoard(row, col).getState() == -1
-            && validMove == true) {
+            && Boolean.TRUE.equals(validMove)) {
 
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
@@ -1179,7 +1179,7 @@ public class Controller {
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
                 boolean buttonType = ButtonType.OK.equals(option.get());
-                if (buttonType == true) {
+                if (Boolean.TRUE.equals(buttonType)) {
                     System.exit(0);
                 } else {
                     if (timeline != null && isTimerOn.equals(true)) {
@@ -1249,7 +1249,7 @@ public class Controller {
 
                         Optional<ButtonType> option = alert.showAndWait();
                         boolean buttonType = ButtonType.OK.equals(option.get());
-                        if (buttonType == true) {
+                        if (Boolean.TRUE.equals(buttonType)) {
                             if (timeline != null && isTimerOn.equals(true)) {
                                 timeline.play();
                             }
