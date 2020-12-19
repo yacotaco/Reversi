@@ -52,13 +52,13 @@ public class Controller {
     private Player playerOne;
     /** Player class object. */
     private Player playerTwo;
-    /** 0 -white player 1 - black player. */
+    /** 0 - white player, 1 - black player. */
     private Integer playerTurn;
     /** Timeline class object for game timer. */
     private Timeline timeline;
     /** Flag for game timer. */
     private Boolean isTimerOn;
-    /** Timer time value in ms. */
+    /** Timer time value in milliseconds. */
     private final Double turnTime = 30000.0;
     /** Player turn on new game init. */
     private final Integer initPlayerTurn = 0;
@@ -80,7 +80,6 @@ public class Controller {
      * @param viewClass  View class
      * @param stageClass JavaFX container
      */
-
     public Controller(final Board boardClass, final View viewClass,
             final Stage stageClass) {
         this.board = boardClass;
@@ -216,7 +215,7 @@ public class Controller {
 
     /** Writes board states and player turn to file.
      *
-     * @param file file object.
+     * @param file file class object.
      * @param boardGrid representation of board in 2d array.
      * @throws IOException exception file writer.
      */
