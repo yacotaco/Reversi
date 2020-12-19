@@ -52,13 +52,13 @@ public class Controller {
     private Player playerOne;
     /** Player class object. */
     private Player playerTwo;
-    /** 0 -white player 1 - black player. */
+    /** 0 - white player, 1 - black player. */
     private Integer playerTurn;
     /** Timeline class object for game timer. */
     private Timeline timeline;
     /** Flag for game timer. */
-    private Boolean isTimerSwitched;
-    /** Timer time value in ms. */
+    private Boolean isTimerOn;
+    /** Timer time value in milliseconds. */
     private final Double turnTime = 30000.0;
     /** Player turn on new game init. */
     private final Integer initPlayerTurn = 0;
@@ -80,7 +80,6 @@ public class Controller {
      * @param viewClass  View class
      * @param stageClass JavaFX container
      */
-
     public Controller(final Board boardClass, final View viewClass,
             final Stage stageClass) {
         this.board = boardClass;
@@ -90,7 +89,7 @@ public class Controller {
         this.dv = view.new DiscView();
         this.playerOne = new Player();
         this.playerTwo = new Player();
-        this.isTimerSwitched = false;
+        this.isTimerOn = false;
         this.aiPlayer = false;
         initController();
     }
@@ -216,7 +215,7 @@ public class Controller {
 
     /** Writes board states and player turn to file.
      *
-     * @param file file object.
+     * @param file file class object.
      * @param boardGrid representation of board in 2d array.
      * @throws IOException exception file writer.
      */
@@ -294,7 +293,7 @@ public class Controller {
 
         updatePlayerTurnIndicators();
 
-        if (isTimerSwitched.equals(true)) {
+        if (isTimerOn.equals(true)) {
             setGameTimer();
         }
 
@@ -1126,15 +1125,13 @@ public class Controller {
         boolean validMove = validatePlacedMove(row, col);
 
         // player can place disc only on empty square
-        if (board.getDiscFromBoard(row, col).getState() == -1
-            && validMove == true) {
-
+        if (Boolean.TRUE.equals(validMove)) {
             board.modifyDiscState(row, col, playerTurn);
             flipHorizontalDiscs(row, col, playerTurn);
             flipVerticalDiscs(row, col, playerTurn);
             flipDiagonalDiscs(row, col, playerTurn);
 
-            if (isTimerSwitched.equals(true)) {
+            if (isTimerOn.equals(true)) {
                 resetTimer();
             }
 
@@ -1180,10 +1177,10 @@ public class Controller {
                 alert.setContentText("Do you want to exit game?");
                 Optional<ButtonType> option = alert.showAndWait();
                 boolean buttonType = ButtonType.OK.equals(option.get());
-                if (buttonType == true) {
+                if (Boolean.TRUE.equals(buttonType)) {
                     System.exit(0);
                 } else {
-                    if (timeline != null && isTimerSwitched.equals(true)) {
+                    if (timeline != null && isTimerOn.equals(true)) {
                         timeline.play();
                     }
                 }
@@ -1200,14 +1197,14 @@ public class Controller {
             @Override
             public void handle(final MouseEvent event) {
 
-                if (isTimerSwitched.equals(true)) {
+                if (isTimerOn.equals(true)) {
                     if (timeline != null) {
                         timeline.stop();
                         timeline = new Timeline();
                     } else {
                         timeline = new Timeline();
                     }
-                } else if (isTimerSwitched.equals(false)) {
+                } else if (isTimerOn.equals(false)) {
                     timeline = new Timeline();
                     timeline.pause();
                 }
@@ -1250,13 +1247,13 @@ public class Controller {
 
                         Optional<ButtonType> option = alert.showAndWait();
                         boolean buttonType = ButtonType.OK.equals(option.get());
-                        if (buttonType == true) {
-                            if (timeline != null && isTimerSwitched.equals(true)) {
+                        if (Boolean.TRUE.equals(buttonType)) {
+                            if (timeline != null && isTimerOn.equals(true)) {
                                 timeline.play();
                             }
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched.equals(true)) {
+                        if (timeline != null && isTimerOn.equals(true)) {
                             timeline.play();
                         }
                     }
@@ -1314,7 +1311,7 @@ public class Controller {
 
                         if (timeline != null) {
                             resetTimer();
-                            if (isTimerSwitched.equals(false)) {
+                            if (isTimerOn.equals(false)) {
                                 view.getTopBorderPane().getTimerViewWhite()
                                     .switchOffTimer();
                                 view.getTopBorderPane().getTimerViewBlack()
@@ -1329,7 +1326,7 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched.equals(true)) {
+                        if (timeline != null && isTimerOn.equals(true)) {
                             timeline.play();
                         }
                     }
@@ -1359,21 +1356,21 @@ public class Controller {
 
             @Override
             public void handle(final MouseEvent event) {
-                isTimerSwitched = true;
+                isTimerOn = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewWhite().switchOnTimer();
                 view.getTopBorderPane().getTimerViewBlack().switchOnTimer();
 
                 if (event.getClickCount() == 2 && timeline != null) {
-                    isTimerSwitched = false;
+                    isTimerOn = false;
                     timeline.stop();
                     view.getTopBorderPane().getTimerViewWhite()
                         .switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack()
                         .switchOffTimer();
                 } else if (event.getClickCount() == 2) {
-                    isTimerSwitched = false;
+                    isTimerOn = false;
                     view.getTopBorderPane().getTimerViewWhite()
                         .switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack()
