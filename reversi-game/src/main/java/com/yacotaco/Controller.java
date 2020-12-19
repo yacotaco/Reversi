@@ -214,6 +214,30 @@ public class Controller {
         }
     }
 
+    /** Writes board states and player turn to file.
+     *
+     * @param file file object.
+     * @param boardGrid representation of board in 2d array.
+     * @throws IOException exception file writer.
+     */
+    private void writeBoardStateToFile(final File file,
+     final Disc[][] boardGrid) throws IOException {
+        FileWriter fw = new FileWriter(file);
+        BufferedWriter bw = new BufferedWriter(fw);
+
+        for (int row = 0; row < boardGrid.length; row++) {
+            for (int col = 0; col < boardGrid[row].length; col++) {
+                Disc disc = board.getDiscFromBoard(row, col);
+                String s = row + "," + col + "," + disc.getState() + "\n";
+                bw.write(s);
+            }
+        }
+
+        String playerTurnString = Integer.toString(playerTurn);
+        bw.write(playerTurnString);
+        bw.close();
+    }
+
     // ************** VIEW UPDATE **************
 
     /** Updates view of all elements in main window.
@@ -1218,28 +1242,8 @@ public class Controller {
                 try {
                     File file = fileChooser.showSaveDialog(stage);
                     if (file != null) {
-                        FileWriter fw = new FileWriter(file);
-                        BufferedWriter bw = new BufferedWriter(fw);
 
-                        for (int row = 0; row < boardGrid.length; row++) {
-                            for (int col = 0; col < boardGrid[row].length; col++) {
-                                Disc disc = board.getDiscFromBoard(row, col);
-                                String s = row + "," + col + ","
-                                    + disc.getState() + "\n";
-                                try {
-                                    bw.write(s);
-                                } catch (IOException e) {
-                                    Alert alert = new Alert(
-                                        AlertType.INFORMATION);
-                                    alert.setContentText(
-                                        "Can't write to file!");
-                                    alert.show();
-                                }
-                            }
-                        }
-                        String playerTurnString = Integer.toString(playerTurn);
-                        bw.write(playerTurnString);
-                        bw.close();
+                        writeBoardStateToFile(file, boardGrid);
 
                         Alert alert = new Alert(AlertType.INFORMATION);
                         alert.setContentText("File saved!");
