@@ -57,7 +57,7 @@ public class Controller {
     /** Timeline class object for game timer. */
     private Timeline timeline;
     /** Flag for game timer. */
-    private Boolean isTimerSwitched;
+    private Boolean isTimerOn;
     /** Timer time value in ms. */
     private final Double turnTime = 30000.0;
     /** Player turn on new game init. */
@@ -90,7 +90,7 @@ public class Controller {
         this.dv = view.new DiscView();
         this.playerOne = new Player();
         this.playerTwo = new Player();
-        this.isTimerSwitched = false;
+        this.isTimerOn = false;
         this.aiPlayer = false;
         initController();
     }
@@ -294,7 +294,7 @@ public class Controller {
 
         updatePlayerTurnIndicators();
 
-        if (isTimerSwitched.equals(true)) {
+        if (isTimerOn.equals(true)) {
             setGameTimer();
         }
 
@@ -1134,7 +1134,7 @@ public class Controller {
             flipVerticalDiscs(row, col, playerTurn);
             flipDiagonalDiscs(row, col, playerTurn);
 
-            if (isTimerSwitched.equals(true)) {
+            if (isTimerOn.equals(true)) {
                 resetTimer();
             }
 
@@ -1183,7 +1183,7 @@ public class Controller {
                 if (buttonType == true) {
                     System.exit(0);
                 } else {
-                    if (timeline != null && isTimerSwitched.equals(true)) {
+                    if (timeline != null && isTimerOn.equals(true)) {
                         timeline.play();
                     }
                 }
@@ -1200,14 +1200,14 @@ public class Controller {
             @Override
             public void handle(final MouseEvent event) {
 
-                if (isTimerSwitched.equals(true)) {
+                if (isTimerOn.equals(true)) {
                     if (timeline != null) {
                         timeline.stop();
                         timeline = new Timeline();
                     } else {
                         timeline = new Timeline();
                     }
-                } else if (isTimerSwitched.equals(false)) {
+                } else if (isTimerOn.equals(false)) {
                     timeline = new Timeline();
                     timeline.pause();
                 }
@@ -1251,12 +1251,12 @@ public class Controller {
                         Optional<ButtonType> option = alert.showAndWait();
                         boolean buttonType = ButtonType.OK.equals(option.get());
                         if (buttonType == true) {
-                            if (timeline != null && isTimerSwitched.equals(true)) {
+                            if (timeline != null && isTimerOn.equals(true)) {
                                 timeline.play();
                             }
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched.equals(true)) {
+                        if (timeline != null && isTimerOn.equals(true)) {
                             timeline.play();
                         }
                     }
@@ -1314,7 +1314,7 @@ public class Controller {
 
                         if (timeline != null) {
                             resetTimer();
-                            if (isTimerSwitched.equals(false)) {
+                            if (isTimerOn.equals(false)) {
                                 view.getTopBorderPane().getTimerViewWhite()
                                     .switchOffTimer();
                                 view.getTopBorderPane().getTimerViewBlack()
@@ -1329,7 +1329,7 @@ public class Controller {
                             updateBoardView();
                         }
                     } else {
-                        if (timeline != null && isTimerSwitched.equals(true)) {
+                        if (timeline != null && isTimerOn.equals(true)) {
                             timeline.play();
                         }
                     }
@@ -1359,21 +1359,21 @@ public class Controller {
 
             @Override
             public void handle(final MouseEvent event) {
-                isTimerSwitched = true;
+                isTimerOn = true;
                 view.getTopBorderPane().getTimerViewWhite().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewBlack().setTimerValue("0");
                 view.getTopBorderPane().getTimerViewWhite().switchOnTimer();
                 view.getTopBorderPane().getTimerViewBlack().switchOnTimer();
 
                 if (event.getClickCount() == 2 && timeline != null) {
-                    isTimerSwitched = false;
+                    isTimerOn = false;
                     timeline.stop();
                     view.getTopBorderPane().getTimerViewWhite()
                         .switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack()
                         .switchOffTimer();
                 } else if (event.getClickCount() == 2) {
-                    isTimerSwitched = false;
+                    isTimerOn = false;
                     view.getTopBorderPane().getTimerViewWhite()
                         .switchOffTimer();
                     view.getTopBorderPane().getTimerViewBlack()
