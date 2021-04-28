@@ -22,17 +22,4 @@
  * [TODO] AI Player:
   1. [] Monte Carlo tree search (v1.1)
   2. [] Alpha–beta pruning (v1.2)
-  3. [] Reinforcement Learning (v1.3) 
-
-  ### TODO:
-  * Code refactoring
-
-  1. [X] Move styles to css file.
-  2. [X] Divide methods for smaller and more readable.
-  3. [X] Add sections to Controller (OnClickHandlers, HoverHandlers, searchMethods, flipMethods..)
-  4. [] Rename some methods.
-
-  * Web version
-
-    https://github.com/yacotaco/Reversi-web
- 
+  3. [] Reinforcement Learning (v1.3)
